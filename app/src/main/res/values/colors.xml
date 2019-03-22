@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorPrimaryTransparent">#0000C9EF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white50">#FAFAFA</color>
+    <color name="whitea70">#b2FFFFFF</color>
+    <color name="white100">#F5F5F5</color>
+    <color name="white200">#EEEEEE</color>
+    <color name="white300">#E0E0E0</color>
+
+    <color name="blue100">#D2F7FB</color>
+    <color name="blue500">#00C9EF</color>
+    <color name="blue600">#00BADC</color>
+    <color name="blue700">#269BAC</color>
+
+    <color name="blue800a40">#66007C93</color>
+    <color name="blue800a70">#b2007C93</color>
+    <color name="blue800">#007C93</color>
+
+    <color name="green400">#7ee2d3</color>
+    <color name="green500">#2FD4BB</color>
+    <color name="green600">#23B8A2</color>
+    <color name="green700">#0c726b</color>
+
+
+    <color name="red300">#F39FA1</color>
+    <color name="red500">#BE2829</color>
+
+    <color name="gray50">#FAFAFA</color>
+    <color name="gray100">#F5F5F5</color>
+    <color name="gray300">#E0E0E0</color>
+    <color name="gray400">#BDBDBD</color>
+    <color name="gray600">#757575</color>
+    <color name="gray700">#616161</color>
+    <color name="gray800">#424242</color>
+
+    <color name="textPrimaryDark">#FF505050</color>
+    <color name="textSecondaryDark">#70505050</color>
+    <color name="textHintDark">#60000000</color>
+    <color name="logoSecondaryDark">#C0C0C0</color>
+
+    <color name="textPrimaryBright">#FFFFFFFF</color>
+    <color name="textSecondaryBright">#B2FFFFFF</color>
+    <color name="textHintBright">#80FFFFFF</color>
+
+
+</resources>

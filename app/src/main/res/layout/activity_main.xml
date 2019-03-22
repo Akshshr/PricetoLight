@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="test"
+            type="String"/>
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".app.MainActivity"
+        android:id="@+id/parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/dropDownList"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/rowSingleLine"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.AppCompatSpinner>
+
+        </RelativeLayout>
+
+        <!-- Other components and views -->
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/glowEffect"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/d72"
+                android:src="@drawable/blur" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="100"
+                android:progressDrawable="@drawable/circle_progress_background" />
+
+            <ProgressBar
+                android:id="@+id/circle_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:max="100"
+                android:rotation="-90"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circle_progress_foreground" />
+
+
+
+            <!--<com.moos.library.CircleProgressView-->
+                <!--android:id="@+id/progressView"-->
+                <!--android:layout_width="260dp"-->
+                <!--android:layout_height="260dp"-->
+                <!--android:layout_gravity="center"-->
+                <!--app:circleBroken="true"-->
+                <!--app:end_color="@color/red500"-->
+                <!--app:end_progress="100"-->
+                <!--app:isTracked="true"-->
+                <!--app:start_color="@color/green500"-->
+                <!--app:start_progress="0"-->
+                <!--app:track_width="18dp" />-->
+        </FrameLayout>
+
+        <android.support.design.bottomappbar.BottomAppBar
+            android:id="@+id/bar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rowSingleLine"
+            android:layout_gravity="bottom"
+            android:background="@color/white100"
+            app:navigationIcon="@drawable/menu_icon_sheet" />
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab"-->
+        <!--app:elevation="@dimen/d4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--app:fabSize="normal"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_anchor="@id/bar"/>-->
+
+        <View
+            android:id="@+id/dimBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#99000000"
+            android:visibility="gone" />
+
+        <!-- include bottom sheet -->
+        <include
+            android:id="@+id/bottom_sheet"
+            layout="@layout/sheet_main" />
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

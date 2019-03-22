@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+            <import type="android.view.View"/>
+
+            <variable
+                name="test"
+                type="String"/>
+
+            <variable
+                name="loading"
+                type="boolean"/>
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/parent"
+    android:layout_height="match_parent"
+    tools:context=".app.main.fragment.HueConnectFragment">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        style="@style/Text.20spBold"
+        android:layout_marginStart="@dimen/d12"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/d48"
+        android:layout_marginBottom="@dimen/d22"
+        android:text="@string/connect_hue_title"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        style="@style/Text.16spMedium"
+        android:layout_below="@+id/title"
+        android:textAlignment="center"
+        android:id="@+id/desctription"
+        android:layout_marginStart="@dimen/d12"
+        android:layout_marginEnd="@dimen/d22"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_hue_description"
+        />
+
+    <FrameLayout
+        android:id="@+id/hueBridgeLayout"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/hueBridge"
+            android:src="@drawable/ic_hue_bridge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/hueButtonWhite"
+            android:src="@drawable/ic_hue_bridge_button_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/hueButtonBlue"
+            android:alpha="0"
+            android:src="@drawable/ic_hue_bridge_button_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_view"
+        android:layout_below="@+id/hueBridgeLayout"
+        app:lottie_cacheStrategy="strong"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        app:lottie_fileName="loading.json"
+        app:lottie_scale="21"
+        app:lottie_loop="true"
+        android:visibility="@{loading ? View.GONE : View.VISIBLE}"
+        app:lottie_autoPlay="true"
+        />
+    <TextView
+        android:id="@+id/searchingTitle"
+        android:layout_width="match_parent"
+        style="@style/Text.14sp"
+        android:layout_below="@+id/lottie_view"
+        android:textAlignment="center"
+        android:layout_marginStart="@dimen/d12"
+        android:layout_marginEnd="@dimen/d22"
+        android:layout_height="wrap_content"
+        android:text="@string/connect_hue_searching"
+        />
+
+</RelativeLayout>
+
+</layout>

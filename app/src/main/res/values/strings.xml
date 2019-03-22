@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name" translatable="false">Price to Light</string>
+    <string name="app_caption">Simplest way to see electricity price</string>
+
+    <string name="hello_blank_fragment">blank</string>
+
+    <string name="access_token" translatable="false">86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1</string>
+
+
+    <!--86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1-->
+
+    <!--LOGIN ACTIVITY-->
+    <string name="login">Login</string>
+    <string name="login_button">Login with tibber</string>
+    <string name="login_email_hint">E-mail as in Tibber</string>
+    <string name="login_password_hint">Password</string>
+
+    <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
+    <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
+
+    <!--BOTTOM SHEET-->
+    <string name="connect_hue">Connect Philips Hue</string>
+
+    <!--CONNECT HUE-->
+    <string name="connect_hue_title">Connect Philips Hue Bridge</string>
+    <string name="connect_hue_description">Now would be a good time to click on the main button on your hue bridge</string>
+
+    <string name="connect_hue_searching">Searching for your bridge...</string>
+
+
+</resources>

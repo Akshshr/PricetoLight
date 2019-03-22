@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.pricetolight.app.login.LoginActivity.State" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="delegate"
+            type="com.pricetolight.app.login.LoginActivity.Delegate" />
+
+        <variable
+            name="state"
+            type="State" />
+
+        <variable
+            name="test"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".app.login.LoginActivity">
+        <!--<FrameLayout-->
+            <!--android:visibility="@{state == State.LOADING ? View.VISIBLE : View.GONE}"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_height="160dp">-->
+
+            <!--<com.airbnb.lottie.LottieAnimationView-->
+                <!--android:id="@+id/lottie_view"-->
+                <!--app:lottie_cacheStrategy="strong"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--app:lottie_fileName="loading.json"-->
+                <!--app:lottie_scale="21"-->
+                <!--app:lottie_loop="true"-->
+                <!--android:visibility="@{state == State.LOADING ? View.VISIBLE : View.GONE}"-->
+                <!--app:lottie_autoPlay="true"-->
+                <!--/>-->
+        <!--</FrameLayout>-->
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:layout_height="match_parent"
+                    android:background="@color/blue500">
+
+                    <RelativeLayout
+                        android:id="@+id/titleAndCaption"
+                        android:layout_marginBottom="@dimen/d48"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:id="@+id/titleLayout"
+                            android:gravity="center"
+                            android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_toLeftOf="@+id/title"
+                            android:src="@drawable/ic_logo" />
+
+                        <TextView
+                            android:id="@+id/title"
+                            style="@style/Text.Bright.28spBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/d12"
+                            android:layout_marginEnd="@dimen/d12"
+                            android:text="@string/app_name"
+                            android:textAlignment="center" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/Text.Bright.16spLight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/titleLayout"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/d12"
+                            android:layout_marginTop="@dimen/d12"
+                            android:layout_marginEnd="@dimen/d12"
+                            android:text="@string/app_caption"
+                            android:textAlignment="center" />
+                    </RelativeLayout>
+
+                    <com.pricetolight.app.widget.CloudsView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/d16"
+                        android:layout_marginBottom="360dp" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content">
+
+                    <com.pricetolight.app.widget.GroundView
+                        android:id="@+id/groundView"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp" />
+
+                    <Button
+                        android:id="@+id/save"
+                        style="@style/AppTheme.ButtonBright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/d8"
+                        android:drawableStart="@drawable/ic_tibber_logo"
+                        android:onClick="@{() -> delegate.onLogin()}"
+                        android:text="@string/login_button"
+                        android:textIsSelectable="false"
+                        android:visibility="@{state == State.BEGIN ? View.VISIBLE : View.GONE}"
+                        tools:text="@string/login_button" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:id="@+id/loginView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:padding="@dimen/d16"
+                    android:background="@color/blue700"
+                    android:orientation="vertical"
+                    android:visibility="@{state == State.EMAIL ? View.VISIBLE : View.GONE}">
+
+                    <EditText
+                        android:id="@+id/text_email"
+                        style="@style/AppWidget.EditText.Solid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="customer@tibber.com"
+                        android:hint="@string/login_email_hint"
+                        android:inputType="textEmailAddress"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/text_password"
+                        style="@style/AppWidget.EditText.Solid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/d6"
+                        android:hint="@string/login_password_hint"
+                        android:inputType="textPassword"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/login"
+                        style="@style/AppTheme.ButtonBright"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/d8"
+                        android:layout_marginBottom="@dimen/d8"
+                        android:onClick="@{() -> delegate.onLogin()}"
+                        android:text="@string/login"
+                        android:textIsSelectable="false"
+                        tools:text="@string/login_button" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/Text.Bright.14spMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="@dimen/d32"
+                    android:layout_marginEnd="@dimen/d32"
+                    android:layout_marginBottom="@dimen/d16"
+                    android:padding="@dimen/d8"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?selectableItemBackground"
+                    android:elevation="@dimen/d12"
+                    android:onClick="@{() -> delegate.onTibber()}"
+                    android:text="@string/login_no_customer_text"
+                    android:textAlignment="center"
+                    android:visibility="@{state == State.BEGIN ? View.VISIBLE : View.GONE}"
+                    tools:text="@string/login_no_customer_text" />
+
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+
+</layout>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:textColor">@color/textPrimaryDark</item>
+    </style>
+
+    <style name="Text.Bright">
+        <item name="android:textColor">@color/textPrimaryBright</item>
+    </style>
+
+    <style name="Text.Bright.10sp">
+        <item name="android:textSize">@dimen/fontSize10</item>
+    </style>
+
+    <style name="Text.Bright.12sp">
+        <item name="android:textSize">@dimen/fontSize12</item>
+    </style>
+
+    <style name="Text.Bright.12spMedium">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.Bright.12spMediumSecondary">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+        <item name="android:textColor">@color/textSecondaryBright</item>
+    </style>
+    <style name="Text.Bright.12spMediumHint">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+        <item name="android:textColor">@color/textHintBright</item>
+    </style>
+
+    <style name="Text.Bright.14sp">
+        <item name="android:textSize">@dimen/fontSize14</item>
+    </style>
+
+    <style name="Text.Bright.14spHint">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:textColor">@color/textHintBright</item>
+    </style>
+
+    <style name="Text.Bright.14spLight">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+    </style>
+
+    <style name="Text.Bright.14spMedium">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.Bright.14spMediumSecondary">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+        <item name="android:textColor">@color/textSecondaryBright</item>
+    </style>
+
+    <style name="Text.Bright.16sp">
+        <item name="android:textSize">@dimen/fontSize16</item>
+    </style>
+
+    <style name="Text.Bright.16spLight">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+    </style>
+
+    <style name="Text.Bright.16spMedium">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.Bright.18spMedium">
+        <item name="android:textSize">@dimen/fontSize18</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.Bright.20spMedium">
+        <item name="android:textSize">@dimen/fontSize20</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.Bright.28spMedium">
+        <item name="android:textSize">@dimen/fontSize28</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+    <style name="Text.Bright.28spBold">
+        <item name="android:textSize">@dimen/fontSize28</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+
+    <style name="Text.Red">
+        <item name="android:textColor">@color/red500</item>
+    </style>
+
+    <style name="Text.10sp">
+        <item name="android:textSize">@dimen/fontSize10</item>
+    </style>
+
+    <style name="Text.10spBold">
+        <item name="android:textSize">@dimen/fontSize10</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+
+    <style name="Text.10spSecondary">
+        <item name="android:textSize">@dimen/fontSize10</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.Red.12spMedium">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+    <style name="Text.12sp">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+
+    </style>
+
+    <style name="Text.12spBold">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+    <style name="Text.12spLight">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+    <style name="Text.12spSecondary">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.12spLightSecondary">
+        <item name="android:textSize">@dimen/fontSize12</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.14spMedium">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+    </style>
+
+    <style name="Text.14spMediumSecondary">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.14sp">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+
+    <style name="Text.14spBold">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+    <style name="Text.14spLight">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+    </style>
+    <style name="Text.14spLightSecondary">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.14spSecondary">
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+    <style name="Text.16sp">
+        <item name="android:textSize">@dimen/fontSize16</item>
+
+    </style>
+    <style name="Text.16spMedium">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+    <style name="Text.16spSecondary">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
+
+    <style name="Text.16spBold">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+    <style name="Text.16spLight">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+    </style>
+    <style name="Text.18spMedium">
+        <item name="android:textSize">@dimen/fontSize18</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.18spBold">
+        <item name="android:textSize">@dimen/fontSize18</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+    <style name="Text.20sp">
+        <item name="android:textSize">@dimen/fontSize20</item>
+    </style>
+    <style name="Text.20spMedium">
+        <item name="android:textSize">@dimen/fontSize20</item>
+        <item name="android:fontFamily">@font/googlesans_medium</item>
+    </style>
+
+    <style name="Text.20spBold">
+        <item name="android:textSize">@dimen/fontSize20</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.pricetolight">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <application
+        android:name=".app.PriceToLightsApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:hardwareAccelerated="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".app.MainActivity"
+            android:theme="@style/SplashTheme">
+        </activity>
+        <activity android:name=".app.login.LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".app.main.ConnectHueActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".app.base.BaseActivity">
+        </activity>
+    </application>
+
+</manifest>

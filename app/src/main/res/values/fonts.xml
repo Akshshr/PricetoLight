@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontSize8">8sp</dimen> <!-- WARNING! Only too be used in icons -->
+    <dimen name="fontSize10">10sp</dimen>
+    <!-- WARNING! To be used very rarely -->
+    <dimen name="fontSize12">12sp</dimen>
+    <dimen name="fontSize14">14sp</dimen>
+    <dimen name="fontSize16">16sp</dimen>
+    <dimen name="fontSize18">18sp</dimen>
+    <dimen name="fontSize20">20sp</dimen>
+    <dimen name="fontSize22">22sp</dimen>
+    <dimen name="fontSize24">24sp</dimen>
+    <dimen name="fontSize28">28sp</dimen>
+    <dimen name="fontSize64">64sp</dimen>
+
+</resources>
