@@ -11,8 +11,8 @@ public class Api {
     private UserApiService userApiService;
 
     public Api(String apiHost, Authenticator authenticator) {
-        priceApiService = new PriceApiService(new ApiServiceFactory(String.format(apiHost, "v1.1"), authenticator), authenticator);
-        userApiService = new UserApiService(new ApiServiceFactory(String.format(apiHost, "v1.1"), authenticator), authenticator);
+        priceApiService = new PriceApiService(new ApiServiceFactory(String.format(apiHost, "v1-beta"), authenticator), authenticator);
+        userApiService = new UserApiService(new ApiServiceFactory(String.format(apiHost, "v1-beta"), authenticator), authenticator);
     }
 
     public PriceApiService getPriceApiService() {

@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -41,6 +42,9 @@ import rx.android.schedulers.AndroidSchedulers;
 public class MainActivity extends BaseActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+
+
+    List<String> homeNickNames = new ArrayList<String>();
 
     private ActivityMainBinding binding;
     BottomSheetBehavior bottomSheetBehavior;
@@ -87,18 +91,6 @@ public class MainActivity extends BaseActivity {
         });
 
 
-        List<String> categoryList = new ArrayList<String>();
-        categoryList.add("House 1");
-        categoryList.add("House 2");
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner,categoryList);
-        binding.dropDownList.setAdapter(categoryAdapter);
-
-
-//        binding.progressView.setGraduatedEnabled(true);
-//        binding.progressView.setProgressTextColor(ContextCompat.getColor(this,R.color.white));
-//        binding.progressView.setAnimateType(CircleProgressView.ACCELERATE_DECELERATE_INTERPOLATOR);
-//        binding.progressView.startProgressAnimation();
-
         binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,34 +115,11 @@ public class MainActivity extends BaseActivity {
 
         fetchData();
 
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             binding.circleProgressBar.setProgress(75, true);
         }else{
             binding.circleProgressBar.setProgress(75);
         }
-//        binding.circleProgressBar.list.setProgressViewUpdateListener(new CircleProgressView.CircleProgressUpdateListener() {
-//            @Override
-//            public void onCircleProgressStart(View view) {
-//
-//            }
-//
-//            @Override
-//            public void onCircleProgressUpdate(View view, float progress) {
-//                if(progress<30){
-//                    binding.glowEffect.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.blue600), android.graphics.PorterDuff.Mode.MULTIPLY);
-//                }else if(progress>30 && progress<70){
-//                    binding.glowEffect.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.red500), android.graphics.PorterDuff.Mode.MULTIPLY);
-//                }else{
-//                    binding.glowEffect.setColorFilter(ContextCompat.getColor(MainActivity.this, R.color.colorPrimaryDark), android.graphics.PorterDuff.Mode.MULTIPLY);
-//                }
-//            }
-//
-//            @Override
-//            public void onCircleProgressFinished(View view) {
-//
-//            }
-//        });
 
     }
 
@@ -166,13 +135,37 @@ public class MainActivity extends BaseActivity {
                 .subscribe(this::onMe, this::handleError);
     }
 
-    private void onMe(Object homes) {
-        Log.d(TAG, "onMe: "+ homes);
+    private void onMe(Homes homes) {
+
+        for(int i = 0; i< homes.getHomes().size(); i++) {
+            homeNickNames.add(homes.getHomes().get(i).getAppNickname());
+        }
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner,homeNickNames);
+        binding.dropDownList.setAdapter(categoryAdapter);
+        int currentSelection = binding.dropDownList.getSelectedItemPosition();
+        binding.houseType.setText(homes.getHomes().get(0).getType());
+
+        binding.dropDownList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(currentSelection == position){
+                    //Do nothing
+                }else{
+                    getAppPreferences().setActiveHomeId(homes.getHomes().get(position).getId());
+                    onChangeHome(position);
+                }
+            }
+        });
+
+    }
+
+    private void onChangeHome(int pos) {
+        fetchPrice();
     }
 
     private void fetchPrice() {
         getApi().getPriceApiService()
-                .getPrice("1")
+                .getPrice(getAppPreferences().getActiveHomeId().get())
                 .takeUntil(getLifecycleEvents(ActivityEvent.DESTROY))
                 .subscribe(this::onPriceRating,
                         this::handleError);
@@ -180,6 +173,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void onPriceRating(Homes homes) {
+        Log.d(TAG, "onPriceRating: " + homes);
     }
 
 

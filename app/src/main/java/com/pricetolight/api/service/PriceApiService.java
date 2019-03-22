@@ -25,7 +25,7 @@ public class PriceApiService {
         return priceApiEndpoint.getPrice(authenticator.getToken(), new QueryRequest(String.format(query, homeId)));
     }
 
-    public Observable<Object> getMe() {
+    public Observable<Homes> getMe() {
         String query = "{ viewer { homes { id appNickname type address { address1 address2 address3 postalCode city country latitude longitude } } } }";
         return priceApiEndpoint.getMe(token, new QueryRequest(query));
     }

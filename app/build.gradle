@@ -12,8 +12,7 @@ android {
         renderscriptTargetApi 21
         renderscriptSupportModeEnabled true
 
-        buildConfigField "String", "API_HOST", "\"https://app.tibber.com/%s/\""
-        buildConfigField "String", "SIGNUP_HOST", "\"https://signup2.tibber.com/\""
+        buildConfigField "String", "API_HOST", "\"https://api.tibber.com/%s/\""
 
     }
     buildTypes {

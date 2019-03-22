@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="test"
-            type="String"/>
+            type="String" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".app.MainActivity"
-        android:id="@+id/parent"
-        >
+        tools:context=".app.MainActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/dropDownList"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/rowSingleLine"
-            android:layout_centerInParent="true"
-            android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/dropDownList"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/rowSingleLine">
 
-        </android.support.v7.widget.AppCompatSpinner>
+            </android.support.v7.widget.AppCompatSpinner>
+
+            <TextView
+                android:id="@+id/houseType"
+                android:textAlignment="center"
+                style="@style/Text.14spBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dropDownList"
+                tools:text="@string/app_name"/>
 
         </RelativeLayout>
-
         <!-- Other components and views -->
-
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="320dp"
@@ -63,25 +70,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:max="100"
-                android:rotation="-90"
                 android:indeterminate="false"
-                android:progressDrawable="@drawable/circle_progress_foreground" />
-
+                android:max="100"
+                android:progressDrawable="@drawable/circle_progress_foreground"
+                android:rotation="-90" />
 
 
             <!--<com.moos.library.CircleProgressView-->
-                <!--android:id="@+id/progressView"-->
-                <!--android:layout_width="260dp"-->
-                <!--android:layout_height="260dp"-->
-                <!--android:layout_gravity="center"-->
-                <!--app:circleBroken="true"-->
-                <!--app:end_color="@color/red500"-->
-                <!--app:end_progress="100"-->
-                <!--app:isTracked="true"-->
-                <!--app:start_color="@color/green500"-->
-                <!--app:start_progress="0"-->
-                <!--app:track_width="18dp" />-->
+            <!--android:id="@+id/progressView"-->
+            <!--android:layout_width="260dp"-->
+            <!--android:layout_height="260dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:circleBroken="true"-->
+            <!--app:end_color="@color/red500"-->
+            <!--app:end_progress="100"-->
+            <!--app:isTracked="true"-->
+            <!--app:start_color="@color/green500"-->
+            <!--app:start_progress="0"-->
+            <!--app:track_width="18dp" />-->
         </FrameLayout>
 
         <android.support.design.bottomappbar.BottomAppBar
