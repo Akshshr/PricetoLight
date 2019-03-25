@@ -8,6 +8,7 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
+import com.pricetolight.app.main.LicencesActivity;
 import com.pricetolight.app.util.TextUtil;
 import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityMainBinding;
@@ -53,12 +55,7 @@ public class MainActivity extends BaseActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        binding.bar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-            }
-        });
+        binding.bar.setOnClickListener(v -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED));
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet);
         bottomSheetBehavior.setPeekHeight(0);
 
@@ -76,29 +73,20 @@ public class MainActivity extends BaseActivity {
         });
 
         //Dim background setup..
-        binding.dimBackground.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED){
-                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                }
+        binding.dimBackground.setOnClickListener(v -> {
+            if(bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED){
+                bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
         });
 
+        binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
 
-        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ConnectHueActivity.class));
-            }
-        });
+        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ConnectHueActivity.class)));
+        binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LicencesActivity.class)));
 
-        binding.bar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
-                return false;
-            }
+        binding.bar.setOnMenuItemClickListener(menuItem -> {
+            Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
+            return false;
         });
 
     }
@@ -136,7 +124,7 @@ public class MainActivity extends BaseActivity {
         binding.dropDownList.setAdapter(categoryAdapter);
 
         int currentSelection = binding.dropDownList.getSelectedItemPosition();
-        binding.houseType.setText(homes.getHomes().get(0).getType());
+        binding.houseType.setText(homes.getHomes().get(0).getType().description(this));
 
         binding.dropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -173,27 +161,30 @@ public class MainActivity extends BaseActivity {
     private void onPriceRating(Home home) {
         this.home = home;
 
-        CurrentPrice currentPrice = home.getCurrentSubscription().getPriceInfo().getCurrent();
+        if(home.getCurrentSubscription()!=null && home.getCurrentSubscription().getPriceInfo()!=null && home.getCurrentSubscription().getPriceInfo().getCurrent()!=null) {
+            TransitionManager.beginDelayedTransition(binding.parent);
+            binding.setNoActiveSubscription(false);
+            CurrentPrice currentPrice = home.getCurrentSubscription().getPriceInfo().getCurrent();
 
-        binding.priceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            binding.priceSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 getAppPreferences().setPreferredTotalPrice(isChecked);
                 setPrice(currentPrice);
-            }
-        });
+            });
 
-        binding.progressView.setBackgroundColor(ContextCompat.getColor(binding.getRoot().getContext(),R.color.gray100));
-        binding.progressView.setProgress(Util.getCircleProgress(currentPrice.getLevel().getLevelProgress(this)), (int) (Math.random() * (580 - 400)) + 400, 380);
-        binding.progressView.setProgressColor(currentPrice.getLevel().getLevelColor(this));
+            binding.progressView.setBackgroundColor(ContextCompat.getColor(binding.getRoot().getContext(), R.color.gray100));
+            binding.progressView.setProgress(Util.getCircleProgress(currentPrice.getLevel().getLevelProgress(this)), (int) (Math.random() * (580 - 400)) + 400, 380);
+            binding.progressView.setProgressColor(currentPrice.getLevel().getLevelColor(this));
 
-        binding.glowEffect.setColorFilter(currentPrice.getLevel().getLevelColor(this), android.graphics.PorterDuff.Mode.MULTIPLY);
-        binding.unit.setText(getResources().getString(R.string.price_unit));
+            binding.glowEffect.setColorFilter(currentPrice.getLevel().getLevelColor(this), android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.unit.setText(getResources().getString(R.string.price_unit));
 
-        binding.timeFrame.setText(Util.getformattedTimeframe());
+            binding.timeFrame.setText(Util.getformattedTimeframe());
 
-//        aed581
-        setPrice(currentPrice);
+            setPrice(currentPrice);
+        }else{
+            TransitionManager.beginDelayedTransition(binding.parent);
+            binding.setNoActiveSubscription(true);
+        }
     }
 
     private void setPrice(CurrentPrice currentPrice) {

@@ -26,7 +26,7 @@
         android:layout_marginStart="@dimen/d12"
         android:layout_marginTop="@dimen/d22"
         android:layout_marginBottom="@dimen/d22"
-        android:text="Main"
+        android:text="Devices"
         />
 
     <RelativeLayout
@@ -59,6 +59,53 @@
             />
 
     </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/header2"
+            android:layout_below="@+id/addDeviceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            style="@style/Text.16spBold"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginTop="@dimen/d22"
+            android:layout_marginBottom="@dimen/d22"
+            android:text="About"
+            />
+
+        <RelativeLayout
+            android:id="@+id/licencesLayout"
+            android:layout_below="@+id/header2"
+            android:layout_width="match_parent"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="@dimen/rowSingleLine">
+
+            <ImageView
+                android:id="@+id/licencesImage"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:src="@drawable/ic_licenses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_toRightOf="@+id/licencesImage"
+                android:layout_width="match_parent"
+                style="@style/Text.14sp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/licences"
+                />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 

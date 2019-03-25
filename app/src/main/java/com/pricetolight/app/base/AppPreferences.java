@@ -52,7 +52,7 @@ public class AppPreferences {
     }
 
     public Preference<Boolean> getPreferredTotalPrice() {
-        return rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE);
+        return rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE, false);
     }
 
 

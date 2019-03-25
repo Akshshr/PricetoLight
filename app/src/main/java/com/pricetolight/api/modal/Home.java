@@ -9,9 +9,14 @@ import java.util.List;
 public class Home implements Serializable {
 
     private String appNickname;
-    private String type;
+    private HomeType type;
     private String id;
     private HomeAddress address;
+
+    public HomeType getType() {
+        return type;
+    }
+
 
     private CurrentSubscription currentSubscription;
 
@@ -27,9 +32,6 @@ public class Home implements Serializable {
         return appNickname;
     }
 
-    public String getType() {
-        return type;
-    }
 
     public HomeAddress getAddress() {
         return address;

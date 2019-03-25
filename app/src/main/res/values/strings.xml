@@ -13,7 +13,6 @@
     <string name="price_unit">ore</string>
 
 
-
     <!--LOGIN ACTIVITY-->
     <string name="login">Login</string>
     <string name="login_button">Login with tibber</string>
@@ -24,7 +23,11 @@
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 
     <!--BOTTOM SHEET-->
+    <string name="header1">Devices</string>
     <string name="connect_hue">Connect Philips Hue</string>
+    <string name="header2">About</string>
+    <string name="licences">Licences</string>
+
 
     <!--CONNECT HUE-->
     <string name="connect_hue_title">Connect Philips Hue Bridge</string>
@@ -32,5 +35,8 @@
 
     <string name="connect_hue_searching">Searching for your bridge...</string>
 
+
+    <!--SNACK BAR-->
+    <string name="dismiss">Dismiss</string>
 
 </resources>

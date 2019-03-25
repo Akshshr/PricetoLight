@@ -235,4 +235,30 @@
         <item name="android:textSize">@dimen/fontSize64</item>
     </style>
 
+    <!---->
+    <style name="Text.Special.14spSecondary">
+        <item name="android:textSize">@dimen/fontSize14</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+
+    </style>
+
+    <style name="Text.Special.20spSecondary">
+        <item name="android:textSize">@dimen/fontSize20</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+
+    </style>
+
+    <style name="Text.Special.40spSecondary">
+        <item name="android:textSize">@dimen/fontSize40</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+
+    </style>
+
+    <style name="Text.Special.64spSecondary">
+        <item name="android:textSize">@dimen/fontSize64</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+
+    </style>
+
+
 </resources>

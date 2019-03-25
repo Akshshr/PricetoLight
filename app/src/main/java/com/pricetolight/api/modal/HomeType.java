@@ -6,35 +6,38 @@ import com.google.gson.annotations.SerializedName;
 
 public enum HomeType {
 
-    @SerializedName("apartment")
+    @SerializedName("APARTMENT")
     APARTMENT,
-    @SerializedName("rowhouse")
-    ROW_HOUSE,
-    @SerializedName("cottage")
+    @SerializedName("ROWHOUSE")
+    ROWHOUSE,
+    @SerializedName("FLOORHOUSE1")
+    FLOORHOUSE1,
+    @SerializedName("FLOORHOUSE2")
+    FLOORHOUSE2,
+    @SerializedName("FLOORHOUSE3")
+    FLOORHOUSE3,
+    @SerializedName("COTTAGE")
     COTTAGE,
-    @SerializedName("something")
-    SOMETHING,
-    @SerializedName("something1")
-    SOMETHING1,
-    @SerializedName("castle")
+    @SerializedName("CASTLE")
     CASTLE;
-
 
 
     public String description(Context context) {
         switch (this) {
             case APARTMENT:
                 return "Apartment";
-            case ROW_HOUSE:
+            case ROWHOUSE:
                 return "Row house";
-            case COTTAGE:
-                return "Cottage";
-            case SOMETHING:
-                return "Something";
-            case SOMETHING1:
-                return "Something 1";
+            case FLOORHOUSE1:
+                return "FLOORHOUSE1";
+            case FLOORHOUSE2:
+                return "FLOORHOUSE2";
+            case FLOORHOUSE3:
+                return "FLOORHOUSE3 ";
             case CASTLE:
                 return "Castle";
+            case COTTAGE:
+                return "Cottage";
             default:
                 return "";
         }

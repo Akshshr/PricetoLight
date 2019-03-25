@@ -44,7 +44,7 @@ public class Util {
 
     @SuppressLint("DefaultLocale")
     public static String getformattedTimeframe() {
-        return String.format("%d:00 - %d:00", DateTime.now().getHourOfDay() - 1, DateTime.now().getHourOfDay());
+        return String.format("%d:00 - %d:00", DateTime.now().getHourOfDay(), DateTime.now().getHourOfDay() + 1);
     }
 
 
