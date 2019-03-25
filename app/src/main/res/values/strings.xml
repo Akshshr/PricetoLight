@@ -9,6 +9,11 @@
 
     <!--86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1-->
 
+    <!--MAIN ACTIVITY-->
+    <string name="price_unit">ore</string>
+
+
+
     <!--LOGIN ACTIVITY-->
     <string name="login">Login</string>
     <string name="login_button">Login with tibber</string>

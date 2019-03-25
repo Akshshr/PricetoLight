@@ -1,11 +1,14 @@
 package com.pricetolight.app.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +34,21 @@ public class Util {
         }
     }
 
-    public static int getStatusBarHeight(final Context context) {
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            return context.getResources().getDimensionPixelSize(resourceId);
-        }
-        return 0;
+
+    public static float getCircleProgress(int percentValue) {
+        float progress = MathUtil.mapClamp((float) percentValue, 0, 100, 0, 1);
+        return MathUtil.lerp(progress, 0.05f, 0.95f);
     }
+
+
+
+    @SuppressLint("DefaultLocale")
+    public static String getformattedTimeframe() {
+        return String.format("%d:00 - %d:00", DateTime.now().getHourOfDay() - 1, DateTime.now().getHourOfDay());
+    }
+
+
+
 
 
 

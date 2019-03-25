@@ -10,6 +10,10 @@
         <item name="android:textColor">@color/textPrimaryBright</item>
     </style>
 
+    <style name="Text.Special">
+        <item name="android:fontFamily">@font/mexcellent3d</item>
+    </style>
+
     <style name="Text.Bright.10sp">
         <item name="android:textSize">@dimen/fontSize10</item>
     </style>
@@ -213,6 +217,22 @@
     <style name="Text.20spBold">
         <item name="android:textSize">@dimen/fontSize20</item>
         <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+
+    <style name="Text.Special.14sp">
+        <item name="android:textSize">@dimen/fontSize14</item>
+    </style>
+
+    <style name="Text.Special.20sp">
+        <item name="android:textSize">@dimen/fontSize20</item>
+    </style>
+
+    <style name="Text.Special.40sp">
+        <item name="android:textSize">@dimen/fontSize40</item>
+    </style>
+
+    <style name="Text.Special.64sp">
+        <item name="android:textSize">@dimen/fontSize64</item>
     </style>
 
 </resources>

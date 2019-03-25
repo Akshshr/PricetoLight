@@ -47,6 +47,16 @@ public class AppPreferences {
     }
 
 
+    public void setPreferredTotalPrice(boolean preferred) {
+        rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE).set(preferred);
+    }
+
+    public Preference<Boolean> getPreferredTotalPrice() {
+        return rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE);
+    }
+
+
+
     private static void initlizeSharePrefrences(Context context) {
         sharedPreferences= context.getSharedPreferences(Keys.kKeyForSharedPref,Context.MODE_PRIVATE);
     }
@@ -104,6 +114,7 @@ public class AppPreferences {
         static final String kKeyForSharedPref = "kKeyForSharedPref";
         static final String AUTHENTICATION_TOKEN = "authentication";
 
+        static final String PREFERRED_TOTAL_PRICE = "preferred_total_price";
         static final String ACTIVE_CUSTOMER_ID = "customer_id";
         static final String ACTIVE_CUSTOMER_NAME = "customer_name";
         static final String ACTIVE_HOME_ID = "home_id";

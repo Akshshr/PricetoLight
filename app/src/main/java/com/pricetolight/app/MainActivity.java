@@ -1,37 +1,30 @@
 package com.pricetolight.app;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import com.pricetolight.R;
+import com.pricetolight.api.modal.CurrentPrice;
+import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
-import com.pricetolight.app.base.BaseFragment;
 import com.pricetolight.app.main.ConnectHueActivity;
+import com.pricetolight.app.util.TextUtil;
+import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
@@ -48,6 +41,10 @@ public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding binding;
     BottomSheetBehavior bottomSheetBehavior;
+    private Homes homes;
+    private CurrentSubscription currentSubscription;
+    private Home home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.SplashTheme);
@@ -55,8 +52,6 @@ public class MainActivity extends BaseActivity {
         setTheme(R.style.AppTheme);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
-
 
         binding.bar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,18 +109,11 @@ public class MainActivity extends BaseActivity {
         binding.bar.setHideOnScroll(true);
 
         fetchData();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            binding.circleProgressBar.setProgress(75, true);
-        }else{
-            binding.circleProgressBar.setProgress(75);
-        }
-
     }
 
     private void fetchData() {
         fetchMe();
-//        fetchPrice();
+        fetchPrice();
     }
 
     private void fetchMe() {
@@ -136,30 +124,40 @@ public class MainActivity extends BaseActivity {
     }
 
     private void onMe(Homes homes) {
-
-        for(int i = 0; i< homes.getHomes().size(); i++) {
-            homeNickNames.add(homes.getHomes().get(i).getAppNickname());
+        this.homes = homes;
+        if (!this.homes.getHomes().isEmpty()) {
+            for (int i = 0; i < homes.getHomes().size(); i++) {
+                homeNickNames.add(homes.getHomes().get(i).getAppNickname());
+            }
         }
+
+        //Set Dropdown list of homes
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner,homeNickNames);
         binding.dropDownList.setAdapter(categoryAdapter);
+
         int currentSelection = binding.dropDownList.getSelectedItemPosition();
         binding.houseType.setText(homes.getHomes().get(0).getType());
 
-        binding.dropDownList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.dropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(currentSelection == position){
-                    //Do nothing
-                }else{
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                if(currentSelection == position){
+//                    Do nothing
+//                }else{
                     getAppPreferences().setActiveHomeId(homes.getHomes().get(position).getId());
                     onChangeHome(position);
-                }
+//                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
-
     }
 
     private void onChangeHome(int pos) {
+        getAppPreferences().setActiveHomeId(homes.getHomes().get(pos).getId());
         fetchPrice();
     }
 
@@ -172,10 +170,40 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void onPriceRating(Homes homes) {
-        Log.d(TAG, "onPriceRating: " + homes);
+    private void onPriceRating(Home home) {
+        this.home = home;
+
+        CurrentPrice currentPrice = home.getCurrentSubscription().getPriceInfo().getCurrent();
+
+        binding.priceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                getAppPreferences().setPreferredTotalPrice(isChecked);
+                setPrice(currentPrice);
+            }
+        });
+
+        binding.progressView.setBackgroundColor(ContextCompat.getColor(binding.getRoot().getContext(),R.color.gray100));
+        binding.progressView.setProgress(Util.getCircleProgress(currentPrice.getLevel().getLevelProgress(this)), (int) (Math.random() * (580 - 400)) + 400, 380);
+        binding.progressView.setProgressColor(currentPrice.getLevel().getLevelColor(this));
+
+        binding.glowEffect.setColorFilter(currentPrice.getLevel().getLevelColor(this), android.graphics.PorterDuff.Mode.MULTIPLY);
+        binding.unit.setText(getResources().getString(R.string.price_unit));
+
+        binding.timeFrame.setText(Util.getformattedTimeframe());
+
+//        aed581
+        setPrice(currentPrice);
     }
 
+    private void setPrice(CurrentPrice currentPrice) {
+
+        if(getAppPreferences()!=null && getAppPreferences().getPreferredTotalPrice()!=null && getAppPreferences().getPreferredTotalPrice().get()!=null) {
+            binding.value.setText(String.valueOf(getAppPreferences().getPreferredTotalPrice().get() ?
+                    TextUtil.formatCentesimal(currentPrice.getTotal())       :
+                    TextUtil.formatCentesimal(currentPrice.getEnergy())));
+        }
+    }
 
 
 }

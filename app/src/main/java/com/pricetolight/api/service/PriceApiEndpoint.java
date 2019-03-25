@@ -1,5 +1,7 @@
 package com.pricetolight.api.service;
 
+import com.pricetolight.api.modal.CurrentSubscription;
+import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.api.rx.QueryRequest;
 
@@ -13,7 +15,7 @@ import rx.Observable;
 public interface PriceApiEndpoint {
 
     @POST("gql")
-    Observable<Homes> getPrice(@Header("Authorization") String token, @Body QueryRequest query);
+    Observable<Home> getPrice(@Header("Authorization") String token, @Body QueryRequest query);
 
     @POST("gql")
     Observable<Homes> getMe(@Header("Authorization") String token, @Body QueryRequest query);

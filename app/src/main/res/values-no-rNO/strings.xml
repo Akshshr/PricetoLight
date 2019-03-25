@@ -6,6 +6,11 @@
 
     <string name="hello_blank_fragment">blank</string>
 
+
+    <!--MAIN ACTIVITY-->
+    <string name="price_unit">Øre</string>
+
+
     <!--LOGIN ACTIVITY-->
     <string name="login_button">Login with tibber</string>
     <string name="login_email_hint">E-mail as in Tibber</string>

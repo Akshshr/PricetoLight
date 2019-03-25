@@ -22,7 +22,7 @@
 
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/dropDownList"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/rowSingleLine">
@@ -51,44 +51,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:padding="@dimen/d72"
                 android:src="@drawable/blur" />
 
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:indeterminate="false"
-                android:max="100"
-                android:progress="100"
-                android:progressDrawable="@drawable/circle_progress_background" />
+            <com.pricetolight.app.widget.CircularProgressView
+                android:id="@+id/progressView"
+                android:layout_gravity="center"
+                android:layout_width="220dp"
+                android:layout_height="220dp" />
 
-            <ProgressBar
-                android:id="@+id/circle_progress_bar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:indeterminate="false"
-                android:max="100"
-                android:progressDrawable="@drawable/circle_progress_foreground"
-                android:rotation="-90" />
+            <RelativeLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/value"
+                    style="@style/Text.Special.64sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="45"
+                    />
 
-            <!--<com.moos.library.CircleProgressView-->
-            <!--android:id="@+id/progressView"-->
-            <!--android:layout_width="260dp"-->
-            <!--android:layout_height="260dp"-->
-            <!--android:layout_gravity="center"-->
-            <!--app:circleBroken="true"-->
-            <!--app:end_color="@color/red500"-->
-            <!--app:end_progress="100"-->
-            <!--app:isTracked="true"-->
-            <!--app:start_color="@color/green500"-->
-            <!--app:start_progress="0"-->
-            <!--app:track_width="18dp" />-->
+                <TextView
+                    android:id="@+id/unit"
+                    style="@style/Text.Special.20sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/value"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/d4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="45"
+                    />
+                <TextView
+                    android:id="@+id/timeFrame"
+                    style="@style/Text.Special.14sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/unit"
+                    android:textAlignment="center"
+                    android:layout_marginTop="@dimen/d8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="05:00 - 06:00"
+                    />
+
+            </RelativeLayout>
+
         </FrameLayout>
+
+        <RelativeLayout
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/d72"
+            android:layout_width="match_parent"
+            android:padding="@dimen/d16"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/priceSwitchTitle"
+                style="@style/Text.12spLight"
+                android:text="Toggle to see price with VAT"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/d72"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/priceSwitch"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
 
         <android.support.design.bottomappbar.BottomAppBar
             android:id="@+id/bar"

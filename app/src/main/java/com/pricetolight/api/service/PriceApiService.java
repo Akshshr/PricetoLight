@@ -1,5 +1,6 @@
 package com.pricetolight.api.service;
 
+import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.api.rx.QueryRequest;
@@ -20,9 +21,12 @@ public class PriceApiService {
         this.authenticator = authenticator;
     }
 
-    public Observable<Homes> getPrice(String homeId) {
-        String query = "{ viewer { homes { currentSubscription{ priceInfo{ current{ total energy tax startsAt } } } } } }";
-        return priceApiEndpoint.getPrice(authenticator.getToken(), new QueryRequest(String.format(query, homeId)));
+//    3fdcdb04-08cc-4080-8cfb-42389c7e3ab3
+//    3fdcdb04-08cc-4080-8cfb-42389c7e3ab3
+//    2622273f-e7a7-4a2f-8b89-4245b25d7c06
+    public Observable<Home> getPrice(String homeId) {
+        String query = "{ viewer { home (id:\"%1$s\") { currentSubscription{ priceInfo{ current{ level total energy tax startsAt } } } } } }";
+        return priceApiEndpoint.getPrice(token, new QueryRequest(String.format(query, homeId)));
     }
 
     public Observable<Homes> getMe() {

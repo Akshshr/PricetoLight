@@ -31,6 +31,10 @@
     <color name="red300">#F39FA1</color>
     <color name="red500">#BE2829</color>
 
+    <color name="yellow500">#FFEB3B</color>
+
+
+
     <color name="gray50">#FAFAFA</color>
     <color name="gray100">#F5F5F5</color>
     <color name="gray300">#E0E0E0</color>

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.annotations.SerializedName;
 
 public enum HomeType {
+
     @SerializedName("apartment")
     APARTMENT,
     @SerializedName("rowhouse")

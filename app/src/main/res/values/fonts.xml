@@ -11,6 +11,8 @@
     <dimen name="fontSize22">22sp</dimen>
     <dimen name="fontSize24">24sp</dimen>
     <dimen name="fontSize28">28sp</dimen>
+
+    <dimen name="fontSize40">40sp</dimen>
     <dimen name="fontSize64">64sp</dimen>
 
 </resources>
