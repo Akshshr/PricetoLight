@@ -1,8 +1,10 @@
 package com.pricetolight.api.modal;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 
 import com.google.gson.annotations.SerializedName;
+import com.pricetolight.R;
 
 public enum HomeType {
 
@@ -42,4 +44,28 @@ public enum HomeType {
                 return "";
         }
     }
+
+
+    public Drawable getAvatarType(Context context) {
+        switch (this) {
+            case APARTMENT:
+                return context.getResources().getDrawable(R.drawable.ic_apartment,null);
+            case ROWHOUSE:
+                return context.getResources().getDrawable(R.drawable.ic_rowhouse,null);
+            case FLOORHOUSE1:
+                return context.getResources().getDrawable(R.drawable.ic_floorhouse1,null);
+            case FLOORHOUSE2:
+                return context.getResources().getDrawable(R.drawable.ic_floorhouse2,null);
+            case FLOORHOUSE3:
+                return context.getResources().getDrawable(R.drawable.ic_floorhouse3,null);
+            case CASTLE:
+                return context.getResources().getDrawable(R.drawable.ic_castle,null);
+            case COTTAGE:
+                return context.getResources().getDrawable(R.drawable.ic_cottage,null);
+            default:
+                return context.getResources().getDrawable(R.drawable.ic_apartment,null);
+        }
+    }
+
+
 }

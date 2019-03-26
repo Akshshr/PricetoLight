@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="title"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/mainBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/leftIcon"
+            android:padding="@dimen/d12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:focusable="true"
+            />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/view_toolbar"
+            style="@style/Text.16spBold"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/Text.16spBold"
+            android:drawablePadding="@dimen/d4"
+            android:layout_marginStart="@dimen/d16"
+            android:lines="1"
+            android:gravity="center"
+            android:singleLine="true"
+            tools:text="Tools title"/>
+
+    </FrameLayout>
+
+        <TextView
+            android:id="@+id/actionKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/d24"
+            android:paddingEnd="@dimen/d24"
+            android:elevation="@dimen/d8"
+            android:paddingTop="@dimen/d8"
+            android:paddingBottom="@dimen/d8"
+            android:lines="1"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="@dimen/d12"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            tools:text="SAVE"/>
+
+        <ImageView
+            android:id="@+id/rightIcon"
+            android:padding="@dimen/d12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:clickable="true"
+            android:layout_marginEnd="@dimen/d12"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:focusable="true"
+            />
+
+    </RelativeLayout>
+
+</layout>

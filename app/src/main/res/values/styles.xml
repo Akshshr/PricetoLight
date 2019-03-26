@@ -68,4 +68,28 @@
         <item name="android:padding">@dimen/d12</item>
     </style>
 
+
+
+    <style name="AppWidget.Toolbar">
+        <item name="android:theme">@style/AppTheme.Toolbar</item>
+        <item name="android:contentInsetStart">0dp</item>
+        <item name="android:contentInsetLeft">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="contentInsetLeft">0dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+
+
+    <style name="AppTheme.Toolbar">
+        <item name="android:textColorPrimary">@color/textPrimaryBright</item>
+        <!-- Used in Theme.AppCompat -->
+        <item name="android:textColorPrimaryInverse">@color/textPrimaryDark</item>
+        <!-- Used in Theme.AppCompat.Light -->
+        <item name="actionMenuTextColor">@color/textPrimaryBright</item>
+        <item name="android:textColorSecondary">@color/textPrimaryBright</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
 </resources>

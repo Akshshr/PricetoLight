@@ -5,14 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="test"
+            name="tes"
             type="String"/>
     </data>
 
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.main.LicencesActivity">
+    tools:context=".app.hue.ConfigureHueActivity">
+
 
     <com.pricetolight.app.widget.MainToolbar
         android:id="@+id/toolbar"
@@ -23,15 +24,13 @@
         android:paddingTop="@dimen/d22" />
 
     <TextView
-        android:text="A shout-out to the men and women who make awesome tools for the worls to use."
+        android:text="Pick the light with with you would like to see the price, based on the color"
         android:layout_margin="@dimen/d12"
         style="@style/Text.14sp"
         android:id="@+id/description"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -47,6 +46,5 @@
 
 
 </RelativeLayout>
-
 
 </layout>

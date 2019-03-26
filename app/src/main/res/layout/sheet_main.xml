@@ -22,10 +22,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
-        style="@style/Text.16spBold"
+        style="@style/Text.14spBold"
+        android:textColor="@color/blue700"
         android:layout_marginStart="@dimen/d12"
-        android:layout_marginTop="@dimen/d22"
-        android:layout_marginBottom="@dimen/d22"
+        android:layout_marginTop="@dimen/d16"
+        android:layout_marginBottom="@dimen/d12"
         android:text="Devices"
         />
 
@@ -68,10 +69,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="start"
-            style="@style/Text.16spBold"
+            style="@style/Text.14spBold"
+            android:textColor="@color/blue700"
             android:layout_marginStart="@dimen/d12"
-            android:layout_marginTop="@dimen/d22"
-            android:layout_marginBottom="@dimen/d22"
+            android:layout_marginTop="@dimen/d16"
+            android:layout_marginBottom="@dimen/d12"
             android:text="About"
             />
 

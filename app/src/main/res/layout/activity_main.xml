@@ -29,6 +29,7 @@
             android:layout_height="160dp" />
 
         <RelativeLayout
+            android:layout_marginTop="@dimen/d32"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -36,19 +37,10 @@
                 android:id="@+id/dropDownList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/rowSingleLine">
+                android:layout_centerInParent="true">
 
             </android.support.v7.widget.AppCompatSpinner>
 
-            <TextView
-                android:id="@+id/houseType"
-                android:textAlignment="center"
-                style="@style/Text.14spBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/dropDownList"
-                tools:text="@string/app_name"/>
 
         </RelativeLayout>
 
@@ -86,10 +78,12 @@
             android:id="@+id/frameLayout"
             android:layout_width="320dp"
             android:layout_height="320dp"
+            android:layout_marginBottom="100dp"
             android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/glowEffect"
+                android:alpha="0.7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -144,9 +138,49 @@
         <RelativeLayout
             android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:background="@color/white50"
+                android:id="@+id/avatar"
+                android:layout_alignParentStart="true"
+                android:layout_width="50dp"
+                android:layout_marginTop="@dimen/d4"
+                android:layout_marginBottom="@dimen/d12"
+                android:layout_marginStart="@dimen/d22"
+                android:layout_height="50dp" />
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_alignParentEnd="true"
+                app:fabSize="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:rippleColor="@color/blue700"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/white"
+                android:src="@drawable/bg_bulb"
+                android:layout_marginTop="@dimen/d4"
+                android:layout_marginBottom="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                tools:ignore="RelativeOverlap" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
+            android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/d72"
             android:layout_width="match_parent"
-            android:padding="@dimen/d16"
+            android:paddingStart="@dimen/d22"
+            android:paddingEnd="@dimen/d22"
+            android:paddingBottom="@dimen/d12"
+            android:paddingTop="@dimen/d12"
             android:layout_height="wrap_content">
 
             <TextView

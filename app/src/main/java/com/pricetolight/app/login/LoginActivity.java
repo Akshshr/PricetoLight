@@ -104,8 +104,12 @@ public class LoginActivity extends BaseActivity {
                 loginWithEmail(binding.textEmail.getText().toString(), binding.textPassword.getText().toString());
             }
         }
+    }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setState(State.BEGIN);
     }
 
     private boolean validEmailAndPassword(String email, String password) {

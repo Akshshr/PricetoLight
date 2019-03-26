@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".app.MainActivity"
-            android:theme="@style/SplashTheme"></activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".app.login.LoginActivity"
             android:screenOrientation="portrait">
@@ -30,8 +30,9 @@
         <activity
             android:name=".app.main.ConnectHueActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.base.BaseActivity"></activity>
-        <activity android:name=".app.main.LicencesActivity"></activity>
+        <activity android:name=".app.base.BaseActivity" />
+        <activity android:name=".app.main.LicencesActivity" />
+        <activity android:name=".app.hue.ConfigureHueActivity"></activity>
     </application>
 
 </manifest>

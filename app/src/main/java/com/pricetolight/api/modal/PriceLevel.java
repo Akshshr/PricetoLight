@@ -24,15 +24,15 @@ public enum PriceLevel {
             case NORMAL:
                 return context.getResources().getColor(R.color.orange,null);
             case EXPENSIVE:
-                return context.getResources().getColor(R.color.red500,null);
-            case VERY_EXPENSIVE:
                 return context.getResources().getColor(R.color.red300,null);
+            case VERY_EXPENSIVE:
+                return context.getResources().getColor(R.color.red500,null);
             case CHEAP:
                 return context.getResources().getColor(R.color.green600,null);
             case VERY_CHEAP:
                 return context.getResources().getColor(R.color.green400,null);
             default:
-                return context.getResources().getColor(R.color.green500,null);
+                return context.getResources().getColor(R.color.green600,null);
         }
     }
 
