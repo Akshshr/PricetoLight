@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="avatar"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable name="homeName"
+            type="String" />
+
+        <variable name="homeAddress"
+            type="String" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/row_metering_point"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_height="@dimen/rowTwoLines">
+
+
+        <TextView
+            android:id="@+id/type"
+            style="@style/Text.14spMedium"
+            android:layout_marginStart="@dimen/d22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/d16"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            tools:text="Virebergsvagen 17"
+            />
+
+        <TextView
+            style="@style/Text.12spLightSecondary"
+            android:id="@+id/dependency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/type"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@id/type"
+            android:layout_marginBottom="@dimen/d12"
+            tools:text="This is subtext"
+            />
+
+    </RelativeLayout>
+
+
+</layout>

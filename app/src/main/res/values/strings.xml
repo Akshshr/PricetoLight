@@ -11,6 +11,9 @@
 
     <!--MAIN ACTIVITY-->
     <string name="price_unit">Öre/kWh</string>
+    <string name="price_toggle_lable">Toggle to see price with VAT</string>
+    <string name="inactive_home_title">Ooops!</string>
+    <string name="inactive_home_description">Looks like this home does not have an active Subscription</string>
 
 
     <!--LOGIN ACTIVITY-->
@@ -32,14 +35,24 @@
     <!--CONNECT HUE-->
     <string name="connect_hue_title">Connect Philips Hue Bridge</string>
     <string name="connect_hue_description">Now would be a good time to click on the main button on your hue bridge</string>
-
     <string name="connect_hue_searching">Searching for your bridge...</string>
 
+    <!--CONFIGURE LIGHT ACTIVITY-->
+    <string name="configure_title">Normal</string>
+    <string name="configure_description">Normal</string>
+
+    <string name="price_normal">Normal</string>
+    <string name="price_cheap">Cheap</string>
+    <string name="price_expensive">Expensive</string>
+    <string name="price_very_cheap">Very cheap</string>
+    <string name="price_very_expensive">Very expensive</string>
+
+    <!--LICENCE ACTIVITY-->
+    <string name="licence_title">Open source licences</string>
+    <string name="licence_description">A shout-out to the men and women who make awesome tools for the world to use</string>
 
     <!--SNACK BAR-->
     <string name="dismiss">Dismiss</string>
 
-
-    <!--<div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 		    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 		    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
 
 </resources>

@@ -129,7 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="180dp" />
 
-                    <Button
+                    <android.support.v7.widget.AppCompatButton
                         android:id="@+id/save"
                         style="@style/AppTheme.ButtonBright"
                         android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
                         android:inputType="textPassword"
                         android:textStyle="bold" />
 
-                    <Button
+                    <android.support.v7.widget.AppCompatButton
                         android:id="@+id/login"
                         style="@style/AppTheme.ButtonBright"
                         android:layout_width="wrap_content"

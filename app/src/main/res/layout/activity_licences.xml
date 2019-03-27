@@ -23,7 +23,7 @@
         android:paddingTop="@dimen/d22" />
 
     <TextView
-        android:text="A shout-out to the men and women who make awesome tools for the worls to use."
+        android:text="@string/licence_description"
         android:layout_margin="@dimen/d12"
         style="@style/Text.14sp"
         android:id="@+id/description"

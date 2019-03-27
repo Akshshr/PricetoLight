@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -90,6 +90,23 @@
         <item name="actionMenuTextColor">@color/textPrimaryBright</item>
         <item name="android:textColorSecondary">@color/textPrimaryBright</item>
         <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+    <style name="ChipCustomStyle" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="checkedIconEnabled">false</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="checkedIcon">@null</item>
+    </style>
+
+    <style name="Switch.Main" parent="ThemeOverlay.AppCompat.Dark">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlNormal">@color/gray600</item>
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f  </item>
     </style>
 
 </resources>

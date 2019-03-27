@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">@color/white</color>
 
     <color name="colorPrimaryTransparent">#0000C9EF</color>
 
@@ -30,9 +30,17 @@
 
     <color name="red300">#F39FA1</color>
     <color name="red500">#BE2829</color>
+    <color name="red900">#b71c1c</color>
+
 
     <color name="yellow500">#FFEB3B</color>
     <color name="orange">#aed581</color>
+
+    <color name="price_normal">@color/blue700</color>
+    <color name="price_cheap">@color/green400</color>
+    <color name="price_veryCheap">@color/green600</color>
+    <color name="price_expensive">@color/red300</color>
+    <color name="price_veryExpensive">@color/red900</color>
 
 
 

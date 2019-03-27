@@ -1,50 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="tes"
-            type="String"/>
+            type="String" />
     </data>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".app.hue.ConfigureHueActivity">
-
-
-    <com.pricetolight.app.widget.MainToolbar
-        android:id="@+id/toolbar"
-        style="@style/AppWidget.Toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorPrimaryTransparent"
-        android:paddingTop="@dimen/d22" />
-
-    <TextView
-        android:text="Pick the light with with you would like to see the price, based on the color"
-        android:layout_margin="@dimen/d12"
-        style="@style/Text.14sp"
-        android:id="@+id/description"
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:background="@drawable/bg_sheet"
-        android:layout_below="@+id/description"
-        android:layout_marginEnd="@dimen/d4"
-        android:layout_marginStart="@dimen/d4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        tools:context=".app.hue.ConfigureHueActivity">
 
 
+        <com.pricetolight.app.widget.MainToolbar
+            android:id="@+id/toolbar"
+            style="@style/AppWidget.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimaryTransparent"
+            android:paddingTop="@dimen/d22" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/description"
+            style="@style/Text.14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="@dimen/d12"
+            android:text="Pick the light with with you would like to see the price, based on the color" />
+
+        <LinearLayout
+            android:id="@+id/chipLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description"
+            android:gravity="center"
+            android:paddingTop="@dimen/d4"
+            android:paddingBottom="@dimen/d4">
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d2"
+                android:src="@color/price_expensive"
+                android:text="@string/price_normal"
+                app:chipIcon="@drawable/bulb_normal" />
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d2"
+                android:src="@color/price_cheap"
+                android:text="@string/price_cheap"
+                app:chipIcon="@drawable/bulb_cheap" />
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d2"
+                android:src="@color/price_expensive"
+                android:text="@string/price_very_cheap"
+                app:chipIcon="@drawable/bulb_very_cheap" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/action0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chipLayout"
+            android:gravity="center"
+            android:paddingTop="@dimen/d4"
+            android:paddingBottom="@dimen/d4">
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d2"
+                android:src="@drawable/bulb_very_expensive"
+                android:text="@string/price_expensive"
+                app:chipIcon="@drawable/bulb_expensive" />
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/d2"
+                android:src="@color/price_expensive"
+                android:text="@string/price_very_expensive"
+                app:chipIcon="@drawable/bulb_very_expensive" />
+
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/action0"
+            android:layout_marginStart="@dimen/d4"
+            android:layout_marginEnd="@dimen/d4"
+            android:background="@drawable/bg_sheet">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
 
 </layout>

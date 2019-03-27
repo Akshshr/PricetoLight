@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.widget.ArrayAdapter;
 
 import com.pricetolight.R;
+import com.pricetolight.api.modal.Licence;
 import com.pricetolight.app.base.BaseActivity;
+import com.pricetolight.app.main.adapter.LicencesAdapter;
 import com.pricetolight.databinding.ActivityLicencesBinding;
 
 import java.util.ArrayList;
@@ -16,32 +18,20 @@ import java.util.List;
 public class LicencesActivity extends BaseActivity {
 
     private ActivityLicencesBinding binding;
+    private LicencesAdapter adapter;
+    private final List<Licence> licences= Licence.createLicences();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_licences);
-        binding.toolbar.setTitle("Open source licences");
+        binding.toolbar.setTitle(getResources().getString(R.string.licence_title));
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner,getDependencies());
-
-//        binding.recyclerView.setAdapter(categoryAdapter);
-    }
-
-    private List<String> getDependencies() {
-
-        List<String> dependencies = new ArrayList<>();
-
-        dependencies.add("a");
-        dependencies.add("a");
-        dependencies.add("a");
-        dependencies.add("a");
-        dependencies.add("a");
-
-        return dependencies;
-
+        adapter = new LicencesAdapter(licences);
+        binding.recyclerView.setAdapter(adapter);
     }
 
     @Override
