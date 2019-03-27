@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
         android:color="?android:attr/colorControlHighlight">
-    <item android:id="@android:id/mask">
-        <shape android:shape="rectangle">
-            <solid android:color="#000000" />
-            <corners android:bottomLeftRadius="@dimen/d0"
-                android:bottomRightRadius="@dimen/d0"
-                android:topLeftRadius="@dimen/d24"
-                android:topRightRadius="@dimen/d24" />
-        </shape>
-    </item>
+
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="@color/white100"/>
+            <solid android:color="@color/white"/>
             <corners android:bottomLeftRadius="@dimen/d0"
                 android:bottomRightRadius="@dimen/d0"
                 android:topLeftRadius="@dimen/d24"

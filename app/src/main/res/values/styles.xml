@@ -94,6 +94,7 @@
 
     <style name="ChipCustomStyle" parent="Widget.MaterialComponents.Chip.Action">
         <item name="checkedIconEnabled">false</item>
+        <item name="chipBackgroundColor">@color/white</item>
         <item name="android:fontFamily">@font/googlesans_bold</item>
         <item name="android:textStyle">bold</item>
         <item name="checkedIcon">@null</item>

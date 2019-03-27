@@ -41,7 +41,7 @@
             android:id="@+id/toolbarTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="@style/Text.16spBold"
+            style="@style/Text.Bright.16spBold"
             android:drawablePadding="@dimen/d4"
             android:layout_marginStart="@dimen/d16"
             android:lines="1"

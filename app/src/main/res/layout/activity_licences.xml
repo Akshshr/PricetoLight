@@ -12,7 +12,13 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_main"
     tools:context=".app.main.LicencesActivity">
+
+    <com.pricetolight.app.widget.CloudsView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"/>
 
     <com.pricetolight.app.widget.MainToolbar
         android:id="@+id/toolbar"
@@ -25,13 +31,11 @@
     <TextView
         android:text="@string/licence_description"
         android:layout_margin="@dimen/d12"
-        style="@style/Text.14sp"
+        style="@style/Text.Bright.14spMedium"
         android:id="@+id/description"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -67,6 +67,11 @@
         <item name="android:textSize">@dimen/fontSize16</item>
     </style>
 
+    <style name="Text.Bright.16spBold">
+        <item name="android:textSize">@dimen/fontSize16</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+    </style>
+
     <style name="Text.Bright.16spLight">
         <item name="android:textSize">@dimen/fontSize16</item>
         <item name="android:fontFamily">@font/googlesans_regular</item>

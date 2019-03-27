@@ -13,8 +13,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient_main"
         tools:context=".app.hue.ConfigureHueActivity">
-
 
         <com.pricetolight.app.widget.MainToolbar
             android:id="@+id/toolbar"
@@ -24,10 +24,16 @@
             android:background="@color/colorPrimaryTransparent"
             android:paddingTop="@dimen/d22" />
 
+        <com.pricetolight.app.widget.CloudsView
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_alignParentTop="true"/>
+
         <TextView
             android:id="@+id/description"
             style="@style/Text.14sp"
             android:layout_width="match_parent"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"
             android:layout_margin="@dimen/d12"
@@ -105,8 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/action0"
-            android:layout_marginStart="@dimen/d4"
-            android:layout_marginEnd="@dimen/d4"
+            android:layout_marginStart="@dimen/d8"
+            android:layout_marginEnd="@dimen/d8"
             android:background="@drawable/bg_sheet">
 
         </android.support.v7.widget.RecyclerView>
