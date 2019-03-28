@@ -3,6 +3,7 @@ package com.pricetolight.app;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
@@ -83,8 +84,8 @@ public class MainActivity extends BaseActivity {
 
         binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
 
-        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ConnectHueActivity.class)));
-        binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LicencesActivity.class)));
+        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class),2));
+        binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class),1));
 
         binding.bar.setOnMenuItemClickListener(menuItem -> {
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
@@ -205,6 +206,16 @@ public class MainActivity extends BaseActivity {
         lightState.setY(xy[1]);
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 || requestCode == 2){
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        }
+    }
+
     private void onPriceRating(Home home) {
         this.home = home;
 
