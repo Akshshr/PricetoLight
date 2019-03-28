@@ -32,10 +32,16 @@
     <string name="licences">Licences</string>
 
 
-    <!--CONNECT HUE-->
+    <!--CONNECT HUE FRAGMENT-->
     <string name="connect_hue_title">Connect Philips Hue Bridge</string>
     <string name="connect_hue_description">Now would be a good time to click on the main button on your hue bridge</string>
     <string name="connect_hue_searching">Searching for your bridge...</string>
+
+    <!--CONNECT RESULT HUE FRAGMENT-->
+    <string name="connect_result_hue_title">Hurrayy!! Paired to Philips Hue successfully</string>
+    <string name="connect_result_hue_description">That was easy!</string>
+    <string name="connect_result_hue_summary">We found the following number of lights:</string>
+
 
     <!--CONFIGURE LIGHT ACTIVITY-->
     <string name="configure_title">Normal</string>

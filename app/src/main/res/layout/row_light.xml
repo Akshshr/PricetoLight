@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="avatar"
+            type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="homeName"
+            type="String" />
+
+        <variable
+            name="homeAddress"
+            type="String" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="@dimen/d4"
+        android:layout_marginStart="@dimen/d8"
+        android:layout_marginEnd="@dimen/d8"
+        android:layout_marginBottom="@dimen/d4"
+        android:elevation="@dimen/d2"
+        android:background="@drawable/bg_hue_row">
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row_above_layout">
+
+            <ImageView
+                android:id="@+id/light_icon"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/d12"
+                android:tint="@color/white"
+                android:src="@drawable/ic_menu_add_device" />
+
+            <TextView
+                android:id="@+id/lightName"
+                style="@style/Text.Bright.16spMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bedroom lamp 2"
+                android:layout_toRightOf="@id/light_icon"/>
+
+            <TextView
+                android:id="@+id/lightType"
+                style="@style/Text.Bright.14spMediumSecondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/d4"
+                android:layout_below="@id/lightName"
+                android:text="Lights on"
+                android:layout_toRightOf="@id/light_icon"/>
+
+
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:id="@+id/lightId"
+                tools:text="COLOR"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/d8"
+                />
+
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+</layout>

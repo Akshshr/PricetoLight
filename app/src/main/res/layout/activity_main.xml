@@ -13,6 +13,10 @@
             name="noActiveSubscription"
             type="Boolean" />
 
+        <variable
+            name="hasHuePaired"
+            type="Boolean" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -148,7 +152,6 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
             android:layout_gravity="bottom"
             android:layout_marginBottom="120dp"
             android:layout_width="match_parent"
@@ -157,6 +160,7 @@
             <ImageView
                 android:background="@color/white50"
                 android:id="@+id/avatar"
+                android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
                 android:src="@drawable/ic_floorhouse1"
                 android:layout_alignParentStart="true"
                 android:layout_width="50dp"
@@ -171,6 +175,7 @@
                 android:layout_alignParentEnd="true"
                 app:fabSize="normal"
                 android:layout_width="wrap_content"
+                android:visibility="@{hasHuePaired ? View.VISIBLE : View.GONE}"
                 android:layout_height="wrap_content"
                 app:rippleColor="@color/blue700"
                 android:clickable="true"

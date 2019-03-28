@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.model.PHBridge;
 import com.pricetolight.R;
 import com.pricetolight.api.modal.CurrentPrice;
 import com.pricetolight.api.modal.CurrentSubscription;
@@ -86,8 +88,19 @@ public class MainActivity extends BaseActivity {
             return false;
         });
 
-        binding.fab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ConfigureHueActivity.class)));
 
+        PHHueSDK phHueSDK=PHHueSDK.getInstance();
+        if(phHueSDK.getAllBridges()!=null && phHueSDK.getAllBridges().size() > 0) {
+            PHBridge bridge = phHueSDK.getAllBridges().get(0);
+            if (bridge != null && bridge.getResourceCache() != null) {
+                binding.setHasHuePaired(true);
+                binding.fab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ConfigureHueActivity.class)));
+            } else {
+                binding.setHasHuePaired(false);
+            }
+        }else {
+            binding.setHasHuePaired(false);
+        }
     }
 
     @Override

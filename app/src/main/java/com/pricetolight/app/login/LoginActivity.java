@@ -82,8 +82,6 @@ public class LoginActivity extends BaseActivity {
 //                });
     }
 
-    private void onSuccess(Homes homes) {
-    }
 
     public class Delegate {
 
@@ -100,9 +98,9 @@ public class LoginActivity extends BaseActivity {
             setState(State.EMAIL);
             binding.groundView.animate().translationY(-320).setDuration(400);
 
-            if(validEmailAndPassword(binding.textEmail.getText().toString(),binding.textPassword.getText().toString())) {
+//            if(validEmailAndPassword(binding.textEmail.getText().toString(),binding.textPassword.getText().toString())) {
                 loginWithEmail(binding.textEmail.getText().toString(), binding.textPassword.getText().toString());
-            }
+//            }
         }
     }
 

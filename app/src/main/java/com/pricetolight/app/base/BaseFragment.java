@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +47,14 @@ public class BaseFragment extends Fragment {
 
     }
 
+    @Keep
+    public void handleError(Throwable throwable) {
+        Log.w(TAG, "handleError called", throwable);
+        if(getView() != null && getActivity() != null) {
+            //TODO: Implement error handle
+        }
+    }
+
     private BehaviorSubject<FragmentEvent> lifecycleSubject;
 
     @Override
@@ -79,6 +89,10 @@ public class BaseFragment extends Fragment {
         lifecycleSubject.onCompleted();
         lifecycleSubject = null;
         super.onDetach();
+    }
+
+    public Observable<FragmentEvent> getLifecycleEvents(FragmentEvent event) {
+        return lifecycleSubject.filter((FragmentEvent fe) -> fe == event);
     }
 
 

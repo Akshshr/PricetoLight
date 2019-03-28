@@ -1,20 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="test"
-            type="String"/>
+            type="String" />
     </data>
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".app.main.fragment.HuePairResultFragment">
+    <RelativeLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".app.main.fragment.HuePairResultFragment">
+
+        <ImageView
+            android:src="@drawable/glow"
+            android:layout_width="160dp"
+            android:layout_height="300dp" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Text.20spBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginEnd="@dimen/d12"
+            android:layout_marginTop="@dimen/d48"
+            android:layout_marginBottom="@dimen/d22"
+            android:gravity="start"
+            android:text="@string/connect_result_hue_title"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/desctription"
+            style="@style/Text.14spMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginEnd="@dimen/d22"
+            android:text="@string/connect_result_hue_description"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:id="@+id/summaryLayout"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sumamryTitle"
+                style="@style/Text.14spBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                android:text="@string/connect_result_hue_summary"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/summaryValue"
+                android:layout_centerHorizontal="true"
+                style="@style/Text.Special.64sp"
+                android:layout_marginTop="@dimen/d12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="45"
+                />
+
+        </RelativeLayout>
 
 
+        <LinearLayout
+            android:id="@+id/lightsList"
+            android:layout_below="@+id/summaryLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/d32"
+            android:paddingTop="@dimen/d8" />
 
-</FrameLayout>
+    </RelativeLayout>
 
 </layout>

@@ -1,6 +1,7 @@
 package com.pricetolight.app.base;
 
 import android.support.annotation.Keep;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -8,10 +9,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.philips.lighting.hue.sdk.PHAccessPoint;
+import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
+import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.hue.sdk.PHMessageType;
+import com.philips.lighting.hue.sdk.PHSDKListener;
+import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHHueError;
+import com.philips.lighting.model.PHHueParsingError;
 import com.pricetolight.R;
 import com.pricetolight.api.Api;
 import com.pricetolight.app.PriceToLightsApplication;
+import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.util.UI;
+
+import java.util.List;
 
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
@@ -27,6 +39,13 @@ public class BaseActivity extends AppCompatActivity {
         START,
         STOP,
     }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
 
     public Api getApi() {
         return ((PriceToLightsApplication) getApplication()).getApi();
