@@ -69,19 +69,27 @@ public class HuePairResultFragment extends BaseFragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onLights, this::handleError);
 
+        if(((ConnectHueActivity)getActivity()).getHueSDK()!=null &&
+                ((ConnectHueActivity)getActivity()).getHueSDK().getSelectedBridge()!=null &&
+                ((ConnectHueActivity)getActivity()).getHueSDK().getSelectedBridge().getResourceCache()!=null &&
+                ((ConnectHueActivity)getActivity()).getHueSDK().getSelectedBridge().getResourceCache().getAllLights()!=null) {
+            List<PHLight> lights = ((ConnectHueActivity) getActivity()).getHueSDK().getSelectedBridge().getResourceCache().getAllLights();
+            onLights(lights);
+        }
+
         return binding.getRoot();
     }
 
     private void onLights(List<PHLight> phLights) {
         if(phLights!=null) {
-            binding.summaryValue.setText(phLights.size());
+            binding.summaryValue.setText(String.valueOf(phLights.size()));
             if (phLights.size()>0) {
                 for (int i = 0; i < phLights.size(); i++) {
                     phLights.get(1).getLightType().equals(PHLight.PHLightType.COLOR_LIGHT);
                     View view = getActivity().getLayoutInflater().inflate(R.layout.row_light, null);
                     ((TextView) view.findViewById(R.id.lightName)).setText(phLights.get(i).getName());
                     ((TextView) view.findViewById(R.id.lightType)).setText(phLights.get(i).getLightType().toString());
-                    ((Chip) view.findViewById(R.id.lightId)).setText(String.valueOf(phLights.get(i).supportsBrightness()));
+//                    ((Chip) view.findViewById(R.id.lightId)).setText(String.valueOf(phLights.get(i).));
                     if(!phLights.get(i).supportsColor()) {
                         view.findViewById(R.id.parent).setAlpha(0.5f);
                     }

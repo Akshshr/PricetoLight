@@ -21,15 +21,20 @@
     </data>
 
     <RelativeLayout
-        android:id="@+id/row_metering_point"
+        android:id="@+id/parent"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
         android:layout_marginTop="@dimen/d4"
         android:layout_marginStart="@dimen/d12"
         android:layout_marginEnd="@dimen/d12"
         android:layout_marginBottom="@dimen/d4"
-        android:elevation="@dimen/d2"
-        android:background="@drawable/bg_hue_row">
+        android:elevation="@dimen/d2">
+
+        <ImageView
+            android:id="@+id/background"
+            android:background="@drawable/bg_hue_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <RelativeLayout
             android:layout_centerVertical="true"
@@ -54,7 +59,7 @@
                 android:layout_toRightOf="@id/light_icon"/>
 
             <TextView
-                android:id="@+id/hue_per"
+                android:id="@+id/hueProperty"
                 style="@style/Text.Bright.14spMediumSecondary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,25 +68,21 @@
                 android:text="Lights on"
                 android:layout_toRightOf="@id/light_icon"/>
 
-            <android.support.v7.widget.SwitchCompat
-                android:id="@+id/lights_on_off"
-                android:layout_marginEnd="@dimen/d8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <android.support.design.chip.Chip
+                style="@style/ChipCustomStyle"
+                android:id="@+id/chip"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/d8"
+                tools:text="COLOR"
                 />
+
+            <!--/>-->
         </RelativeLayout>
 
-        <SeekBar
-            android:id="@+id/hueSeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/row_above_layout"
-            android:layout_margin="@dimen/d8"
-            android:progress="50"
-            android:progressDrawable="@drawable/seekbar_progress"
-            />
+
 
     </RelativeLayout>
 

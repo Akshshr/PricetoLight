@@ -24,10 +24,10 @@
         android:id="@+id/parent"
         android:layout_width="wrap_content"
         android:layout_height="80dp"
-        android:layout_marginTop="@dimen/d4"
-        android:layout_marginStart="@dimen/d8"
-        android:layout_marginEnd="@dimen/d8"
-        android:layout_marginBottom="@dimen/d4"
+        android:layout_marginTop="@dimen/d8"
+        android:layout_marginStart="@dimen/d12"
+        android:layout_marginEnd="@dimen/d12"
+        android:layout_marginBottom="@dimen/d8"
         android:elevation="@dimen/d2"
         android:background="@drawable/bg_hue_row">
 
@@ -65,16 +65,16 @@
                 android:layout_toRightOf="@id/light_icon"/>
 
 
-            <android.support.design.chip.Chip
-                style="@style/ChipCustomStyle"
-                android:id="@+id/lightId"
-                tools:text="COLOR"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/d8"
-                />
+            <!--<android.support.design.chip.Chip-->
+                <!--style="@style/ChipCustomStyle"-->
+                <!--android:id="@+id/lightId"-->
+                <!--tools:text="COLOR"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentEnd="true"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginEnd="@dimen/d8"-->
+                <!--/>-->
 
 
         </RelativeLayout>

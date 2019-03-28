@@ -4,20 +4,28 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.philips.lighting.model.PHLight;
 import com.pricetolight.R;
 import com.pricetolight.databinding.RowHueBinding;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import rx.Observable;
+import rx.subjects.PublishSubject;
 
 public class HueLightsAdapter extends RecyclerView.Adapter<HueLightsAdapter.ViewHolder> {
 
-    private ArrayList<PHLight> phLights;
+    private List<PHLight> phLights;
 
-    public HueLightsAdapter(ArrayList<PHLight> phLights) {
+    private PublishSubject<PHLight> lightClickSubject = PublishSubject.create();
+
+    public HueLightsAdapter(List<PHLight> phLights) {
         this.phLights = phLights;
     }
 
@@ -33,6 +41,15 @@ public class HueLightsAdapter extends RecyclerView.Adapter<HueLightsAdapter.View
         private void bind(PHLight light) {
             final Context context = binding.getRoot().getContext();
             binding.groumName.setText(light.getName());
+            binding.chip.setText(light.getLightType().toString());
+            binding.hueProperty.setText(light.getLastKnownLightState().isOn() ? "ON" : "OFF");
+
+            if(!light.supportsColor()) {
+                binding.background.setAlpha(0.5f);
+                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "None colored lamps are not supported", Toast.LENGTH_SHORT).show());
+            }else{
+                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "u picke this light", Toast.LENGTH_SHORT).show());
+            }
         }
 
     }
@@ -53,6 +70,11 @@ public class HueLightsAdapter extends RecyclerView.Adapter<HueLightsAdapter.View
     public int getItemCount() {
         return phLights.size();
 
+    }
+
+
+    public Observable<PHLight> getPHLightbservable() {
+        return lightClickSubject.asObservable();
     }
 
 }

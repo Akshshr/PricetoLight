@@ -22,23 +22,23 @@
         android:background="?android:attr/selectableItemBackground"
         android:layout_height="@dimen/rowTwoLines">
 
-
         <TextView
             android:id="@+id/type"
             style="@style/Text.14spMedium"
-            android:layout_marginStart="@dimen/d22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d16"
+            android:layout_marginEnd="@dimen/d4"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/d16"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            tools:text="Virebergsvagen 17"
+            tools:text="Retrofit"
             />
 
         <TextView
-            style="@style/Text.12spLightSecondary"
+            style="@style/Text.10spLightSecondary"
             android:id="@+id/dependency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

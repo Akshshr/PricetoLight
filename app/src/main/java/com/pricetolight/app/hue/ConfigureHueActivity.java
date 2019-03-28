@@ -3,6 +3,7 @@ package com.pricetolight.app.hue;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
 import com.philips.lighting.annotations.Bridge;
@@ -25,22 +26,31 @@ public class ConfigureHueActivity extends BaseActivity {
 
     public static final String TAG = ConfigureHueActivity.class.getSimpleName();
     private ActivityConfigureHueBinding binding;
+    private HueLightsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_configure_hue);
         binding.toolbar.setTitle("Configure hue light");
+
         PHHueSDK phHueSDK=PHHueSDK.getInstance();
+
         List<PHLight> lights;
 //        List<PHLight> lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
         lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
         PHLight light=lights.get(5);
 
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        adapter = new HueLightsAdapter(lights);
+        binding.recyclerView.setAdapter(adapter);
+
+
 //        PHLightState phLightState= light.getLastKnownLightState();
 //        PHLightState phLightState= new PHLightState();
         PHLightState lightState = new PHLightState();
 //        phLightState.setHue(200);
+
         lightState.setBrightness(50, true);
 //        light.setLastKnownLightState(phLightState);
 
@@ -77,4 +87,21 @@ public class ConfigureHueActivity extends BaseActivity {
             }
         });
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.getPHLightbservable()
+                .takeUntil(getLifecycleEvents(ActivityEvent.DESTROY))
+                .subscribe(this::onLightSelect,
+                        this::handleError);
+    }
+
+    private void onLightSelect(PHLight phLight) {
+
+    }
+
+
+
 }

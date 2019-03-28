@@ -17,7 +17,7 @@
 
         <ImageView
             android:src="@drawable/glow"
-            android:layout_width="160dp"
+            android:layout_width="200dp"
             android:layout_height="300dp" />
 
         <TextView
@@ -73,14 +73,21 @@
         </RelativeLayout>
 
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_below="@+id/summaryLayout"
+            android:layout_height="match_parent">
+
         <LinearLayout
             android:id="@+id/lightsList"
-            android:layout_below="@+id/summaryLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/d32"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginEnd="@dimen/d12"
+            android:paddingBottom="@dimen/d22"
             android:paddingTop="@dimen/d8" />
+        </ScrollView>
 
     </RelativeLayout>
 

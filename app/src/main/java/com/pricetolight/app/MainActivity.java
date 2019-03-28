@@ -13,7 +13,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHLight;
+import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
 import com.pricetolight.api.modal.CurrentPrice;
 import com.pricetolight.api.modal.CurrentSubscription;
@@ -89,6 +92,14 @@ public class MainActivity extends BaseActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        binding.bar.setHideOnScroll(true);
+
+
         PHHueSDK phHueSDK=PHHueSDK.getInstance();
         if(phHueSDK.getAllBridges()!=null && phHueSDK.getAllBridges().size() > 0) {
             PHBridge bridge = phHueSDK.getAllBridges().get(0);
@@ -101,12 +112,6 @@ public class MainActivity extends BaseActivity {
         }else {
             binding.setHasHuePaired(false);
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        binding.bar.setHideOnScroll(true);
 
         fetchData();
     }
@@ -193,6 +198,13 @@ public class MainActivity extends BaseActivity {
                         this::handleError);
     }
 
+    private void setLightColor(PHLight light){
+        float xy[] = PHUtilities.calculateXYFromRGB(255, 0, 255, light.getModelNumber());
+        PHLightState lightState = new PHLightState();
+        lightState.setX(xy[0]);
+        lightState.setY(xy[1]);
+
+    }
     private void onPriceRating(Home home) {
         this.home = home;
 

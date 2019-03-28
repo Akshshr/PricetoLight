@@ -118,6 +118,12 @@
         <item name="android:textSize">@dimen/fontSize10</item>
         <item name="android:textColor">@color/textSecondaryDark</item>
     </style>
+
+    <style name="Text.10spLightSecondary">
+        <item name="android:textSize">@dimen/fontSize10</item>
+        <item name="android:fontFamily">@font/googlesans_regular</item>
+        <item name="android:textColor">@color/textSecondaryDark</item>
+    </style>
     <style name="Text.Red.12spMedium">
         <item name="android:textSize">@dimen/fontSize12</item>
         <item name="android:fontFamily">@font/googlesans_medium</item>

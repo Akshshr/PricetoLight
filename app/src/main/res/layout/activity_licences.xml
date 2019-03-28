@@ -30,7 +30,10 @@
 
     <TextView
         android:text="@string/licence_description"
-        android:layout_margin="@dimen/d12"
+        android:layout_marginBottom="@dimen/d12"
+        android:layout_marginEnd="@dimen/d16"
+        android:layout_marginStart="@dimen/d16"
+        android:layout_marginTop="@dimen/d4"
         style="@style/Text.Bright.14spMedium"
         android:id="@+id/description"
         android:layout_below="@+id/toolbar"
