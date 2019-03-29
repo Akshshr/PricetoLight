@@ -46,7 +46,9 @@
 
         <RelativeLayout
             android:id="@+id/summaryLayout"
-            android:layout_centerInParent="true"
+
+            android:layout_marginTop="@dimen/d22"
+            android:layout_below="@+id/desctription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -72,22 +74,27 @@
 
         </RelativeLayout>
 
-
-        <ScrollView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/d22"
             android:layout_below="@+id/summaryLayout"
+            android:paddingBottom="@dimen/d40"
             android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/lightsList"
-            android:layout_width="match_parent"
+        </android.support.v7.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/done"
+            android:text="DONE"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/AppTheme.Button"
+            android:layout_marginBottom="@dimen/d16"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/d12"
-            android:layout_marginEnd="@dimen/d12"
-            android:paddingBottom="@dimen/d22"
-            android:paddingTop="@dimen/d8" />
-        </ScrollView>
+            tools:text="DONE"/>
+
 
     </RelativeLayout>
 

@@ -1,13 +1,18 @@
 package com.pricetolight.app;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,12 +32,14 @@ import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.LicencesActivity;
+import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.TextUtil;
 import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -41,6 +48,7 @@ public class MainActivity extends BaseActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     List<String> homeNickNames = new ArrayList<String>();
+    public static final int CONFIGURE_LIGHT = 2001;
 
     private ActivityMainBinding binding;
     BottomSheetBehavior bottomSheetBehavior;
@@ -74,7 +82,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-
         //Dim background setup..
         binding.dimBackground.setOnClickListener(v -> {
             if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED) {
@@ -91,8 +98,6 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
             return false;
         });
-
-
     }
 
     @Override
@@ -106,7 +111,7 @@ public class MainActivity extends BaseActivity {
             PHBridge bridge = phHueSDK.getAllBridges().get(0);
             if (bridge != null && bridge.getResourceCache() != null) {
                 binding.setHasHuePaired(true);
-                binding.fab.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ConfigureHueActivity.class)));
+                binding.fab.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConfigureHueActivity.class),CONFIGURE_LIGHT));
             } else {
                 binding.setHasHuePaired(false);
             }
@@ -199,26 +204,8 @@ public class MainActivity extends BaseActivity {
                         this::handleError);
     }
 
-    private void setLightColor(PHLight light){
-        float xy[] = PHUtilities.calculateXYFromRGB(255, 0, 255, light.getModelNumber());
-        PHLightState lightState = new PHLightState();
-        lightState.setX(xy[0]);
-        lightState.setY(xy[1]);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 || requestCode == 2){
-            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
-        }
-    }
-
     private void onPriceRating(Home home) {
         this.home = home;
-
 
         if (home.getCurrentSubscription() != null && home.getCurrentSubscription().getPriceInfo() != null && home.getCurrentSubscription().getPriceInfo().getCurrent() != null) {
             TransitionManager.beginDelayedTransition(binding.parent);
@@ -245,6 +232,67 @@ public class MainActivity extends BaseActivity {
             binding.setNoActiveSubscription(true);
         }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1 || requestCode == 2){
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        }
+        if(requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras()!=null){
+            PHLight choosenLight = (PHLight) data.getExtras().getSerializable(IntentKeys.LIGHTS_RESULT);
+            setLightColor(choosenLight);
+        }
+    }
+
+
+    private void setLightColor(PHLight light){
+        PHHueSDK phHueSDK=PHHueSDK.getInstance();
+
+        //CHeCK WHICH LIGHT IS PICKED
+        //Set LIGHT COLOR BASED ON PRICE
+        //PRICE IS FETCHED FROM PRICEAPI
+        //CHANGES EVERY HOUR
+        int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(this);
+
+        float xy[] = PHUtilities.calculateXYFromRGB( Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
+        PHLightState lightState = new PHLightState();
+        lightState.setX(xy[0]);
+        lightState.setY(xy[1]);
+        phHueSDK.getSelectedBridge().updateLightState(light,lightState);
+        scheduleJob();
+    }
+
+    public void scheduleJob(){
+        ComponentName componentName= new ComponentName(this, UpdateLightJobService.class);
+        JobInfo jobInfo = new JobInfo.Builder(IntentKeys.JOB_UPDATE_LIGHTS, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+                .setPersisted(true)
+                .setPeriodic(60 * 60 * 1000)
+                .build();
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        if (jobScheduler != null) {
+            int resultCode = jobScheduler.schedule(jobInfo);
+            if (resultCode==JobScheduler.RESULT_SUCCESS){
+                Log.d(TAG, "Job successfully done mate: ");
+                Toast.makeText(this, "Job successfully", Toast.LENGTH_SHORT).show();
+            }else{
+                Log.d(TAG, "Job failed mate");
+                Toast.makeText(this, "Job failed", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+
+    }
+
+    public void cancelJob(){
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+        if (jobScheduler != null) {
+            jobScheduler.cancel(IntentKeys.JOB_UPDATE_LIGHTS);
+        }
+    }
+
 
     private void setPrice(CurrentPrice currentPrice) {
 

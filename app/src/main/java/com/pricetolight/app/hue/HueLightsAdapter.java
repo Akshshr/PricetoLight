@@ -21,12 +21,14 @@ import rx.subjects.PublishSubject;
 
 public class HueLightsAdapter extends RecyclerView.Adapter<HueLightsAdapter.ViewHolder> {
 
+    private final Boolean clickable;
     private List<PHLight> phLights;
 
     private PublishSubject<PHLight> lightClickSubject = PublishSubject.create();
 
-    public HueLightsAdapter(List<PHLight> phLights) {
+    public HueLightsAdapter(List<PHLight> phLights, Boolean clickable) {
         this.phLights = phLights;
+        this.clickable = clickable;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,13 +44,21 @@ public class HueLightsAdapter extends RecyclerView.Adapter<HueLightsAdapter.View
             final Context context = binding.getRoot().getContext();
             binding.groumName.setText(light.getName());
             binding.chip.setText(light.getLightType().toString());
-            binding.hueProperty.setText(light.getLastKnownLightState().isOn() ? "ON" : "OFF");
+            binding.hueProperty.setText(light.getLastKnownLightState().isOn() ?
+                    context.getResources().getString(R.string.on) :
+                    context.getResources().getString(R.string.off));
 
-            if(!light.supportsColor()) {
-                binding.background.setAlpha(0.5f);
-                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "None colored lamps are not supported", Toast.LENGTH_SHORT).show());
-            }else{
-                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "u picke this light", Toast.LENGTH_SHORT).show());
+            if(clickable) {
+                if (!light.supportsColor()) {
+                    binding.background.setAlpha(0.5f);
+                    binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
+                } else {
+                    binding.background.setImageDrawable(context.getDrawable(R.drawable.test9));
+//                    binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "u picke this light", Toast.LENGTH_SHORT).show());
+                    if(light.supportsCT()){
+                        binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_gradient_ct_light));
+                    }
+                }
             }
         }
 

@@ -78,12 +78,9 @@ public class HueConnectFragment extends BaseFragment implements PHSDKListener{
         super.onStart();
 
         ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                binding.hueButtonBlue.setAlpha((Float) animation.getAnimatedValue());
-                binding.searchingTitle.setAlpha((Float) animation.getAnimatedValue());
-            }
+        animator.addUpdateListener(animation -> {
+            binding.hueButtonBlue.setAlpha((Float) animation.getAnimatedValue());
+            binding.searchingTitle.setAlpha((Float) animation.getAnimatedValue());
         });
 
         animator.setDuration(1000);

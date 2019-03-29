@@ -33,6 +33,7 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
 
     HueConnectFragment hueConnectFragment;
     HuePairResultFragment huePairResultFragment;
+    PHHueSDK phHueSDK;
 
     ArrayList<PHGroup> phGroups = new ArrayList<>();
     List<PHLight> allLights = new ArrayList<>();
@@ -66,7 +67,7 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_connect_hue);
         ((PriceToLightsApplication)getApplication()).setupPHSDK();
-        PHHueSDK phHueSDK=PHHueSDK.getInstance();
+        phHueSDK = PHHueSDK.getInstance();
         phHueSDK.getNotificationManager().registerSDKListener(this);
 
         hueConnectFragmentAdapter = new HueConnectFragmentAdapter(getFragmentManager());
@@ -99,10 +100,12 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
     @Override
     public void onHuePairResultInteraction(boolean isSuccessful) {
         //do something here after pair result......
+        Log.d(TAG, "onBridgeConnected: ");
     }
 
     @Override
     public void onCacheUpdated(List<Integer> list, PHBridge phBridge) {
+        Log.d(TAG, "onBridgeConnected: ");
 
     }
 
@@ -115,11 +118,25 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
 
     @Override
     public void onAuthenticationRequired(PHAccessPoint phAccessPoint) {
+        Log.d(TAG, "onBridgeConnected: ");
 
     }
 
     @Override
     public void onAccessPointsFound(List<PHAccessPoint> list) {
+        Log.d(TAG, "onBridgeConnected: ");
+
+        if (list != null && list.size() > 0) {
+            phHueSDK.getAccessPointsFound().clear();
+            phHueSDK.getAccessPointsFound().addAll(list);
+            getAppPreferences().setUserNameHue(list.get(0).getUsername());
+            getAppPreferences().setLastConnectedIPAddressHue(list.get(0).getIpAddress());
+            PHAccessPoint lastAccessPoint = new PHAccessPoint();
+            lastAccessPoint.setIpAddress(list.get(0).getIpAddress());
+            lastAccessPoint.setUsername(list.get(0).getUsername());
+            phHueSDK.connect(lastAccessPoint);
+
+        }
 
     }
 
@@ -140,6 +157,7 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
 
     @Override
     public void onParsingErrors(List<PHHueParsingError> list) {
+        Log.d(TAG, "onBridgeConnected: ");
 
     }
 }

@@ -112,6 +112,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:paddingTop="@dimen/d4"
+            android:paddingBottom="@dimen/d40"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/action0"
@@ -122,6 +123,17 @@
         </android.support.v7.widget.RecyclerView>
 
 
+        <Button
+            android:id="@+id/done"
+            android:text="DONE"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/AppTheme.Button"
+            android:layout_marginBottom="@dimen/d16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="DONE"/>
     </RelativeLayout>
 
 </layout>

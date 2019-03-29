@@ -1,10 +1,12 @@
 package com.pricetolight.app.hue;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.View;
 
 import com.philips.lighting.annotations.Bridge;
 import com.philips.lighting.hue.listener.PHLightListener;
@@ -17,8 +19,10 @@ import com.philips.lighting.model.PHLightState;
 import com.philips.lighting.model.PHScene;
 import com.pricetolight.R;
 import com.pricetolight.app.base.BaseActivity;
+import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.databinding.ActivityConfigureHueBinding;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +31,9 @@ public class ConfigureHueActivity extends BaseActivity {
     public static final String TAG = ConfigureHueActivity.class.getSimpleName();
     private ActivityConfigureHueBinding binding;
     private HueLightsAdapter adapter;
+    public static final int LIGHTS_RESULT = 1001;
+    private PHLight choosenPHLight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,55 +44,12 @@ public class ConfigureHueActivity extends BaseActivity {
         PHHueSDK phHueSDK=PHHueSDK.getInstance();
 
         List<PHLight> lights;
-//        List<PHLight> lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
         lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
-        PHLight light=lights.get(5);
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new HueLightsAdapter(lights);
+        adapter = new HueLightsAdapter(lights, true);
         binding.recyclerView.setAdapter(adapter);
 
-
-//        PHLightState phLightState= light.getLastKnownLightState();
-//        PHLightState phLightState= new PHLightState();
-        PHLightState lightState = new PHLightState();
-//        phLightState.setHue(200);
-
-        lightState.setBrightness(50, true);
-//        light.setLastKnownLightState(phLightState);
-
-//        phHueSDK.getSelectedBridge().updateLightState(light, lightState,  null);
-        phHueSDK.getSelectedBridge().updateLightState(light, lightState,  new PHLightListener() {
-            @Override
-            public void onReceivingLightDetails(PHLight phLight) {
-                Log.d(TAG, "onReceivingLightDetails: ");
-            }
-
-            @Override
-            public void onReceivingLights(List<PHBridgeResource> list) {
-                Log.d(TAG, "onReceivingLights: ");
-            }
-
-            @Override
-            public void onSearchComplete() {
-                Log.d(TAG, "onSearchComplete: ");
-            }
-
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "onSuccess: ");
-            }
-
-            @Override
-            public void onError(int i, String s) {
-                Log.d(TAG, "onError: ");
-            }
-
-            @Override
-            public void onStateUpdate(Map<String, String> map, List<PHHueError> list) {
-                Log.d(TAG, "onStateUpdate: ");
-            }
-        });
     }
 
 
@@ -98,8 +62,21 @@ public class ConfigureHueActivity extends BaseActivity {
                         this::handleError);
     }
 
-    private void onLightSelect(PHLight phLight) {
+    @Override
+    public void onBackPressed() {
+        Intent evChargerIntent = new Intent();
+        evChargerIntent.putExtra(IntentKeys.LIGHTS_RESULT, (Serializable) choosenPHLight);
+        setResult(RESULT_OK, evChargerIntent);
+        finish();
+        super.onBackPressed();
+    }
 
+
+    private void onLightSelect(PHLight phLight) {
+        this.choosenPHLight=phLight;
+
+        binding.done.setVisibility(View.VISIBLE);
+        binding.done.setOnClickListener(View -> onBackPressed());
     }
 
 

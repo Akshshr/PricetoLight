@@ -1,30 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Price to Light</string>
-    <string name="app_caption">Simplest way to see electricity price</string>
-    <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
-
-    <string name="hello_blank_fragment">blank</string>
-
+    <string name="app_caption">Enkelaste sättet att se elpriset</string>
 
 
     <!--MAIN ACTIVITY-->
-    <string name="price_unit">Öre</string>
+    <string name="price_unit">Öre/kWh</string>
+    <string name="price_toggle_lable">Byt för att se priset med moms</string>
+    <string name="inactive_home_title">Hoppsan!</string>
+    <string name="inactive_home_description">Ser ut som om det här hemmet inte har en aktiv prenumeration</string>
+
 
     <!--LOGIN ACTIVITY-->
-    <string name="login_button">Login with tibber</string>
-    <string name="login_email_hint">E-mail as in Tibber</string>
-    <string name="login_password_hint">Password</string>
+    <string name="login">Logga in</string>
+    <string name="login_button">Logga in med tibber</string>
+    <string name="login_email_hint">E-post som i Tibber</string>
+    <string name="login_password_hint">Lösenord</string>
 
-
+    <string name="login_no_customer_text">Vet inte vad Tibber är? Klicka här!</string>
+    <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
     <!--BOTTOM SHEET-->
-    <string name="connect_hue">Connect Philips Hue</string>
+    <string name="header1">Enheter</string>
+    <string name="connect_hue">Anslut Philips Hue</string>
+    <string name="header2">Om</string>
+    <string name="licences">Licenser</string>
 
 
-    <!--CONNECT HUE-->
-    <string name="connect_hue_title">Connect Philips Hue Bridge</string>
-    <string name="connect_hue_description">Now would be a good time to click on the main button on your hue bridge</string>
-    <string name="connect_hue_searching">Searching for your bridge...</string>
+    <!--CONNECT HUE FRAGMENT-->
+    <string name="connect_hue_title">Anslut Philips Hue Bridge</string>
+    <string name="connect_hue_description">Klicka på den stora knappen på din nyans bro, just nu</string>
+    <string name="connect_hue_searching">Söker efter din bro....</string>
 
+    <!--CONNECT RESULT HUE FRAGMENT-->
+    <string name="connect_result_hue_title">Hurrayy !! Paired till Philips Hue framgångsrikt</string>
+    <string name="connect_result_hue_description">Det var enkelt!</string>
+    <string name="connect_result_hue_summary">Vi hittade följande antal ljus:</string>
+
+
+    <!--CONFIGURE LIGHT ACTIVITY-->
+    <string name="toast_color_not_supported">Inga färgade lampor stöds inte</string>
+    <string name="configure_title">Vanligt</string>
+    <string name="configure_description">Vanligt</string>
+    <string name="on">PÅ</string>
+    <string name="off">AV</string>
+
+    <string name="price_normal">Vanligt</string>
+    <string name="price_cheap">Billig</string>
+    <string name="price_expensive">Dyr</string>
+    <string name="price_very_cheap">Väldigt Billig</string>
+    <string name="price_very_expensive">Väldigt Dyr</string>
+
+    <!--LICENCE ACTIVITY-->
+    <string name="licence_title">Öppen källkodslicenser</string>
+    <string name="licence_description">En utrop till de män och kvinnor som gör fantastiska verktyg för världen att använda</string>
+
+    <!--SNACK BAR-->
+    <string name="dismiss">Klart</string>
 
 </resources>

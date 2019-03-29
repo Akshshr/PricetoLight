@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.chip.Chip;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.philips.lighting.model.PHLight;
 import com.pricetolight.R;
 import com.pricetolight.app.base.BaseFragment;
+import com.pricetolight.app.hue.HueLightsAdapter;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.databinding.FragmentHuePairResultBinding;
 
@@ -77,6 +79,8 @@ public class HuePairResultFragment extends BaseFragment {
             onLights(lights);
         }
 
+
+        binding.done.setOnClickListener(View -> getActivity().finish());
         return binding.getRoot();
     }
 
@@ -84,17 +88,8 @@ public class HuePairResultFragment extends BaseFragment {
         if(phLights!=null) {
             binding.summaryValue.setText(String.valueOf(phLights.size()));
             if (phLights.size()>0) {
-                for (int i = 0; i < phLights.size(); i++) {
-                    phLights.get(1).getLightType().equals(PHLight.PHLightType.COLOR_LIGHT);
-                    View view = getActivity().getLayoutInflater().inflate(R.layout.row_light, null);
-                    ((TextView) view.findViewById(R.id.lightName)).setText(phLights.get(i).getName());
-                    ((TextView) view.findViewById(R.id.lightType)).setText(phLights.get(i).getLightType().toString());
-//                    ((Chip) view.findViewById(R.id.lightId)).setText(String.valueOf(phLights.get(i).));
-                    if(!phLights.get(i).supportsColor()) {
-                        view.findViewById(R.id.parent).setAlpha(0.5f);
-                    }
-                    binding.lightsList.addView(view);
-                }
+                binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+                binding.recyclerView.setAdapter(new HueLightsAdapter(phLights, false));
             }
         }
 
