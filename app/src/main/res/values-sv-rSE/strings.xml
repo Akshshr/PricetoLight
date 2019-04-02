@@ -32,6 +32,8 @@
     <string name="connect_hue_searching">Söker efter din bro....</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
+    <string name="connect_result_button">Done</string>
+
     <string name="connect_result_hue_title">Hurrayy !! Paired till Philips Hue framgångsrikt</string>
     <string name="connect_result_hue_description">Det var enkelt!</string>
     <string name="connect_result_hue_summary">Vi hittade följande antal ljus:</string>
@@ -56,5 +58,10 @@
 
     <!--SNACK BAR-->
     <string name="dismiss">Klart</string>
+
+    <!--THROWABLES-->
+    <string name="throwable_light_error">Something went wrong with the light you picked</string>
+    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
+    <string name="throwable_generic_error">Something went wrong</string>
 
 </resources>

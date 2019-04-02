@@ -25,6 +25,13 @@
     <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 
+    <!--CONNECT RESULT HUE FRAGMENT-->
+    <string name="dialog_title">Turn off the background service</string>
+    <string name="dialog_description">This will stop updating the color of your chosen light based on the price</string>
+    <string name="dialog_button_yes">Yes, Stop</string>
+    <string name="dialog_button_no">No, Go back</string>
+
+
     <!--BOTTOM SHEET-->
     <string name="header1">Devices</string>
     <string name="connect_hue">Connect Philips Hue</string>
@@ -38,6 +45,8 @@
     <string name="connect_hue_searching">Searching for your bridge...</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
+    <string name="connect_result_button">Done</string>
+
     <string name="connect_result_hue_title">Hurrayy!! Paired to Philips Hue successfully</string>
     <string name="connect_result_hue_description">That was easy!</string>
     <string name="connect_result_hue_summary">We found the following number of lights:</string>
@@ -62,6 +71,11 @@
 
     <!--SNACK BAR-->
     <string name="dismiss">Dismiss</string>
+
+    <!--THROWABLES-->
+    <string name="throwable_light_error">Something went wrong with the light you picked</string>
+    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
+    <string name="throwable_generic_error">Something went wrong</string>
 
 
 </resources>

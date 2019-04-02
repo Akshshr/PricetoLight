@@ -2,21 +2,12 @@ package com.pricetolight.app.hue;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 
-import com.philips.lighting.annotations.Bridge;
-import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
-import com.philips.lighting.model.PHBridge;
-import com.philips.lighting.model.PHBridgeResource;
-import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHLight;
-import com.philips.lighting.model.PHLightState;
-import com.philips.lighting.model.PHScene;
 import com.pricetolight.R;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.util.IntentKeys;
@@ -24,13 +15,12 @@ import com.pricetolight.databinding.ActivityConfigureHueBinding;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 public class ConfigureHueActivity extends BaseActivity {
 
     public static final String TAG = ConfigureHueActivity.class.getSimpleName();
     private ActivityConfigureHueBinding binding;
-    private HueLightsAdapter adapter;
+    private ConfigureLightsAdapter adapter;
     public static final int LIGHTS_RESULT = 1001;
     private PHLight choosenPHLight;
 
@@ -47,7 +37,7 @@ public class ConfigureHueActivity extends BaseActivity {
         lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        adapter = new HueLightsAdapter(lights, true);
+        adapter = new ConfigureLightsAdapter(lights, true);
         binding.recyclerView.setAdapter(adapter);
 
     }
@@ -74,7 +64,6 @@ public class ConfigureHueActivity extends BaseActivity {
 
     private void onLightSelect(PHLight phLight) {
         this.choosenPHLight=phLight;
-
         binding.done.setVisibility(View.VISIBLE);
         binding.done.setOnClickListener(View -> onBackPressed());
     }

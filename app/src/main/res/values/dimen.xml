@@ -39,6 +39,9 @@
 
     <dimen name="rowBigCard">210dp</dimen>
 
+    <dimen name="dialog_width">320dp</dimen>
+    <dimen name="dialog_height">380dp</dimen>
+
     <!-- A + B -->
     <!-- A + B + C -->
 

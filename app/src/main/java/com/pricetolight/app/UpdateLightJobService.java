@@ -5,13 +5,17 @@ import android.app.job.JobService;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.google.gson.Gson;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
+import com.pricetolight.BuildConfig;
 import com.pricetolight.api.Api;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.app.base.AppPreferences;
+import com.pricetolight.app.base.UserManager;
+import com.pricetolight.app.util.IntentKeys;
 
 /**
  * Created by akashshrivastava on 2019-03-29.
@@ -21,17 +25,18 @@ public class UpdateLightJobService extends JobService {
 
     Api api;
     private AppPreferences appPreferences;
-
-    public Api getApi() {
-        return api;
-    }
-
-    public AppPreferences getAppPreferences() {
-        return appPreferences;
-    }
-
+    private UserManager userManager;
+    PHLight phLight;
     public static final String TAG = UpdateLightJobService.class.getSimpleName();
     private boolean jobCancelled;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        this.appPreferences = new AppPreferences(this);
+        this.userManager = new UserManager(appPreferences);
+        this.api = new Api(BuildConfig.API_HOST, userManager);
+    }
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -48,28 +53,35 @@ public class UpdateLightJobService extends JobService {
                     return;
                 }
 
+                Log.d(TAG, "Job background task");
                 api.getPriceApiService().getPrice(appPreferences.getActiveHomeId().get())
                         .subscribe(this::onPrice,
                                 this::handleError);
             }
 
             private void handleError(Throwable throwable) {
-
+                Log.d(TAG, "Job background API Error" + throwable);
             }
 
             private void onPrice(Home home) {
-                    PHHueSDK phHueSDK=PHHueSDK.getInstance();
 
-                    //CHeCK WHICH LIGHT IS PICKED
+                String json = appPreferences.getLightData().get();
+
+                if(json!=null) {
+                    phLight = new Gson().fromJson(json, PHLight.class);
+
+                    Log.d(TAG, "Job background RESULT SUCCESS");
+                    PHHueSDK phHueSDK = PHHueSDK.getInstance();
+
                     int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(UpdateLightJobService.this);
 
-//                    float xy[] = PHUtilities.calculateXYFromRGB( Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
-//                    PHLightState lightState = new PHLightState();
-//                    lightState.setX(xy[0]);
-//                    lightState.setY(xy[1]);
-//                    phHueSDK.getSelectedBridge().updateLightState(light,lightState);
+                    float xy[] = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), phLight.getModelNumber());
+                    PHLightState lightState = new PHLightState();
+                    lightState.setX(xy[0]);
+                    lightState.setY(xy[1]);
+                    phHueSDK.getSelectedBridge().updateLightState(phLight, lightState);
+                }
             }
-
         }).start();
     }
 

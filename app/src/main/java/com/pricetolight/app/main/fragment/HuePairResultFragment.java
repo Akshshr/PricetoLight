@@ -2,21 +2,16 @@ package com.pricetolight.app.main.fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.chip.Chip;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.philips.lighting.model.PHLight;
 import com.pricetolight.R;
 import com.pricetolight.app.base.BaseFragment;
-import com.pricetolight.app.hue.HueLightsAdapter;
+import com.pricetolight.app.hue.ConfigureLightsAdapter;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.databinding.FragmentHuePairResultBinding;
 
@@ -79,7 +74,6 @@ public class HuePairResultFragment extends BaseFragment {
             onLights(lights);
         }
 
-
         binding.done.setOnClickListener(View -> getActivity().finish());
         return binding.getRoot();
     }
@@ -89,7 +83,7 @@ public class HuePairResultFragment extends BaseFragment {
             binding.summaryValue.setText(String.valueOf(phLights.size()));
             if (phLights.size()>0) {
                 binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-                binding.recyclerView.setAdapter(new HueLightsAdapter(phLights, false));
+                binding.recyclerView.setAdapter(new ConfigureLightsAdapter(phLights, false));
             }
         }
 
@@ -108,7 +102,7 @@ public class HuePairResultFragment extends BaseFragment {
             onHuePairResultListener = (OnHuePairResultListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnTurnOffServiceListener");
         }
     }
 

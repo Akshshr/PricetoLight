@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHBridge;
@@ -32,6 +33,7 @@ import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.LicencesActivity;
+import com.pricetolight.app.main.fragment.TurnOffServiceDialog;
 import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.TextUtil;
 import com.pricetolight.app.util.Util;
@@ -39,11 +41,10 @@ import com.pricetolight.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements TurnOffServiceDialog.OnTurnOffServiceListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -55,6 +56,7 @@ public class MainActivity extends BaseActivity {
     private Homes homes;
     private CurrentSubscription currentSubscription;
     private Home home;
+    private TurnOffServiceDialog turnOffServiceDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends BaseActivity {
         setTheme(R.style.AppTheme);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setLoading(true);
 
         binding.bar.setOnClickListener(v -> bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED));
         bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet);
@@ -98,6 +101,12 @@ public class MainActivity extends BaseActivity {
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
             return false;
         });
+
+        binding.turnOff.setOnClickListener(v -> {
+            turnOffServiceDialog = TurnOffServiceDialog.newInstance();
+            turnOffServiceDialog.show(getSupportFragmentManager(), TurnOffServiceDialog.TAG);
+        });
+        fetchData();
     }
 
     @Override
@@ -119,7 +128,6 @@ public class MainActivity extends BaseActivity {
             binding.setHasHuePaired(false);
         }
 
-        fetchData();
     }
 
     private void fetchData() {
@@ -145,9 +153,8 @@ public class MainActivity extends BaseActivity {
         //Set Dropdown list of homes
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner, homeNickNames);
         binding.dropDownList.setAdapter(categoryAdapter);
-
+        binding.dropDownList.setBackgroundColor(ContextCompat.getColor(this, R.color.white50));
         setAvatar(0);
-
         binding.dropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -205,7 +212,12 @@ public class MainActivity extends BaseActivity {
     }
 
     private void onPriceRating(Home home) {
+        binding.setLoading(false);
         this.home = home;
+
+        //***NOTE***
+        //temp
+        scheduleJob();
 
         if (home.getCurrentSubscription() != null && home.getCurrentSubscription().getPriceInfo() != null && home.getCurrentSubscription().getPriceInfo().getCurrent() != null) {
             TransitionManager.beginDelayedTransition(binding.parent);
@@ -242,7 +254,11 @@ public class MainActivity extends BaseActivity {
         }
         if(requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras()!=null){
             PHLight choosenLight = (PHLight) data.getExtras().getSerializable(IntentKeys.LIGHTS_RESULT);
-            setLightColor(choosenLight);
+            if (choosenLight != null) {
+                setLightColor(choosenLight);
+            }else{
+                showSnackBar(new Throwable("You didnt pick a light"));
+            }
         }
     }
 
@@ -250,10 +266,8 @@ public class MainActivity extends BaseActivity {
     private void setLightColor(PHLight light){
         PHHueSDK phHueSDK=PHHueSDK.getInstance();
 
-        //CHeCK WHICH LIGHT IS PICKED
-        //Set LIGHT COLOR BASED ON PRICE
-        //PRICE IS FETCHED FROM PRICEAPI
-        //CHANGES EVERY HOUR
+        getAppPreferences().setLightData(new Gson().toJson(light));
+
         int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(this);
 
         float xy[] = PHUtilities.calculateXYFromRGB( Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
@@ -304,5 +318,12 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onTurnOffInteraction(boolean turnedOff) {
+            Toast.makeText(this, "ON Service: " + turnedOff, Toast.LENGTH_SHORT).show();
+//        if(turnedOff){
+//            cancelJob();
+//        }
+    }
 }
 

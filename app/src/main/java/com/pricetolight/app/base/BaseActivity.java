@@ -92,7 +92,7 @@ public class BaseActivity extends AppCompatActivity {
         return lifecycleSubject.filter((ActivityEvent activityEvent) -> activityEvent == event);
     }
 
-    private void showSnackBar(Throwable throwable){
+    public void showSnackBar(Throwable throwable){
         View contextView = findViewById(android.R.id.content);
         final Snackbar snackBar = Snackbar.make(contextView, throwable.getMessage(), Snackbar.LENGTH_INDEFINITE);
 

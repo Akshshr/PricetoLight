@@ -125,7 +125,7 @@
 
         <Button
             android:id="@+id/done"
-            android:text="DONE"
+            android:text="@string/connect_result_button"
             android:visibility="gone"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

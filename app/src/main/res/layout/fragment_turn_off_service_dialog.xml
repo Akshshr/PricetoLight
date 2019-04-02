@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="tes"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_dialog"
+        tools:context=".app.main.fragment.TurnOffServiceDialog">
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/title"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginEnd="@dimen/d12"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/d22"
+            android:src="@drawable/ic_power" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Text.20spBold"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/d12"
+            android:text="@string/dialog_title"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/description"
+            style="@style/Text.16spSecondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_margin="@dimen/d12"
+            android:text="@string/dialog_description"
+            android:textAlignment="center" />
+
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/noButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/d12"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue700"
+                android:text="@string/dialog_button_no"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/yesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/d12"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red500"
+                android:text="@string/dialog_button_yes"
+                tools:ignore="ButtonStyle" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

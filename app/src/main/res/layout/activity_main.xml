@@ -17,6 +17,11 @@
             name="hasHuePaired"
             type="Boolean" />
 
+
+        <variable
+            name="loading"
+            type="Boolean" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -37,22 +42,60 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <android.support.v7.widget.AppCompatSpinner
+            <org.angmarch.views.NiceSpinner
                 android:id="@+id/dropDownList"
+                android:fontFamily="@font/googlesans_bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content" />
 
-            </android.support.v7.widget.AppCompatSpinner>
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/turnOff"
+                android:src="@drawable/ic_power"
+                android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
+                android:layout_alignParentEnd="true"
+                android:elevation="@dimen/d4"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:background="@color/colorPrimaryTransparent"
+                android:layout_centerVertical="true"
+                android:layout_width="38dp"
+                android:layout_marginEnd="@dimen/d16"
+                android:layout_height="38dp" />
+
+
+            <!--<android.support.v7.widget.AppCompatSpinner-->
+                <!--android:id="@+id/dropDownList"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+
+            <!--</android.support.v7.widget.AppCompatSpinner>-->
 
         </RelativeLayout>
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_view_loading"
+            android:layout_below="@+id/hueBridgeLayout"
+            app:lottie_cacheStrategy="strong"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            app:lottie_fileName="loading.json"
+            app:lottie_scale="1"
+            app:lottie_loop="true"
+            android:layout_marginBottom="@dimen/d120"
+            android:layout_gravity="center"
+            android:visibility="@{loading ? View.VISIBLE :  View.GONE }"
+            app:lottie_autoPlay="true"
+            />
 
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_view"
             android:layout_below="@+id/hueBridgeLayout"
             app:lottie_cacheStrategy="strong"
-            android:layout_height="140dp"
+            android:layout_height="160dp"
             android:layout_width="match_parent"
             app:lottie_fileName="error.json"
             app:lottie_scale="1"
@@ -62,6 +105,7 @@
             android:visibility="@{noActiveSubscription ? View.VISIBLE :  View.GONE }"
             app:lottie_autoPlay="true"
             />
+
 
         <TextView
             android:id="@+id/noActiveSubscriptionTitle"
@@ -99,7 +143,6 @@
 
             <ImageView
                 android:id="@+id/glowEffect"
-                android:alpha="0.7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -146,9 +189,7 @@
                     android:layout_height="wrap_content"
                     tools:text="05:00 - 06:00"
                     />
-
             </RelativeLayout>
-
         </FrameLayout>
 
         <RelativeLayout
@@ -168,7 +209,6 @@
                 android:layout_marginStart="@dimen/d22"
                 android:layout_height="50dp" />
 
-
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
                 android:layout_alignParentEnd="true"
@@ -185,9 +225,7 @@
                 android:layout_marginBottom="@dimen/d12"
                 android:layout_marginEnd="@dimen/d22"
                 tools:ignore="RelativeOverlap" />
-
         </RelativeLayout>
-
 
         <RelativeLayout
             android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"

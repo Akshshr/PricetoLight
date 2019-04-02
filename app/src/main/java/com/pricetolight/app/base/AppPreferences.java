@@ -46,7 +46,6 @@ public class AppPreferences {
         rxSharedPreferences.getString(Keys.ACTIVE_CUSTOMER_ID).set(customerId);
     }
 
-
     public void setPreferredTotalPrice(boolean preferred) {
         rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE).set(preferred);
     }
@@ -55,7 +54,13 @@ public class AppPreferences {
         return rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE, false);
     }
 
+    public void setLightData(String widgetData) {
+        rxSharedPreferences.getString(Keys.LIGHT_CHOSEN).set(widgetData);
+    }
 
+    public Preference<String> getLightData() {
+        return rxSharedPreferences.getString(Keys.LIGHT_CHOSEN);
+    }
 
     private static void initlizeSharePrefrences(Context context) {
         sharedPreferences= context.getSharedPreferences(Keys.kKeyForSharedPref,Context.MODE_PRIVATE);
@@ -124,6 +129,7 @@ public class AppPreferences {
         static final String LONGITUDE = "longitude";
         static final String IP_ADDRESS = "ip_address";
         static final String USER_NAME = "user_name";
+        static final String LIGHT_CHOSEN = "light_chosen";
 
 
     }

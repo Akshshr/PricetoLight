@@ -27,6 +27,8 @@
 
 
     <!--CONNECT HUE FRAGMENT-->
+    <string name="connect_result_button">Done</string>
+
     <string name="connect_hue_title">Koble Philips Hue Bridge</string>
     <string name="connect_hue_description">Klikk på den ene store knappen på tanebroen</string>
     <string name="connect_hue_searching">Søker etter broen din.....</string>
@@ -56,5 +58,10 @@
 
     <!--SNACK BAR-->
     <string name="dismiss">Avskjedige</string>
+
+    <!--THROWABLES-->
+    <string name="throwable_light_error">Something went wrong with the light you picked</string>
+    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
+    <string name="throwable_generic_error">Something went wrong</string>
 
 </resources>

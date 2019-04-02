@@ -110,4 +110,11 @@
         <item name="android:colorForeground">#42221f1f  </item>
     </style>
 
+
+    <style name="AppWidget.DialogTransition">
+        <item name="android:windowEnterAnimation">@anim/dialog_expand_less_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_expand_more_out</item>
+    </style>
+
+
 </resources>
