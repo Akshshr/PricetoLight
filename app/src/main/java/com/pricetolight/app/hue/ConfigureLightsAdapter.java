@@ -2,6 +2,7 @@ package com.pricetolight.app.hue;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -62,15 +63,16 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
 
     }
 
+    @NonNull
     @Override
-    public ConfigureLightsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ConfigureLightsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         return new ConfigureLightsAdapter.ViewHolder(DataBindingUtil
                 .inflate(layoutInflater, R.layout.row_hue, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ConfigureLightsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ConfigureLightsAdapter.ViewHolder holder, int position) {
         holder.bind(phLights.get(position));
     }
 

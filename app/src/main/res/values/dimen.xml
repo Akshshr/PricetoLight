@@ -34,13 +34,10 @@
     <dimen name="rowTwoLines">68dp</dimen>
     <dimen name="rowMultipleLines">86dp</dimen>
 
-    <!-- Used for weather animation-->
-    <dimen name="d15">15dp</dimen>
-
     <dimen name="rowBigCard">210dp</dimen>
 
     <dimen name="dialog_width">340dp</dimen>
-    <dimen name="dialog_height">400dp</dimen>
+    <dimen name="dialog_height">420dp</dimen>
 
     <!-- A + B -->
     <!-- A + B + C -->

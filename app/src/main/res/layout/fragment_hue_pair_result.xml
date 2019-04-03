@@ -17,8 +17,8 @@
 
         <ImageView
             android:src="@drawable/bulb_on"
-            android:layout_width="200dp"
-            android:layout_height="300dp" />
+            android:layout_width="100dp"
+            android:layout_height="190dp" />
 
         <TextView
             android:id="@+id/title"
@@ -46,7 +46,6 @@
 
         <RelativeLayout
             android:id="@+id/summaryLayout"
-
             android:layout_marginTop="@dimen/d22"
             android:layout_below="@+id/desctription"
             android:layout_width="match_parent"
@@ -85,16 +84,17 @@
         </android.support.v7.widget.RecyclerView>
 
         <Button
-            android:id="@+id/done"
-            android:text="@string/connect_result_button"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            style="@style/AppTheme.ButtonBright"
             android:layout_marginBottom="@dimen/d16"
             android:layout_marginTop="@dimen/d4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="DONE"/>
+            android:layout_margin="@dimen/d6"
+            android:id="@+id/done"
+            android:text="@string/connect_result_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/blue700"
+            tools:ignore="ButtonStyle" />
 
 
     </RelativeLayout>

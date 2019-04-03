@@ -27,6 +27,7 @@
             style="@style/Text.12spBold"
             android:background="@drawable/bg_text"
             android:layout_alignParentTop="true"
+            android:elevation="@dimen/d2"
             android:paddingStart="@dimen/d12"
             android:paddingTop="@dimen/d4"
             android:paddingBottom="@dimen/d4"
@@ -37,6 +38,8 @@
             android:layout_height="wrap_content"
             android:text="@{@string/dialog_job_status(jobStatus)}"
             android:textAlignment="center"
+            android:clickable="true"
+            android:focusable="true"
             tools:text="Current status"/>
 
         <ImageView
@@ -58,7 +61,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/Text.20spBold"
+            style="@style/Text.18spBold"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

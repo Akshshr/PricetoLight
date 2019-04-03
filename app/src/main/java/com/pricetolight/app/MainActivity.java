@@ -316,10 +316,15 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     @Override
     public void onTurnOffInteraction(boolean turnedOff) {
-        Toast.makeText(this, "ON Service: " + turnedOff, Toast.LENGTH_SHORT).show();
-//        if(turnedOff){
-//            cancelJob();
-//        }
+        if(turnedOff) {
+            if (isJobServiceOn(this)) {
+                cancelJob();
+                Toast.makeText(this, "Cancel Job here: ", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Turn on Job here" , Toast.LENGTH_SHORT).show();
+                scheduleJob();
+            }
+        }
     }
 
     @Override

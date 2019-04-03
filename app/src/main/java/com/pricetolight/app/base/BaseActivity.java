@@ -1,5 +1,8 @@
 package com.pricetolight.app.base;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.Context;
 import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -21,9 +24,11 @@ import com.pricetolight.R;
 import com.pricetolight.api.Api;
 import com.pricetolight.app.PriceToLightsApplication;
 import com.pricetolight.app.main.ConnectHueActivity;
+import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.UI;
 
 import java.util.List;
+import java.util.Objects;
 
 import rx.Observable;
 import rx.subjects.BehaviorSubject;
@@ -90,6 +95,19 @@ public class BaseActivity extends AppCompatActivity {
 
     public Observable<ActivityEvent> getLifecycleEvents(ActivityEvent event) {
         return lifecycleSubject.filter((ActivityEvent activityEvent) -> activityEvent == event);
+    }
+
+    public static boolean isJobServiceOn(Context context) {
+        JobScheduler scheduler = (JobScheduler) context.getSystemService( Context.JOB_SCHEDULER_SERVICE ) ;
+        boolean hasBeenScheduled = false ;
+
+        for ( JobInfo jobInfo : Objects.requireNonNull(scheduler).getAllPendingJobs() ) {
+            if ( jobInfo.getId() == IntentKeys.JOB_UPDATE_LIGHTS ) {
+                hasBeenScheduled = true ;
+                break ;
+            }
+        }
+        return hasBeenScheduled;
     }
 
     public void showSnackBar(Throwable throwable){

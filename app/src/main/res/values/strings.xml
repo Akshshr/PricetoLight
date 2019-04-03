@@ -55,7 +55,7 @@
 
 
     <!--CONFIGURE LIGHT ACTIVITY-->
-    <string name="toast_color_not_supported">None colored lamps are not supported</string>
+    <string name="toast_color_not_supported">Non-colored lamps are not supported</string>
     <string name="configure_title">Normal</string>
     <string name="configure_description">Normal</string>
     <string name="on">ON</string>
