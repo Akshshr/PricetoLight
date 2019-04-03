@@ -19,9 +19,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHBridge;
+import com.philips.lighting.model.PHHueParsingError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
@@ -44,7 +47,7 @@ import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends BaseActivity implements TurnOffServiceDialog.OnTurnOffServiceListener {
+public class MainActivity extends BaseActivity implements TurnOffServiceDialog.OnTurnOffServiceListener, PHSDKListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -63,7 +66,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
         setTheme(R.style.AppTheme);
-
+        ((PriceToLightsApplication) getApplication()).setupPHSDK();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setLoading(true);
 
@@ -85,7 +88,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             }
         });
 
-        //Dim background setup..
         binding.dimBackground.setOnClickListener(v -> {
             if (bottomSheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED) {
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -94,8 +96,8 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
         binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
 
-        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class),2));
-        binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class),1));
+        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class), 2));
+        binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
 
         binding.bar.setOnMenuItemClickListener(menuItem -> {
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
@@ -107,6 +109,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             turnOffServiceDialog.show(getSupportFragmentManager(), TurnOffServiceDialog.TAG);
         });
         fetchData();
+        binding.fab.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConfigureHueActivity.class), CONFIGURE_LIGHT));
     }
 
     @Override
@@ -114,17 +117,17 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         super.onStart();
         binding.bar.setHideOnScroll(true);
 
-
-        PHHueSDK phHueSDK=PHHueSDK.getInstance();
-        if(phHueSDK.getAllBridges()!=null && phHueSDK.getAllBridges().size() > 0) {
+        binding.setNoActiveSubscription(false);
+        PHHueSDK phHueSDK = PHHueSDK.getInstance();
+        phHueSDK.getNotificationManager().registerSDKListener(this);
+        if (phHueSDK.getAllBridges() != null && phHueSDK.getAllBridges().size() > 0) {
             PHBridge bridge = phHueSDK.getAllBridges().get(0);
             if (bridge != null && bridge.getResourceCache() != null) {
                 binding.setHasHuePaired(true);
-                binding.fab.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConfigureHueActivity.class),CONFIGURE_LIGHT));
             } else {
                 binding.setHasHuePaired(false);
             }
-        }else {
+        } else {
             binding.setHasHuePaired(false);
         }
 
@@ -215,10 +218,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         binding.setLoading(false);
         this.home = home;
 
-        //***NOTE***
-        //temp
-        scheduleJob();
-
         if (home.getCurrentSubscription() != null && home.getCurrentSubscription().getPriceInfo() != null && home.getCurrentSubscription().getPriceInfo().getCurrent() != null) {
             TransitionManager.beginDelayedTransition(binding.parent);
             binding.setNoActiveSubscription(false);
@@ -249,37 +248,37 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 1 || requestCode == 2){
+        if (requestCode == 1 || requestCode == 2) {
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
-        if(requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras()!=null){
+        if (requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras() != null) {
             PHLight choosenLight = (PHLight) data.getExtras().getSerializable(IntentKeys.LIGHTS_RESULT);
             if (choosenLight != null) {
                 setLightColor(choosenLight);
-            }else{
-                showSnackBar(new Throwable("You didnt pick a light"));
+            } else {
+                showSnackBar(new Throwable("You didn't pick a light"));
             }
         }
     }
 
 
-    private void setLightColor(PHLight light){
-        PHHueSDK phHueSDK=PHHueSDK.getInstance();
+    private void setLightColor(PHLight light) {
+        PHHueSDK phHueSDK = PHHueSDK.getInstance();
 
         getAppPreferences().setLightData(new Gson().toJson(light));
 
         int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(this);
 
-        float xy[] = PHUtilities.calculateXYFromRGB( Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
+        float xy[] = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
         PHLightState lightState = new PHLightState();
         lightState.setX(xy[0]);
         lightState.setY(xy[1]);
-        phHueSDK.getSelectedBridge().updateLightState(light,lightState);
+        phHueSDK.getSelectedBridge().updateLightState(light, lightState);
         scheduleJob();
     }
 
-    public void scheduleJob(){
-        ComponentName componentName= new ComponentName(this, UpdateLightJobService.class);
+    public void scheduleJob() {
+        ComponentName componentName = new ComponentName(this, UpdateLightJobService.class);
         JobInfo jobInfo = new JobInfo.Builder(IntentKeys.JOB_UPDATE_LIGHTS, componentName)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPersisted(true)
@@ -288,10 +287,10 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         if (jobScheduler != null) {
             int resultCode = jobScheduler.schedule(jobInfo);
-            if (resultCode==JobScheduler.RESULT_SUCCESS){
+            if (resultCode == JobScheduler.RESULT_SUCCESS) {
                 Log.d(TAG, "Job successfully done mate: ");
                 Toast.makeText(this, "Job successfully", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Log.d(TAG, "Job failed mate");
                 Toast.makeText(this, "Job failed", Toast.LENGTH_SHORT).show();
 
@@ -300,16 +299,14 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     }
 
-    public void cancelJob(){
+    public void cancelJob() {
         JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         if (jobScheduler != null) {
             jobScheduler.cancel(IntentKeys.JOB_UPDATE_LIGHTS);
         }
     }
 
-
     private void setPrice(CurrentPrice currentPrice) {
-
         if (getAppPreferences() != null && getAppPreferences().getPreferredTotalPrice() != null && getAppPreferences().getPreferredTotalPrice().get() != null) {
             binding.value.setText(String.valueOf(getAppPreferences().getPreferredTotalPrice().get() ?
                     TextUtil.formatCentesimal(currentPrice.getTotal()) :
@@ -317,13 +314,54 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         }
     }
 
-
     @Override
     public void onTurnOffInteraction(boolean turnedOff) {
-            Toast.makeText(this, "ON Service: " + turnedOff, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ON Service: " + turnedOff, Toast.LENGTH_SHORT).show();
 //        if(turnedOff){
 //            cancelJob();
 //        }
+    }
+
+    @Override
+    public void onCacheUpdated(List<Integer> list, PHBridge phBridge) {
+        Log.d(TAG, "onCacheUpdated: ");
+    }
+
+    @Override
+    public void onBridgeConnected(PHBridge phBridge, String s) {
+        binding.setHasHuePaired(true);
+    }
+
+    @Override
+    public void onAuthenticationRequired(PHAccessPoint phAccessPoint) {
+        Log.d(TAG, "onAuthenticationRequired: ");
+    }
+
+    @Override
+    public void onAccessPointsFound(List<PHAccessPoint> list) {
+        Log.d(TAG, "onAccessPointsFound: ");
+    }
+
+    @Override
+    public void onError(int i, String s) {
+        Log.d(TAG, "onError: ");
+        showSnackBar(new Throwable(getResources().getString(R.string.throwable_bridge_not_found)));
+    }
+
+    @Override
+    public void onConnectionResumed(PHBridge phBridge) {
+
+        Log.d(TAG, "onConnectionResumed: ");
+    }
+
+    @Override
+    public void onConnectionLost(PHAccessPoint phAccessPoint) {
+        Log.d(TAG, "onConnectionLost: ");
+    }
+
+    @Override
+    public void onParsingErrors(List<PHHueParsingError> list) {
+        Log.d(TAG, "onParsingErrors: ");
     }
 }
 

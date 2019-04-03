@@ -1,6 +1,8 @@
 package com.pricetolight.app.main.fragment;
 
 import android.app.Dialog;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,9 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pricetolight.R;
+import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.databinding.FragmentTurnOffServiceDialogBinding;
 
 import java.util.Objects;
+
+import static android.content.Context.JOB_SCHEDULER_SERVICE;
 
 public class TurnOffServiceDialog extends DialogFragment {
 
@@ -62,7 +67,28 @@ public class TurnOffServiceDialog extends DialogFragment {
         binding.yesButton.setOnClickListener(View -> onButtonPressed(true));
         binding.noButton.setOnClickListener(View -> onButtonPressed(false));
 
+        if(isJobServiceOn(Objects.requireNonNull(getActivity()))){
+            binding.setJobRunning(true);
+            binding.setJobStatus("Running");
+        }else{
+            binding.setJobRunning(false);
+            binding.setJobStatus("Turned Off");
+        }
         return binding.getRoot();
+    }
+
+
+    public static boolean isJobServiceOn(Context context) {
+        JobScheduler scheduler = (JobScheduler) context.getSystemService( Context.JOB_SCHEDULER_SERVICE ) ;
+        boolean hasBeenScheduled = false ;
+
+        for ( JobInfo jobInfo : scheduler.getAllPendingJobs() ) {
+            if ( jobInfo.getId() == IntentKeys.JOB_UPDATE_LIGHTS ) {
+                hasBeenScheduled = true ;
+                break ;
+            }
+        }
+        return hasBeenScheduled;
     }
 
     public void onButtonPressed(boolean turnedOff) {

@@ -31,6 +31,7 @@ public class PriceToLightsApplication extends Application {
 
 
     public static final String TAG = PriceToLightsApplication.class.getSimpleName();
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,20 +43,27 @@ public class PriceToLightsApplication extends Application {
     }
 
     public void setupPHSDK() {
-        phHueSDK = PHHueSDK.create();
-        // Register the PHSDKListener to receive callbacks from the bridge.
-        phHueSDK.getNotificationManager().registerSDKListener(listener);
+        if (phHueSDK == null) {
+            phHueSDK = PHHueSDK.create();
+            // Register the PHSDKListener to receive callbacks from the bridge.
+            phHueSDK.getNotificationManager().registerSDKListener(listener);
 
-        // Set the Device Name (name of your app). This will be stored in your bridge whitelist entry.
-        phHueSDK.setAppName("PriceToLights");
-        phHueSDK.setDeviceName(android.os.Build.MODEL);
-
+            // Set the Device Name (name of your app). This will be stored in your bridge whitelist entry.
+            phHueSDK.setAppName("PriceToLights");
+            phHueSDK.setDeviceName(android.os.Build.MODEL);
+        }
         // Try to automatically connect to the last known bridge.  For first time use this will be empty so a bridge search is automatically started.
+        if (isPHSdkConnected()) {
+//                Toast.makeText(getActivity(), "Error: AccessPointConnected", Toast.LENGTH_SHORT).show();
+            lightsCameraAction();
+        }
+    }
+
+    public Boolean isPHSdkConnected() {
         String lastIpAddress = getAppPreferences().getLastConnectedIPAddressHue().get();
         String lastUsername = getAppPreferences().getUserNameHue().get();
-
         // Automatically try to connect to the last connected IP Address.  For multiple bridge support a different implementation is required.
-        if (lastIpAddress != null && !lastIpAddress.equals("") && lastUsername!=null) {
+        if (lastIpAddress != null && !lastIpAddress.equals("") && lastUsername != null) {
             PHAccessPoint lastAccessPoint = new PHAccessPoint();
             lastAccessPoint.setIpAddress(lastIpAddress);
             lastAccessPoint.setUsername(lastUsername);
@@ -64,12 +72,14 @@ public class PriceToLightsApplication extends Application {
 //                Toast.makeText(getActivity(), "Error: AccessPointConnected", Toast.LENGTH_SHORT).show();
                 phHueSDK.connect(lastAccessPoint);
             } else {
-                lightsCameraAction();
+                return true;
             }
-        } else {  // First time use, so perform a bridge search.
+        } else {
             doBridgeSearch();
         }
+        return false;
     }
+
 
     private void doBridgeSearch() {
         //TODO Update UI to indicate app is looking for the bridge...
@@ -196,7 +206,6 @@ public class PriceToLightsApplication extends Application {
         }
 
     };
-
 
 
     private void initThirdPartyLibraries() {

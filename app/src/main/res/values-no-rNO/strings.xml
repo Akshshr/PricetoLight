@@ -60,6 +60,8 @@
     <string name="dismiss">Avskjedige</string>
 
     <!--THROWABLES-->
+    <string name="throwable_bridge_not_found">Vi kunne ikke finne Hue Bridge din</string>
+
     <string name="throwable_light_error">Something went wrong with the light you picked</string>
     <string name="throwable_update_error">Something went wrong when updating yoru light</string>
     <string name="throwable_generic_error">Something went wrong</string>

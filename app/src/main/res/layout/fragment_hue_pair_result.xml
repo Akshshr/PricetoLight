@@ -16,7 +16,7 @@
         tools:context=".app.main.fragment.HuePairResultFragment">
 
         <ImageView
-            android:src="@drawable/glow"
+            android:src="@drawable/bulb_on"
             android:layout_width="200dp"
             android:layout_height="300dp" />
 

@@ -17,9 +17,6 @@ import com.pricetolight.app.base.AppPreferences;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
 
-/**
- * Created by akashshrivastava on 2019-03-29.
- */
 
 public class UpdateLightJobService extends JobService {
 

@@ -26,10 +26,12 @@
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
-    <string name="dialog_title">Turn off the background service</string>
-    <string name="dialog_description">This will stop updating the color of your chosen light based on the price</string>
-    <string name="dialog_button_yes">Yes, Stop</string>
-    <string name="dialog_button_no">No, Go back</string>
+    <string name="dialog_title">Turn off/on the background service</string>
+    <string name="dialog_description">This will start/stop updating the color of your chosen light based on the price</string>
+    <string name="dialog_button_stop">Yes, Stop</string>
+    <string name="dialog_button_start">Yes, Start</string>
+    <string name="dialog_button_back">No, Go back</string>
+    <string name="dialog_job_status">Current status: %1$s</string>
 
 
     <!--BOTTOM SHEET-->
@@ -73,6 +75,8 @@
     <string name="dismiss">Dismiss</string>
 
     <!--THROWABLES-->
+    <string name="throwable_bridge_not_found">We couldn\'t find your bridge </string>
+
     <string name="throwable_light_error">Something went wrong with the light you picked</string>
     <string name="throwable_update_error">Something went wrong when updating yoru light</string>
     <string name="throwable_generic_error">Something went wrong</string>

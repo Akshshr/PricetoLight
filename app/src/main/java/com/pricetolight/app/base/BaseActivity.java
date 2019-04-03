@@ -101,7 +101,7 @@ public class BaseActivity extends AppCompatActivity {
             public void onClick(View v) {
             }
         });
-        snackBar.setActionTextColor(ContextCompat.getColor(this, R.color.red500));
+        snackBar.setActionTextColor(ContextCompat.getColor(this, R.color.red300));
         snackBar.show();
 
     }

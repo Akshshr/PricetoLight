@@ -51,7 +51,7 @@
 
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/turnOff"
-                android:src="@drawable/ic_power"
+                android:src="@drawable/ic_power_off"
                 android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
                 android:layout_alignParentEnd="true"
                 android:elevation="@dimen/d4"
@@ -214,7 +214,7 @@
                 android:layout_alignParentEnd="true"
                 app:fabSize="normal"
                 android:layout_width="wrap_content"
-                android:visibility="@{hasHuePaired == true &amp;&amp; noActiveSubscription == true ? View.VISIBLE : View.GONE}"
+                android:visibility="@{hasHuePaired == true &amp;&amp; noActiveSubscription == false ? View.VISIBLE : View.GONE}"
                 android:layout_height="wrap_content"
                 app:rippleColor="@color/blue700"
                 android:clickable="true"

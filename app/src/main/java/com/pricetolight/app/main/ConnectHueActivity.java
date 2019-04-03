@@ -66,9 +66,6 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_connect_hue);
-        ((PriceToLightsApplication)getApplication()).setupPHSDK();
-        phHueSDK = PHHueSDK.getInstance();
-        phHueSDK.getNotificationManager().registerSDKListener(this);
 
         hueConnectFragmentAdapter = new HueConnectFragmentAdapter(getFragmentManager());
         hueConnectFragment = new HueConnectFragment();
@@ -79,6 +76,12 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
 
         binding.viewpager.setAdapter(hueConnectFragmentAdapter);
         binding.viewpager.setOnTouchListener((v, event) -> true);
+        ((PriceToLightsApplication)getApplication()).setupPHSDK();
+        phHueSDK = PHHueSDK.getInstance();
+        phHueSDK.getNotificationManager().registerSDKListener(this);
+        if (((PriceToLightsApplication)getApplication()).isPHSdkConnected()){
+            scrollToNextPage();
+        }
     }
 
     public PHHueSDK getHueSDK(){
@@ -114,6 +117,7 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
         Log.d(TAG, "onBridgeConnected: ");
 //        setAllLights(phBridge.getResourceCache().getAllLights());
         getAllLightsPublishSubject().onNext(phBridge.getResourceCache().getAllLights());
+        scrollToNextPage();
     }
 
     @Override
