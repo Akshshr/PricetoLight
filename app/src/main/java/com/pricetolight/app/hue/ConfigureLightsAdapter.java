@@ -42,19 +42,16 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
             final Context context = binding.getRoot().getContext();
             binding.groumName.setText(light.getName());
             binding.chip.setText(light.getLightType().toString());
-            binding.hueProperty.setText(light.getLastKnownLightState().isOn() ?
-                    context.getResources().getString(R.string.on) :
-                    context.getResources().getString(R.string.off));
+            binding.hueProperty.setText(light.getLastKnownLightState().isOn() ? context.getResources().getString(R.string.on) : context.getResources().getString(R.string.off));
 
-            if(clickable) {
-                if (!light.supportsColor()) {
-                    binding.background.setAlpha(0.5f);
-                    binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
-                } else {
-                    binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
-                    lightClickSubject.onNext(light);
-                }
+            if (!light.supportsColor()) {
+                binding.background.setAlpha(0.5f);
+                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
+            } else {
+                binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
+                binding.getRoot().setOnClickListener(v -> lightClickSubject.onNext(light));
             }
+
         }
 
     }

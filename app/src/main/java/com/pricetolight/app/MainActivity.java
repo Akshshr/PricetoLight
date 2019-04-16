@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.hue.sdk.PHSDKListener;
@@ -30,6 +31,7 @@ import com.philips.lighting.model.PHHueParsingError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
+import com.pricetolight.api.modal.AppHueLight;
 import com.pricetolight.api.modal.CurrentPrice;
 import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
@@ -270,17 +272,22 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
         if (requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras() != null) {
-            PHLight choosenLight = (PHLight) data.getExtras().getSerializable(IntentKeys.LIGHTS_RESULT);
-            if (choosenLight != null) {
-                setLightColor(choosenLight);
+
+            Gson gson = new GsonBuilder().create();;
+
+            PHLight phLight = gson.fromJson(getIntent().getStringExtra("myjson"), PHLight.class);
+            if (phLight != null) {
+                PHLight light = new PHLight(phLight);
+                setLightColor(light);
             } else {
-                showSnackBar(new Throwable("You didn't pick a light"));
+                showSnackBar(new Throwable("Something went wrong"));
             }
         }
     }
 
 
     private void setLightColor(PHLight light) {
+
         PHHueSDK phHueSDK = PHHueSDK.getInstance();
 
         getAppPreferences().setLightData(new Gson().toJson(light));
