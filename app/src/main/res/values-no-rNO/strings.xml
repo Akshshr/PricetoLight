@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Price to Light</string>
     <string name="app_caption">Enkeleste måten å se elsprisen</string>
+
+    <string name="hello_blank_fragment">blank</string>
 
     <!--MAIN ACTIVITY-->
     <string name="price_unit">Øre/kWh</string>
@@ -17,7 +18,6 @@
     <string name="login_password_hint">Passord</string>
 
     <string name="login_no_customer_text">Vet ikke hva Tibber er? Klikk her!</string>
-    <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 
     <!--BOTTOM SHEET-->
     <string name="header1">Enheter</string>
@@ -55,6 +55,7 @@
     <!--LICENCE ACTIVITY-->
     <string name="licence_title">Open source-lisenser</string>
     <string name="licence_description">En utrop til menn og kvinner som lager fantastiske verktøy for verden å bruke</string>
+    <string name="tibber_dev_button">Vil du utvikle for tibber?</string>
 
     <!--SNACK BAR-->
     <string name="dismiss">Avskjedige</string>
@@ -65,5 +66,14 @@
     <string name="throwable_light_error">Something went wrong with the light you picked</string>
     <string name="throwable_update_error">Something went wrong when updating yoru light</string>
     <string name="throwable_generic_error">Something went wrong</string>
+    <string name="service_dialog_button_stop">Ja, Stoppe</string>
+    <string name="service_dialog_button_start">Ja, Start</string>
+    <string name="service_dialog_button_back">"Nei gå tilbake "</string>
+    <string name="service_dialog_title">"Slå av / på bakgrunnstjenesten "</string>
+    <string name="service_dialog_job_status">Nåværende status: %1$s</string>
+    <string name="service_dialog_description">"Dette vil starte / slutte å oppdatere fargen på ditt valgte lys basert på prisen "</string>
+    <string name="wifi_dialog_button">Åpne innstillinger</string>
+    <string name="wifi_dialog_description">"Vi trenger dette for å søke etter Hue Bridge, du må være på samme nettverk som broen din "</string>
+    <string name="wifi_dialog_title">"Ser ut som Wi-Fi er slått av "</string>
 
 </resources>

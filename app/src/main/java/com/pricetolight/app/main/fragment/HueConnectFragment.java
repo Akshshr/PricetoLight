@@ -2,10 +2,13 @@ package com.pricetolight.app.main.fragment;
 
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.ColorFilter;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,20 +50,15 @@ public class HueConnectFragment extends BaseFragment implements PHSDKListener{
     ArrayList<PHGroup> phGroups = new ArrayList<>();
     List<PHLight> allLights = new ArrayList<>();
 
-    private static final String ARG_PARAM1 = "param1";
-
     private FragmentHueConnectBinding binding;
-
-    private String mParam1;
 
     public HueConnectFragment() {
         // Required empty public constructor
     }
 
-    public static HueConnectFragment newInstance(String param1) {
+    public static HueConnectFragment newInstance() {
         HueConnectFragment fragment = new HueConnectFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,26 +66,22 @@ public class HueConnectFragment extends BaseFragment implements PHSDKListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-        }
+
     }
 
     @Override
     public void onStart() {
         super.onStart();
+            ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
+            animator.addUpdateListener(animation -> {
+                binding.hueButtonBlue.setAlpha((Float) animation.getAnimatedValue());
+                binding.searchingTitle.setAlpha((Float) animation.getAnimatedValue());
+            });
 
-        ValueAnimator animator = ValueAnimator.ofFloat(0f, 1f);
-        animator.addUpdateListener(animation -> {
-            binding.hueButtonBlue.setAlpha((Float) animation.getAnimatedValue());
-            binding.searchingTitle.setAlpha((Float) animation.getAnimatedValue());
-        });
-
-        animator.setDuration(1000);
-        animator.setRepeatMode(ValueAnimator.REVERSE);
-        animator.setRepeatCount(-1);
-        animator.start();
-
+            animator.setDuration(1000);
+            animator.setRepeatMode(ValueAnimator.REVERSE);
+            animator.setRepeatCount(-1);
+            animator.start();
     }
 
     @Override

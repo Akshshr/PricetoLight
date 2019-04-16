@@ -5,6 +5,7 @@
     <string name="hello_blank_fragment">blank</string>
 
     <string name="access_token" translatable="false">86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1</string>
+    <string name="tibberdev_url" translatable="false">https://developer.tibber.com</string>
 
 
     <!--86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1-->
@@ -25,13 +26,18 @@
     <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 
-    <!--CONNECT RESULT HUE FRAGMENT-->
-    <string name="dialog_title">Turn off/on the background service</string>
-    <string name="dialog_description">This will start/stop updating the color of your chosen light based on the price</string>
-    <string name="dialog_button_stop">Yes, Stop</string>
-    <string name="dialog_button_start">Yes, Start</string>
-    <string name="dialog_button_back">No, Go back</string>
-    <string name="dialog_job_status">Current status: %1$s</string>
+    <!--SERVICE DIALOG-->
+    <string name="service_dialog_title">Turn off/on the background service</string>
+    <string name="service_dialog_description">This will start/stop updating the color of your chosen light based on the price</string>
+    <string name="service_dialog_button_stop">Yes, Stop</string>
+    <string name="service_dialog_button_start">Yes, Start</string>
+    <string name="service_dialog_button_back">No, Go back</string>
+    <string name="service_dialog_job_status">Current status: %1$s</string>
+
+    <!--WIFI OFF DIALOG-->
+    <string name="wifi_dialog_title">Looks like your Wi-Fi is turned OFF</string>
+    <string name="wifi_dialog_description">We would need this to search for your Hue Bridge, you need to be on the same network as your bridge</string>
+    <string name="wifi_dialog_button">Open Settings</string>
 
 
     <!--BOTTOM SHEET-->
@@ -68,6 +74,8 @@
     <string name="price_very_expensive">Very expensive</string>
 
     <!--LICENCE ACTIVITY-->
+    <string name="tibber_dev_button">WANNA DEVELOP FOR TIBBER?</string>
+
     <string name="licence_title">Open source licences</string>
     <string name="licence_description">A shout-out to the men and women who make awesome tools for the world to use</string>
 

@@ -36,7 +36,7 @@
             android:layout_marginTop="@dimen/d8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{@string/dialog_job_status(jobStatus)}"
+            android:text="@{@string/service_dialog_job_status(jobStatus)}"
             android:textAlignment="center"
             android:clickable="true"
             android:focusable="true"
@@ -68,7 +68,7 @@
             android:layout_marginBottom="@dimen/d12"
             android:layout_marginStart="@dimen/d6"
             android:layout_marginEnd="@dimen/d6"
-            android:text="@string/dialog_title"
+            android:text="@string/service_dialog_title"
             android:textAlignment="center" />
 
         <TextView
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_margin="@dimen/d12"
-            android:text="@string/dialog_description"
+            android:text="@string/service_dialog_description"
             android:textAlignment="center" />
 
         <LinearLayout
@@ -94,7 +94,7 @@
                 android:layout_margin="@dimen/d6"
                 android:layout_weight="1"
                 android:backgroundTint="@color/blue700"
-                android:text="@string/dialog_button_back"
+                android:text="@string/service_dialog_button_back"
                 tools:ignore="ButtonStyle" />
 
             <Button
@@ -104,7 +104,7 @@
                 android:layout_margin="@dimen/d6"
                 android:layout_weight="1"
                 android:backgroundTint="@color/red500"
-                android:text="@{jobRunning ? @string/dialog_button_stop : @string/dialog_button_start}"
+                android:text="@{jobRunning ? @string/service_dialog_button_stop : @string/service_dialog_button_start}"
                 tools:ignore="ButtonStyle" />
 
 

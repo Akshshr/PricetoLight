@@ -3,9 +3,11 @@ package com.pricetolight.app;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.net.wifi.WifiManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -37,6 +39,7 @@ import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.LicencesActivity;
 import com.pricetolight.app.main.fragment.TurnOffServiceDialog;
+import com.pricetolight.app.main.fragment.TurnOnWifiDialog;
 import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.TextUtil;
 import com.pricetolight.app.util.Util;
@@ -60,6 +63,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     private CurrentSubscription currentSubscription;
     private Home home;
     private TurnOffServiceDialog turnOffServiceDialog;
+    private TurnOnWifiDialog turnOnWifiDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +100,14 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
         binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
 
-        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class), 2));
+        binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> {
+            if(getWifiManager()!= null && !getWifiManager().isWifiEnabled()){
+                turnOnWifiDialog = TurnOnWifiDialog.newInstance();
+                turnOnWifiDialog.show(getSupportFragmentManager(), TurnOnWifiDialog.TAG);
+            }else{
+                MainActivity.this.startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class), 2);
+            }
+        });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
 
         binding.bar.setOnMenuItemClickListener(menuItem -> {
@@ -200,6 +211,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
                 binding.avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_default, null));
         }
     }
+
+
+    @Nullable
+    public WifiManager getWifiManager() {
+        return (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    }
+
 
     private void onChangeHome(int pos) {
         getAppPreferences().setActiveHomeId(homes.getHomes().get(pos).getId());

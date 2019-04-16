@@ -40,7 +40,7 @@
             android:layout_marginBottom="@dimen/d4"
             android:layout_marginStart="@dimen/d16"
             android:layout_marginEnd="@dimen/d16"
-            android:text="Pick the light with with you would like to see the price, based on the color" />
+            android:text="Pick the light with which you would like to see color change, based on the price" />
 
         <LinearLayout
             android:id="@+id/chipLayout"
@@ -128,7 +128,9 @@
             android:text="@string/connect_result_button"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:visibility="gone"
             style="@style/AppTheme.Button"
+            android:backgroundTint="@color/blue700"
             android:layout_marginBottom="@dimen/d16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -51,12 +51,8 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
                     binding.background.setAlpha(0.5f);
                     binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
                 } else {
-                    binding.background.setImageDrawable(context.getDrawable(R.drawable.test9));
+                    binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
                     lightClickSubject.onNext(light);
-                    binding.getRoot().setOnClickListener(v -> Toast.makeText(context, "u picke this light", Toast.LENGTH_SHORT).show());
-                    if(light.supportsCT()){
-                        binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_gradient_ct_light));
-                    }
                 }
             }
         }
@@ -81,7 +77,6 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
         return phLights.size();
 
     }
-
 
     public Observable<PHLight> getPHLightbservable() {
         return lightClickSubject.asObservable();

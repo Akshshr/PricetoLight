@@ -42,7 +42,6 @@ public class ConfigureHueActivity extends BaseActivity {
 
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();

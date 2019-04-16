@@ -1,9 +1,12 @@
 package com.pricetolight.app.main;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.pricetolight.R;
@@ -30,6 +33,11 @@ public class LicencesActivity extends BaseActivity {
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        binding.tibberDev.setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+            browserIntent.setData(Uri.parse(getResources().getString(R.string.tibberdev_url)));
+            startActivity(browserIntent);
+        });
         adapter = new LicencesAdapter(licences);
         binding.recyclerView.setAdapter(adapter);
     }
@@ -37,7 +45,6 @@ public class LicencesActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 
 

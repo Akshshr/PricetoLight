@@ -40,10 +40,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/tibberDev"
+        style="@style/AppTheme.ButtonBright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/description"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/d8"
+        android:layout_marginBottom="@dimen/d12"
+        android:text="@string/tibber_dev_button"
+        android:textIsSelectable="false"
+        tools:text="@string/login_button" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:background="@drawable/bg_sheet"
-        android:layout_below="@+id/description"
+        android:layout_below="@+id/tibberDev"
         android:layout_marginEnd="@dimen/d4"
         android:layout_marginStart="@dimen/d4"
         android:layout_width="match_parent"
