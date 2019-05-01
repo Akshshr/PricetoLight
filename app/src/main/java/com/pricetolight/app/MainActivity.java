@@ -275,7 +275,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
             Gson gson = new GsonBuilder().create();;
 
-            PHLight phLight = gson.fromJson(getIntent().getStringExtra("myjson"), PHLight.class);
+            PHLight phLight = gson.fromJson(data.getStringExtra("myjson"), PHLight.class);
             if (phLight != null) {
                 PHLight light = new PHLight(phLight);
                 setLightColor(light);

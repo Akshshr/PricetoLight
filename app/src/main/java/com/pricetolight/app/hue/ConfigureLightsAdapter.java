@@ -46,7 +46,9 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
 
             if (!light.supportsColor()) {
                 binding.background.setAlpha(0.5f);
-                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
+                binding.getRoot().setOnClickListener(v -> lightClickSubject.onNext(light));
+
+//                binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
             } else {
                 binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
                 binding.getRoot().setOnClickListener(v -> lightClickSubject.onNext(light));

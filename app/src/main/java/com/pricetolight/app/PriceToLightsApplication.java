@@ -136,6 +136,7 @@ public class PriceToLightsApplication extends Application {
                 PHAccessPoint lastAccessPoint = new PHAccessPoint();
                 lastAccessPoint.setIpAddress(accessPoint.get(0).getIpAddress());
                 lastAccessPoint.setUsername(accessPoint.get(0).getUsername());
+                if (!phHueSDK.isAccessPointConnected(lastAccessPoint))
                 phHueSDK.connect(lastAccessPoint);
 
 //                runOnUiThread(new Runnable() {

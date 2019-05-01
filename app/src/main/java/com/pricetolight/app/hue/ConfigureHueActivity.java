@@ -20,6 +20,7 @@ import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.databinding.ActivityConfigureHueBinding;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigureHueActivity extends BaseActivity {
@@ -39,7 +40,8 @@ public class ConfigureHueActivity extends BaseActivity {
 
         PHHueSDK phHueSDK=PHHueSDK.getInstance();
 
-        List<PHLight> lights;
+        List<PHLight> lights= new ArrayList<>();
+        if (phHueSDK.getAllBridges().size()>0)
         lights = phHueSDK.getAllBridges().get(0).getResourceCache().getAllLights();
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));

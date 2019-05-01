@@ -110,9 +110,10 @@ public class AppPreferences {
     }
 
     public void setUserNameHue(String userNameHue) {
+        if (userNameHue!=null)
         rxSharedPreferences.getString(Keys.USER_NAME).set(userNameHue);
     }
-
+//nohriarakesh@gmail.com
 
     //   ---KEYS---  //
     private class Keys {

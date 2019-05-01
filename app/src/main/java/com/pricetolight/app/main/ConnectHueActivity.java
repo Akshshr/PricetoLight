@@ -138,6 +138,7 @@ public class ConnectHueActivity extends BaseActivity implements HuePairResultFra
             PHAccessPoint lastAccessPoint = new PHAccessPoint();
             lastAccessPoint.setIpAddress(list.get(0).getIpAddress());
             lastAccessPoint.setUsername(list.get(0).getUsername());
+            if (!phHueSDK.isAccessPointConnected(lastAccessPoint))
             phHueSDK.connect(lastAccessPoint);
 
         }
