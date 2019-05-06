@@ -107,10 +107,20 @@
                 android:gravity="start"
                 android:text="@string/licences"
                 />
-
         </RelativeLayout>
 
-
+        <TextView
+            android:id="@+id/appVersion"
+            android:text="Ver 1.0"
+            android:layout_below="@+id/licencesLayout"
+            android:layout_width="match_parent"
+            style="@style/Text.10spLightSecondary"
+            android:textAlignment="center"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginEnd="@dimen/d22"
+            android:layout_marginTop="@dimen/d12"
+            android:layout_height="wrap_content"
+            />
     </RelativeLayout>
 
 </RelativeLayout>
