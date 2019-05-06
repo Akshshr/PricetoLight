@@ -222,10 +222,10 @@
                 android:src="@drawable/bg_bulb"
                 android:layout_marginTop="@dimen/d4"
                 android:layout_marginBottom="@dimen/d12"
+                android:visibility="@{hasHuePaired == true &amp;&amp; noActiveSubscription == false ? View.VISIBLE : View.GONE}"
                 android:layout_marginEnd="@dimen/d22"
                 tools:ignore="RelativeOverlap" />
         </RelativeLayout>
-                <!--android:visibility="@{hasHuePaired == true &amp;&amp; noActiveSubscription == false ? View.VISIBLE : View.GONE}"-->
 
         <RelativeLayout
             android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"

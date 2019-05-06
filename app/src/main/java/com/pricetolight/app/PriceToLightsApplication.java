@@ -54,7 +54,6 @@ public class PriceToLightsApplication extends Application {
         }
         // Try to automatically connect to the last known bridge.  For first time use this will be empty so a bridge search is automatically started.
         if (isPHSdkConnected()) {
-//                Toast.makeText(getActivity(), "Error: AccessPointConnected", Toast.LENGTH_SHORT).show();
             lightsCameraAction();
         }
     }
@@ -138,27 +137,12 @@ public class PriceToLightsApplication extends Application {
                 lastAccessPoint.setUsername(accessPoint.get(0).getUsername());
                 if (!phHueSDK.isAccessPointConnected(lastAccessPoint))
                 phHueSDK.connect(lastAccessPoint);
-
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//
-//                        //TODO Update adapter add access point
-//                        //phHueSDK.getAccessPointsFound()
-//
-//                        //adapter.updateData(phHueSDK.getAccessPointsFound());
-//                    }
-//                });
-
             }
 
         }
 
         @Override
         public void onConnectionResumed(PHBridge phBridge) {
-//            if (isFinishing())
-//                return;
-
             Log.v(TAG, "Philips Hue " + "onConnectionResumed" + phBridge.getResourceCache().getBridgeConfiguration().getIpAddress());
             phHueSDK.getLastHeartbeat().put(phBridge.getResourceCache().getBridgeConfiguration().getIpAddress(), System.currentTimeMillis());
             for (int i = 0; i < phHueSDK.getDisconnectedAccessPoint().size(); i++) {
@@ -167,7 +151,6 @@ public class PriceToLightsApplication extends Application {
                     phHueSDK.getDisconnectedAccessPoint().remove(i);
                 }
             }
-
         }
 
         @Override

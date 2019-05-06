@@ -33,7 +33,7 @@
             android:paddingBottom="@dimen/d4"
             android:paddingEnd="@dimen/d12"
             android:textColor="@{jobRunning ? @color/textPrimaryDark : @color/red500}"
-            android:layout_marginTop="@dimen/d8"
+            android:layout_marginTop="@dimen/d12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/service_dialog_job_status(jobStatus)}"
