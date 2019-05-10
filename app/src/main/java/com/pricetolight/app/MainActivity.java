@@ -256,6 +256,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             binding.unit.setText(getResources().getString(R.string.price_unit));
 
             binding.timeFrame.setText(Util.getformattedTimeframe());
+            binding.togglePriceLayout.setVisibility(currentPrice.getTax()== 0 ? View.GONE : View.VISIBLE);
 
             setPrice(currentPrice);
         } else {

@@ -6,6 +6,7 @@
 
     <string name="access_token" translatable="false">86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1</string>
     <string name="tibberdev_url" translatable="false">https://developer.tibber.com</string>
+    <string name="tibber_login_url" translatable="false">https://thewall.tibber.com/connect/authorize?response_type=token&amp;redirect_uri=http://localhost:3000&amp;client_id=31bffd92c744ddb8734227831f613c61192730e41b6da0726df8cdcfc8ecd80f&amp;scope=tibber_graph&amp;nonce=12</string>
 
 
     <!--86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1-->

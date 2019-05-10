@@ -228,6 +228,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/togglePriceLayout"
             android:visibility="@{noActiveSubscription ? View.GONE : View.VISIBLE}"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/d72"

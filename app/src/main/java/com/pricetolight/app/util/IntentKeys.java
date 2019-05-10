@@ -14,4 +14,6 @@ public class IntentKeys {
 
     public static final String LIGHT_CHOSEN= "light_chosen";
 
+    public static final String URL= "url";
+
 }

@@ -19,11 +19,9 @@ public class PriceApiService {
     public PriceApiService(ApiServiceFactory apiServiceFactory, Authenticator authenticator) {
         this.priceApiEndpoint = apiServiceFactory.createApiService(PriceApiEndpoint.class);
         this.authenticator = authenticator;
+//        token = authenticator.getToken();
     }
 
-//    3fdcdb04-08cc-4080-8cfb-42389c7e3ab3
-//    3fdcdb04-08cc-4080-8cfb-42389c7e3ab3
-//    2622273f-e7a7-4a2f-8b89-4245b25d7c06
     public Observable<Home> getPrice(String homeId) {
         String query = "{ viewer { home (id:\"%1$s\") { currentSubscription{ priceInfo{ current{ level total energy tax startsAt } } } } } }";
         return priceApiEndpoint.getPrice(token, new QueryRequest(String.format(query, homeId)));
