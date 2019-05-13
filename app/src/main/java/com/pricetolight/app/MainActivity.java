@@ -37,6 +37,7 @@ import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
+import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.LicencesActivity;
@@ -160,6 +161,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     private void onMe(Homes homes) {
         this.homes = homes;
+        UserManager userManager = new UserManager(getAppPreferences());
+        userManager.updateCustomer(homes.getHomes().get(0));
+
         if (!this.homes.getHomes().isEmpty()) {
             for (int i = 0; i < homes.getHomes().size(); i++) {
                 homeNickNames.add(homes.getHomes().get(i).getAppNickname());

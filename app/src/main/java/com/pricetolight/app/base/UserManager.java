@@ -42,7 +42,7 @@ public class UserManager implements Authenticator {
 
     @Override
     public void updateToken(String token) {
-        appPreferences.setAuthenticationToken("86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1");
+        appPreferences.setAuthenticationToken(token);
     }
 
     @Override

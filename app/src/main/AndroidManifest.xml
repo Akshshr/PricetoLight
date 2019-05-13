@@ -44,7 +44,10 @@
         <activity
             android:name=".app.hue.ConfigureHueActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.login.WebViewActivity"></activity>
+        <activity android:name=".app.login.WebViewActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

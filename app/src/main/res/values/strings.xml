@@ -24,6 +24,8 @@
     <string name="login_email_hint">E-mail as in Tibber</string>
     <string name="login_password_hint">Password</string>
 
+    <string name="login_loading_text">Logging you in, nice and easy!</string>
+
     <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>
 

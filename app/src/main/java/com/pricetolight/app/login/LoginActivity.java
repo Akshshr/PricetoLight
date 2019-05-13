@@ -17,6 +17,7 @@ import com.pricetolight.R;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.MainActivity;
 import com.pricetolight.app.base.BaseActivity;
+import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityLoginBinding;
@@ -27,6 +28,7 @@ public class LoginActivity extends BaseActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
     public static final int LOGIN_REQUEST = 1001;
+    UserManager userManager;
 
     public enum State {
         BEGIN, EMAIL, LOADING
@@ -43,6 +45,10 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void setState(State state) {
+        if(userManager!=null && userManager.isLoggedIn()){
+            startActivity(new Intent(this, MainActivity.class));
+        }
+
         TransitionManager.beginDelayedTransition(binding.content);
         TransitionManager.beginDelayedTransition(binding.loginView);
         binding.setState(state);
