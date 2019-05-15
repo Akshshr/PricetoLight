@@ -50,8 +50,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-
-
     public Api getApi() {
         return ((PriceToLightsApplication) getApplication()).getApi();
     }
@@ -63,6 +61,8 @@ public class BaseActivity extends AppCompatActivity {
     public UserManager getUserManager() {
         return ((PriceToLightsApplication) getApplication()).getUserManager();
     }
+
+
 
     @Override
     protected void onStart() {

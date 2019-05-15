@@ -39,6 +39,7 @@ import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.hue.ConfigureHueActivity;
+import com.pricetolight.app.login.LoginActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.LicencesActivity;
 import com.pricetolight.app.main.fragment.TurnOffServiceDialog;
@@ -52,6 +53,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MainActivity extends BaseActivity implements TurnOffServiceDialog.OnTurnOffServiceListener, PHSDKListener {
 
@@ -70,9 +73,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.SplashTheme);
+//        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
-        setTheme(R.style.AppTheme);
+//        setTheme(R.style.AppTheme);
         ((PriceToLightsApplication) getApplication()).setupPHSDK();
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setLoading(true);
@@ -110,6 +113,12 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             }else{
                 MainActivity.this.startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class), 2);
             }
+        });
+
+        binding.bottomSheet.findViewById(R.id.logout).setOnClickListener(v -> {
+            getUserManager().logout();
+            getUserManager().clearCache(this);
+            startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
 
@@ -149,10 +158,15 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     private void fetchData() {
         fetchMe();
-        fetchPrice();
     }
 
     private void fetchMe() {
+
+        if(getUserManager().getToken()==null){
+            getUserManager().logout();
+            this.finish();
+        }
+
         getApi().getPriceApiService()
                 .getMe()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -160,15 +174,19 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     }
 
     private void onMe(Homes homes) {
-        this.homes = homes;
-        UserManager userManager = new UserManager(getAppPreferences());
-        userManager.updateCustomer(homes.getHomes().get(0));
 
+        this.homes = homes;
+
+        getUserManager().updateCustomer(homes.getHomes().get(0));
+        getAppPreferences().setActiveHomeId(homes.getHomes().get(0).getId());
         if (!this.homes.getHomes().isEmpty()) {
             for (int i = 0; i < homes.getHomes().size(); i++) {
                 homeNickNames.add(homes.getHomes().get(i).getAppNickname());
             }
         }
+
+        //Fetch price only after we have a valid homeID
+        fetchPrice();
 
         //Set Dropdown list of homes
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner, homeNickNames);
@@ -188,6 +206,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        getIntent().setFlags(FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        super.onBackPressed();
+
     }
 
     private void setAvatar(int position) {

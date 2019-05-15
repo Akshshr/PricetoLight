@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import rx.Observable;
 
 public class PriceApiService {
-
-
+    
     private PriceApiEndpoint priceApiEndpoint;
     private Authenticator authenticator;
     private String token;
-
-//            "86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1";
 
     public PriceApiService(ApiServiceFactory apiServiceFactory, Authenticator authenticator) {
         this.priceApiEndpoint = apiServiceFactory.createApiService(PriceApiEndpoint.class);

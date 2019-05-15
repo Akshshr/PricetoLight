@@ -20,6 +20,7 @@
     tools:context=".app.login.WebViewActivity">
 
     <WebView
+        android:paddingTop="@dimen/d32"
         android:id="@+id/webView"
         android:visibility="@{loggedIn ? View.GONE : View.VISIBLE}"
         android:layout_width="match_parent"
@@ -39,9 +40,10 @@
         android:layout_marginBottom="@dimen/d12"
         android:layout_marginEnd="@dimen/d16"
         android:layout_marginStart="@dimen/d16"
-        style="@style/Text.20spBold"
+        style="@style/Text.16spMedium"
         android:id="@+id/loggingInText"
         android:layout_width="match_parent"
+        android:textAlignment="center"
         android:layout_height="wrap_content" />
 
     <com.airbnb.lottie.LottieAnimationView

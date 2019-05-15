@@ -22,6 +22,8 @@ import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityLoginBinding;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 public class LoginActivity extends BaseActivity {
 
     private ActivityLoginBinding binding;
@@ -75,6 +77,7 @@ public class LoginActivity extends BaseActivity {
     public void onBackPressed() {
         binding.groundView.animate().translationY(0).setDuration(500);
         if(!interceptBack()) {
+            getIntent().addFlags((FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
             super.onBackPressed();
         }
     }

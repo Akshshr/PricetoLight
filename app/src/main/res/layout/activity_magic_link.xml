@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="test"
+            type="String"/>
+    </data>
+
+<RelativeLayout
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue500"
+    tools:context=".app.login.MagicLinkActivity">
+
+    <com.pricetolight.app.widget.CloudsView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/d48"
+        android:layout_marginBottom="@dimen/d48"
+         />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_view_loading"
+        app:lottie_cacheStrategy="strong"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        app:lottie_fileName="loading.json"
+        app:lottie_scale="1"
+        app:lottie_loop="true"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        />
+
+</RelativeLayout>
+
+</layout>

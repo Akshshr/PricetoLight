@@ -1,5 +1,6 @@
 package com.pricetolight.app.base;
 
+import android.content.Context;
 import android.support.annotation.Nullable;
 
 import com.pricetolight.api.modal.Home;
@@ -33,7 +34,10 @@ public class UserManager implements Authenticator {
         appPreferences.setCustomerId(null);
         appPreferences.setActiveHomeId(null);
         appPreferences.setAuthenticationToken(null);
+    }
 
+    public void clearCache(Context context) {
+        AppCache.deleteCache(context);
     }
 
     public boolean isLoggedIn() {

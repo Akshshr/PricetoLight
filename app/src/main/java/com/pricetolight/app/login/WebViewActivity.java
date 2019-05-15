@@ -80,6 +80,7 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
                         String token = parts[1];
                         token = StringUtils.substringBetween(token, "", "&token_type");
                         updateToken(token);
+                        getUserManager().updateToken(token);
                         binding.setLoggedIn(true);
                         Observable.timer(2000, TimeUnit.MILLISECONDS)
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -128,7 +129,6 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
 
     @Override
     public void logout() {
-
     }
 
     @Override

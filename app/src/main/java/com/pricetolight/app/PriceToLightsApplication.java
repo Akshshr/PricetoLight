@@ -13,6 +13,7 @@ import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHHueParsingError;
 import com.pricetolight.BuildConfig;
 import com.pricetolight.api.Api;
+import com.pricetolight.app.base.ActivityLifeCycleBookKeeper;
 import com.pricetolight.app.base.AppPreferences;
 import com.pricetolight.app.base.UserManager;
 
@@ -28,6 +29,7 @@ public class PriceToLightsApplication extends Application {
     private Api api;
     private UserManager userManager;
     public PHHueSDK phHueSDK;
+    private ActivityLifeCycleBookKeeper activityLifeCycleBookKeeper;
 
 
     public static final String TAG = PriceToLightsApplication.class.getSimpleName();
@@ -184,11 +186,8 @@ public class PriceToLightsApplication extends Application {
                 } else {
                     //BRIDGE NOT FOUND HERE...
                 }
-
-
             }
         }
-
     };
 
 
@@ -199,9 +198,9 @@ public class PriceToLightsApplication extends Application {
     }
 
     private void setupActivityLifeCycleBookKeeper(UserManager userManager) {
-//        activityLifeCycleBookKeeper = new ActivityLifeCycleBookKeeper();
-//        activityLifeCycleBookKeeper.setLoggedIn(userManager.isLoggedIn());
-//        userManager.getTokenObservable().subscribe(token -> activityLifeCycleBookKeeper.setLoggedIn(userManager.isLoggedIn()));
+        activityLifeCycleBookKeeper = new ActivityLifeCycleBookKeeper();
+        activityLifeCycleBookKeeper.setLoggedIn(userManager.isLoggedIn());
+        userManager.getTokenObservable().subscribe(token -> activityLifeCycleBookKeeper.setLoggedIn(userManager.isLoggedIn()));
     }
 
     public Api getApi() {

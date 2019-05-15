@@ -46,8 +46,11 @@
                 android:id="@+id/dropDownList"
                 android:fontFamily="@font/googlesans_bold"
                 android:layout_width="wrap_content"
+                android:gravity="center"
                 android:layout_centerInParent="true"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:text=":iaosjdiajsdi"
+                />
 
             <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/turnOff"

@@ -24,14 +24,13 @@
         <activity
             android:name=".app.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".app.login.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -44,8 +43,17 @@
         <activity
             android:name=".app.hue.ConfigureHueActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".app.login.WebViewActivity"
+        <activity
+            android:name=".app.login.WebViewActivity"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".app.login.MagicLinkActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>
