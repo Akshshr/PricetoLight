@@ -46,8 +46,8 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="@dimen/d12"
             android:src="@drawable/ic_menu_add_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
 
         <TextView
             android:layout_toRightOf="@+id/AddDevice"
@@ -104,8 +104,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/d12"
                 android:src="@drawable/ic_licenses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
             <TextView
                 android:layout_toRightOf="@+id/licencesImage"
@@ -120,10 +120,41 @@
                 />
         </RelativeLayout>
 
+
+        <RelativeLayout
+            android:id="@+id/helpMoreLayout"
+            android:layout_below="@+id/licencesLayout"
+            android:layout_width="match_parent"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="@dimen/rowSingleLine">
+
+            <ImageView
+                android:id="@+id/aboutAppImage"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:src="@drawable/ic_logo_dark"
+                android:layout_width="28dp"
+                android:layout_height="28dp" />
+
+            <TextView
+                android:layout_toRightOf="@+id/aboutAppImage"
+                android:layout_width="match_parent"
+                style="@style/Text.14sp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/more_about"
+                />
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/appVersion"
             android:text="@string/version"
-            android:layout_below="@+id/licencesLayout"
+            android:layout_below="@+id/helpMoreLayout"
             android:layout_width="match_parent"
             style="@style/Text.10spLightSecondary"
             android:textAlignment="center"

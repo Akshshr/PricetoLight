@@ -30,7 +30,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
         <activity
@@ -45,17 +44,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.login.WebViewActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".app.login.MagicLinkActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".app.login.MagicLinkActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".app.main.HelpActivity"></activity>
     </application>
 
 </manifest>

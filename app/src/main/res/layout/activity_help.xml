@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="testo"
+            type="String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue700"
+        tools:context=".app.main.HelpActivity">
+        <!--android:background="@color/blue800a40"-->
+
+        <com.pricetolight.app.widget.CloudsView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/d72"
+            android:layout_marginBottom="@dimen/d72" />
+
+        <com.pricetolight.app.widget.MainToolbar
+            android:id="@+id/toolbar"
+            style="@style/AppWidget.Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/colorPrimaryTransparent"
+            android:paddingTop="@dimen/d22" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/noActiveSubscriptionTitle"
+                style="@style/Text.Bright.16spMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d12"
+                android:text="@string/help_bugs"
+                android:textAlignment="center" />
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/bugs_cta"
+                style="@style/AppTheme.ButtonBright"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/d12"
+                android:text="@string/help_bugs_cta"
+                android:textIsSelectable="false"
+                tools:text="@string/login_button" />
+
+
+            <TextView
+                style="@style/Text.Bright.16spMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/d56"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d12"
+                android:text="@string/help_coffee"
+                android:textAlignment="center" />
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/coffee_cta"
+                style="@style/AppTheme.ButtonCoffee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_coffee"
+                android:drawablePadding="@dimen/d4"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/d12"
+                android:text="@string/help_coffee_cta"
+                android:textIsSelectable="false"
+                tools:text="@string/login_button" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</layout>

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">@color/white</color>
 
+    <color name="colorCoffee">#FF813F</color>
+
     <color name="colorPrimaryTransparent">#0000C9EF</color>
 
     <color name="white">#FFFFFF</color>

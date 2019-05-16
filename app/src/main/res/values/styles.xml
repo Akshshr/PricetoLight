@@ -50,6 +50,15 @@
         <item name="android:textColor">@color/gray700</item>
     </style>
 
+
+    <style name="AppTheme.ButtonCoffee">
+        <item name="android:paddingStart">@dimen/d32</item>
+        <item name="android:paddingEnd">@dimen/d32</item>
+        <item name="android:background">@drawable/bg_button_coffee</item>
+        <item name="android:fontFamily">@font/googlesans_bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="AppTheme.EditText" parent="@android:style/Widget.EditText">
         <item name="android:textAppearance">@style/Text.14spLight</item>
     </style>

@@ -41,6 +41,7 @@ import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.login.LoginActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
+import com.pricetolight.app.main.HelpActivity;
 import com.pricetolight.app.main.LicencesActivity;
 import com.pricetolight.app.main.fragment.TurnOffServiceDialog;
 import com.pricetolight.app.main.fragment.TurnOnWifiDialog;
@@ -123,6 +124,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
+        binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
 
         if(getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);

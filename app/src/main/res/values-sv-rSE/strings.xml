@@ -10,6 +10,13 @@
     <string name="inactive_home_title">Hoppsan!</string>
     <string name="inactive_home_description">Ser ut som om det här hemmet inte har en aktiv prenumeration</string>
 
+    <!--HELP ACTIVITY-->
+    <string name="help_bugs">Did you notice any bugs? Or have features you would like to see implemented?</string>
+    <string name="help_bugs_cta">Report bugs</string>
+    <string name="help_coffee">Wanna help out?</string>
+    <string name="help_coffee_cta">Buy me coffee</string>
+
+
 
     <!--LOGIN ACTIVITY-->
     <string name="login">Logga in</string>
