@@ -16,6 +16,7 @@
     <string name="login_button">Logg Inn med Tibber</string>
     <string name="login_email_hint">E-post som i Tibber</string>
     <string name="login_password_hint">Passord</string>
+    <string name="login_loading_text">Logg deg inn, hyggelig og enkelt!</string>
 
     <string name="login_no_customer_text">Vet ikke hva Tibber er? Klikk her!</string>
 
@@ -24,6 +25,8 @@
     <string name="connect_hue">Koble Philips Hue</string>
     <string name="header2">Handle om</string>
     <string name="licences">Lisenser</string>
+    <string name="logout">LOGG UT</string>
+    <string name="version">Ver 1.0</string>
 
 
     <!--CONNECT HUE FRAGMENT-->
@@ -60,8 +63,16 @@
     <!--SNACK BAR-->
     <string name="dismiss">Avskjedige</string>
 
+    <string name="background_service_started">Bakgrunnstjenesten startet</string>
+    <string name="background_service_stopped">Bakgrunnstjenesten stoppet</string>
+
     <!--THROWABLES-->
+    <string name="error_light_selection">Noe gikk galt</string>
+
     <string name="throwable_bridge_not_found">Vi kunne ikke finne Hue Bridge din</string>
+    <string name="throwable_bridge_auth_required">You need to re-pair your bridge to the app </string>
+    <string name="throwable_bridge_connection_lost">Vi mistet forbindelsen til Hue bridge din :(</string>
+
 
     <string name="throwable_light_error">Something went wrong with the light you picked</string>
     <string name="throwable_update_error">Something went wrong when updating yoru light</string>

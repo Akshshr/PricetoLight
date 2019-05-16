@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <import type="android.view.View"/>
         <variable
@@ -17,11 +16,9 @@
             name="hasHuePaired"
             type="Boolean" />
 
-
         <variable
             name="loading"
             type="Boolean" />
-
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -49,7 +46,7 @@
                 android:gravity="center"
                 android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
-                tools:text=":iaosjdiajsdi"
+                tools:text="Cosmic Multivak"
                 />
 
             <android.support.v7.widget.AppCompatImageButton
@@ -67,22 +64,13 @@
                 android:layout_marginEnd="@dimen/d16"
                 android:layout_height="38dp" />
 
-
-            <!--<android.support.v7.widget.AppCompatSpinner-->
-                <!--android:id="@+id/dropDownList"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-
-            <!--</android.support.v7.widget.AppCompatSpinner>-->
-
         </RelativeLayout>
-
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_view_loading"
             android:layout_below="@+id/hueBridgeLayout"
             app:lottie_cacheStrategy="strong"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:layout_width="match_parent"
             app:lottie_fileName="loading.json"
             app:lottie_scale="1"
@@ -92,7 +80,6 @@
             android:visibility="@{loading ? View.VISIBLE :  View.GONE }"
             app:lottie_autoPlay="true"
             />
-
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottie_view"
@@ -108,7 +95,6 @@
             android:visibility="@{noActiveSubscription ? View.VISIBLE :  View.GONE }"
             app:lottie_autoPlay="true"
             />
-
 
         <TextView
             android:id="@+id/noActiveSubscriptionTitle"
@@ -269,14 +255,6 @@
             android:layout_gravity="bottom"
             android:background="@color/white100"
             app:navigationIcon="@drawable/menu_icon_sheet" />
-
-        <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab"-->
-        <!--app:elevation="@dimen/d4"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--app:fabSize="normal"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_anchor="@id/bar"/>-->
 
         <View
             android:id="@+id/dimBackground"

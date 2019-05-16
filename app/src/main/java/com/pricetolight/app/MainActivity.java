@@ -70,13 +70,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     private Home home;
     private TurnOffServiceDialog turnOffServiceDialog;
     private TurnOnWifiDialog turnOnWifiDialog;
-
+    PHHueSDK phHueSDK;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        setTheme(R.style.SplashTheme);
         super.onCreate(savedInstanceState);
-//        setTheme(R.style.AppTheme);
+
         ((PriceToLightsApplication) getApplication()).setupPHSDK();
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setLoading(true);
 
@@ -104,7 +104,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             }
         });
 
-        binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
+        if(getAppPreferences()!=null && getAppPreferences().getPreferredTotalPrice()!=null) {
+            binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
+        }
 
         binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> {
             if(getWifiManager()!= null && !getWifiManager().isWifiEnabled()){
@@ -121,6 +123,11 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
+
+        if(getAppPreferences().getNotFirstTime().get()) {
+            binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);
+            getAppPreferences().setNotFirstTime(true);
+        }
 
         binding.bar.setOnMenuItemClickListener(menuItem -> {
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
@@ -141,7 +148,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         binding.bar.setHideOnScroll(true);
 
         binding.setNoActiveSubscription(false);
-        PHHueSDK phHueSDK = PHHueSDK.getInstance();
+        phHueSDK = PHHueSDK.getInstance();
         phHueSDK.getNotificationManager().registerSDKListener(this);
         if (phHueSDK.getAllBridges() != null && phHueSDK.getAllBridges().size() > 0) {
             PHBridge bridge = phHueSDK.getAllBridges().get(0);
@@ -249,7 +256,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         return (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     }
 
-
     private void onChangeHome(int pos) {
         getAppPreferences().setActiveHomeId(homes.getHomes().get(pos).getId());
         fetchPrice();
@@ -310,7 +316,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
                 PHLight light = new PHLight(phLight);
                 setLightColor(light);
             } else {
-                showSnackBar(new Throwable("Something went wrong"));
+                showSnackBar(new Throwable(getResources().getString(R.string.error_light_selection)));
             }
         }
     }
@@ -348,10 +354,8 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             } else {
                 Log.d(TAG, "Job failed mate");
                 Toast.makeText(this, "Job failed", Toast.LENGTH_SHORT).show();
-
             }
         }
-
     }
 
     public void cancelJob() {
@@ -374,9 +378,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         if(turnedOff) {
             if (isJobServiceOn(this)) {
                 cancelJob();
-                Toast.makeText(this, "Cancel Job here: ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.background_service_stopped), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Turn on Job here" , Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getResources().getString(R.string.background_service_started), Toast.LENGTH_SHORT).show();
                 scheduleJob();
             }
         }
@@ -395,6 +399,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     @Override
     public void onAuthenticationRequired(PHAccessPoint phAccessPoint) {
         Log.d(TAG, "onAuthenticationRequired: ");
+        showSnackBar(new Throwable(getResources().getString(R.string.throwable_bridge_auth_required)));
     }
 
     @Override
@@ -406,6 +411,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     public void onError(int i, String s) {
         Log.d(TAG, "onError: ");
         showSnackBar(new Throwable(getResources().getString(R.string.throwable_bridge_not_found)));
+        phHueSDK.getNotificationManager().unregisterSDKListener(this);
     }
 
     @Override
@@ -417,7 +423,10 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     @Override
     public void onConnectionLost(PHAccessPoint phAccessPoint) {
         Log.d(TAG, "onConnectionLost: ");
+        showSnackBar(new Throwable(getResources().getString(R.string.throwable_bridge_connection_lost)));
+        phHueSDK.getNotificationManager().unregisterSDKListener(this);
     }
+
 
     @Override
     public void onParsingErrors(List<PHHueParsingError> list) {

@@ -54,6 +54,15 @@ public class AppPreferences {
         return rxSharedPreferences.getBoolean(Keys.PREFERRED_TOTAL_PRICE, false);
     }
 
+    public void setNotFirstTime(boolean isFirstTime) {
+        rxSharedPreferences.getBoolean(Keys.FIRST_TIME).set(isFirstTime);
+    }
+
+    public Preference<Boolean> getNotFirstTime() {
+        return rxSharedPreferences.getBoolean(Keys.FIRST_TIME, false);
+    }
+
+
     public void setLightData(String widgetData) {
         rxSharedPreferences.getString(Keys.LIGHT_CHOSEN).set(widgetData);
     }
@@ -121,6 +130,8 @@ public class AppPreferences {
         static final String AUTHENTICATION_TOKEN = "authentication";
 
         static final String PREFERRED_TOTAL_PRICE = "preferred_total_price";
+
+        static final String FIRST_TIME = "first_time";
         static final String ACTIVE_CUSTOMER_ID = "customer_id";
         static final String ACTIVE_CUSTOMER_NAME = "customer_name";
         static final String ACTIVE_HOME_ID = "home_id";

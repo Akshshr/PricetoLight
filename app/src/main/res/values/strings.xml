@@ -48,6 +48,8 @@
     <string name="connect_hue">Connect Philips Hue</string>
     <string name="header2">About</string>
     <string name="licences">Licences</string>
+    <string name="logout">LOGOUT</string>
+    <string name="version">Ver 1.0</string>
 
 
     <!--CONNECT HUE FRAGMENT-->
@@ -84,9 +86,16 @@
 
     <!--SNACK BAR-->
     <string name="dismiss">Dismiss</string>
+    <string name="background_service_started">Background service started</string>
+    <string name="background_service_stopped">Background service stopped</string>
+
 
     <!--THROWABLES-->
+    <string name="error_light_selection">Something went wrong, please try again</string>
+
     <string name="throwable_bridge_not_found">We couldn\'t find your bridge </string>
+    <string name="throwable_bridge_auth_required">You need to re-pair your bridge to the app </string>
+    <string name="throwable_bridge_connection_lost">We lost connection to your bridge :(</string>
 
     <string name="throwable_light_error">Something went wrong with the light you picked</string>
     <string name="throwable_update_error">Something went wrong when updating yoru light</string>
