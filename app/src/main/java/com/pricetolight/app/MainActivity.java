@@ -31,13 +31,11 @@ import com.philips.lighting.model.PHHueParsingError;
 import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
-import com.pricetolight.api.modal.AppHueLight;
 import com.pricetolight.api.modal.CurrentPrice;
 import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
-import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.login.LoginActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
@@ -72,6 +70,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     private TurnOffServiceDialog turnOffServiceDialog;
     private TurnOnWifiDialog turnOnWifiDialog;
     PHHueSDK phHueSDK;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,19 +104,18 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             }
         });
 
-        if(getAppPreferences()!=null && getAppPreferences().getPreferredTotalPrice()!=null) {
+        if (getAppPreferences() != null && getAppPreferences().getPreferredTotalPrice() != null) {
             binding.priceSwitch.setChecked(getAppPreferences().getPreferredTotalPrice().get());
         }
 
         binding.bottomSheet.findViewById(R.id.addDeviceLayout).setOnClickListener(v -> {
-            if(getWifiManager()!= null && !getWifiManager().isWifiEnabled()){
+            if (getWifiManager() != null && !getWifiManager().isWifiEnabled()) {
                 turnOnWifiDialog = TurnOnWifiDialog.newInstance();
                 turnOnWifiDialog.show(getSupportFragmentManager(), TurnOnWifiDialog.TAG);
-            }else{
+            } else {
                 MainActivity.this.startActivityForResult(new Intent(MainActivity.this, ConnectHueActivity.class), 2);
             }
         });
-
         binding.bottomSheet.findViewById(R.id.logout).setOnClickListener(v -> {
             getUserManager().logout();
             getUserManager().clearCache(this);
@@ -126,7 +124,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
 
-        if(getAppPreferences().getNotFirstTime().get()) {
+        if (getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);
             getAppPreferences().setNotFirstTime(true);
         }
@@ -171,7 +169,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     private void fetchMe() {
 
-        if(getUserManager().getToken()==null){
+        if (getUserManager().getToken() == null) {
             getUserManager().logout();
             this.finish();
         }
@@ -293,7 +291,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             binding.unit.setText(getResources().getString(R.string.price_unit));
 
             binding.timeFrame.setText(Util.getformattedTimeframe());
-            binding.togglePriceLayout.setVisibility(currentPrice.getTax()== 0 ? View.GONE : View.VISIBLE);
+            binding.togglePriceLayout.setVisibility(currentPrice.getTax() == 0 ? View.GONE : View.VISIBLE);
 
             setPrice(currentPrice);
         } else {
@@ -311,7 +309,8 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         }
         if (requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras() != null) {
 
-            Gson gson = new GsonBuilder().create();;
+            Gson gson = new GsonBuilder().create();
+            ;
 
             PHLight phLight = gson.fromJson(data.getStringExtra("myjson"), PHLight.class);
             if (phLight != null) {
@@ -334,6 +333,10 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
         float xy[] = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
         PHLightState lightState = new PHLightState();
+
+        if (!light.getLastKnownLightState().isOn()) {
+            lightState.setOn(true);
+        }
         lightState.setX(xy[0]);
         lightState.setY(xy[1]);
         phHueSDK.getSelectedBridge().updateLightState(light, lightState);
@@ -377,7 +380,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     @Override
     public void onTurnOffInteraction(boolean turnedOff) {
-        if(turnedOff) {
+        if (turnedOff) {
             if (isJobServiceOn(this)) {
                 cancelJob();
                 Toast.makeText(this, getResources().getString(R.string.background_service_stopped), Toast.LENGTH_SHORT).show();

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.philips.lighting.model.PHLight;
+import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
 import com.pricetolight.databinding.RowHueBinding;
 
