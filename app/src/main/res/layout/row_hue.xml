@@ -55,7 +55,7 @@
                 style="@style/Text.Bright.16spMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bedroom"
+                android:text="Room"
                 android:layout_toRightOf="@id/light_icon"/>
 
             <TextView
@@ -65,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/d4"
                 android:layout_below="@id/groumName"
-                android:text="Lights on"
-                android:layout_toRightOf="@id/light_icon"/>
+                android:layout_toRightOf="@id/light_icon"
+                tools:text="ON"/>
 
             <android.support.design.chip.Chip
                 style="@style/ChipCustomStyle"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/d8"
-                tools:text="COLOR"
+                tools:text="LIGHT TYPE"
                 />
 
             <!--/>-->

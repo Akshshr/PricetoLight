@@ -25,11 +25,12 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:focusable="true"
-            />
+            tools:ignore="ContentDescription" />
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="RelativeOverlap">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/view_toolbar"
@@ -81,7 +82,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:focusable="true"
-            />
+            tools:ignore="ContentDescription" />
 
     </RelativeLayout>
 

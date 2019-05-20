@@ -40,7 +40,7 @@
             android:layout_marginBottom="@dimen/d4"
             android:layout_marginStart="@dimen/d16"
             android:layout_marginEnd="@dimen/d16"
-            android:text="Pick the light with which you would like to see color change, based on the price" />
+            android:text="@string/config_title" />
 
         <LinearLayout
             android:id="@+id/chipLayout"

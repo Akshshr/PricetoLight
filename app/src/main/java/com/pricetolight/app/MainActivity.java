@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
@@ -124,9 +125,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
 
-        if (getAppPreferences().getNotFirstTime().get()) {
+        if (getAppPreferences()!=null && getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);
-            getAppPreferences().setNotFirstTime(true);
+            getAppPreferences().setNotFirstTime(false);
         }
 
         binding.bar.setOnMenuItemClickListener(menuItem -> {
@@ -149,7 +150,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
         binding.setNoActiveSubscription(false);
         phHueSDK = PHHueSDK.getInstance();
-        phHueSDK.getNotificationManager().registerSDKListener(this);
+        try {
+            phHueSDK.getNotificationManager().registerSDKListener(this);
+        }catch (Exception e){
+            e.printStackTrace();
+            Crashlytics.logException(new Throwable(e.getMessage()));
+        }
+
         if (phHueSDK.getAllBridges() != null && phHueSDK.getAllBridges().size() > 0) {
             PHBridge bridge = phHueSDK.getAllBridges().get(0);
             if (bridge != null && bridge.getResourceCache() != null) {
@@ -348,17 +355,15 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         JobInfo jobInfo = new JobInfo.Builder(IntentKeys.JOB_UPDATE_LIGHTS, componentName)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
                 .setPersisted(true)
-                .setPeriodic(60 * 60 * 1000)
+                .setPeriodic(60 * 60 * 1000) //Update every 1 hour
                 .build();
         JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         if (jobScheduler != null) {
             int resultCode = jobScheduler.schedule(jobInfo);
             if (resultCode == JobScheduler.RESULT_SUCCESS) {
                 Log.d(TAG, "Job successfully done mate: ");
-                Toast.makeText(this, "Job successfully", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d(TAG, "Job failed mate");
-                Toast.makeText(this, "Job failed", Toast.LENGTH_SHORT).show();
             }
         }
     }

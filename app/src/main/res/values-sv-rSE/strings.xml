@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_caption">Enkelaste sättet att se elpriset</string>
+
+    <string name="app_caption">Enklaste sättet att se elpriset</string>
     <string name="hello_blank_fragment">blank</string>
+
+    <!--ACCESSIBILITY-->
+    <string name="title">Title</string>
+    <string name="logo">App Logo</string>
+    <string name="title_description">Description</string>
+    <string name="main_price">Price</string>
+    <string name="main_price_toggle">Price Toggle</string>
+    <string name="configure_lights_title">Configure lights title</string>
+    <string name="configure_lights_description">Configure lights description</string>
 
 
     <!--MAIN ACTIVITY-->
     <string name="price_unit">Öre/kWh</string>
     <string name="price_toggle_lable">Byt för att se priset med moms</string>
     <string name="inactive_home_title">Hoppsan!</string>
-    <string name="inactive_home_description">Ser ut som om det här hemmet inte har en aktiv prenumeration</string>
+    <string name="inactive_home_description">Ser ut som att det här hemmet inte har en aktiv prenumeration</string>
+
 
     <!--HELP ACTIVITY-->
-    <string name="help_bugs">Did you notice any bugs? Or have features you would like to see implemented?</string>
-    <string name="help_bugs_cta">Report bugs</string>
-    <string name="help_coffee">Wanna help out?</string>
+    <string name="help_share_cta">DELA DENNA APPEN</string>
+    <string name="help_share_message">Kolla på den här appen som gör att du enkelt kan se ditt energipris: https://play.google.com/store/apps/details?id=com.pricetolight</string>
+    <string name="help_share_title">Dela med:</string>
+
+    <string name="help_bugs">Märkte du några buggar? Eller har du funktioner som du vill se implementeras?</string>
+    <string name="help_bugs_cta">Rapportera buggar</string>
+    <string name="help_coffee">Vill du hjälpa till?</string>
     <string name="help_coffee_cta">Buy me coffee</string>
 
 
-
     <!--LOGIN ACTIVITY-->
+
     <string name="login">Logga in</string>
-    <string name="login_button">Logga in med tibber</string>
+    <string name="login_button">Logga in med Tibber</string>
     <string name="login_email_hint">E-post som i Tibber</string>
     <string name="login_password_hint">Lösenord</string>
     <string name="login_loading_text">Loggar in, lätt som en plätt!</string>
+    <string name="login_no_customer_text">Vet du inte vad Tibber är? Klicka här!</string>
 
-    <string name="login_no_customer_text">Vet inte vad Tibber är? Klicka här!</string>
     <!--BOTTOM SHEET-->
+    <string name="more_about">How can you help?</string>
     <string name="header1">Enheter</string>
     <string name="connect_hue">Anslut Philips Hue</string>
     <string name="header2">Om</string>
@@ -34,22 +50,24 @@
     <string name="logout">LOGGA UT</string>
     <string name="version">Ver 1.0</string>
 
-
     <!--CONNECT HUE FRAGMENT-->
+
     <string name="connect_hue_title">Anslut Philips Hue Bridge</string>
-    <string name="connect_hue_description">Klicka på den stora knappen på din nyans bro, just nu</string>
+    <string name="connect_hue_description">Klicka på den stora knappen på din nyansbro, nu</string>
     <string name="connect_hue_searching">Söker efter din bro....</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
-    <string name="connect_result_button">Done</string>
 
-    <string name="connect_result_hue_title">Hurrayy !! Paired till Philips Hue framgångsrikt</string>
+    <string name="connect_result_button">Klar</string>
+    <string name="connect_result_hue_title">Hurra! Kopplingen till Philips Hue lyckades</string>
     <string name="connect_result_hue_description">Det var enkelt!</string>
-    <string name="connect_result_hue_summary">Vi hittade följande antal ljus:</string>
+    <string name="connect_result_hue_summary">Vi hittade följande antal lampor:</string>
 
 
     <!--CONFIGURE LIGHT ACTIVITY-->
-    <string name="toast_color_not_supported">Inga färgade lampor stöds inte</string>
+
+    <string name="config_title">Välj det ljus som du vill se färgförändring, baserat på priset</string>
+    <string name="toast_color_not_supported">Ofärgade lampor stöds inte </string>
     <string name="configure_title">Vanligt</string>
     <string name="configure_description">Vanligt</string>
     <string name="on">PÅ</string>
@@ -61,35 +79,35 @@
     <string name="price_very_cheap">Väldigt Billig</string>
     <string name="price_very_expensive">Väldigt Dyr</string>
 
+
     <!--LICENCE ACTIVITY-->
-    <string name="licence_title">Öppen källkodslicenser</string>
-    <string name="licence_description">En utrop till de män och kvinnor som gör fantastiska verktyg för världen att använda</string>
-    <string name="tibber_dev_button">Vill du utveckla för tibber?</string>
+    <string name="licence_title">Open source licenses</string>
+    <string name="licence_description">Ett utrop till de män och kvinnor som gör fantastiska verktyg för världen att använda</string>
+    <string name="tibber_dev_button">Vill du utveckla för Tibber?</string>
 
     <!--SNACK BAR-->
     <string name="dismiss">Klart</string>
-
-    <string name="background_service_started">Bakgrundstjänst startade</string>
+    <string name="background_service_started">Bakgrundstjänst startad</string>
     <string name="background_service_stopped">Bakgrundstjänsten stoppad</string>
 
     <!--THROWABLES-->
     <string name="error_light_selection">Något gick fel</string>
-
     <string name="throwable_bridge_not_found">Vi kunde inte hitta din Hue Bridge</string>
-    <string name="throwable_bridge_auth_required">You need to re-pair your bridge to the app </string>
+    <string name="throwable_bridge_auth_required">Du måste återkoppla din bro till appen</string>
     <string name="throwable_bridge_connection_lost">Vi förlorade anslutningen till din Hue Bridge :(</string>
 
-    <string name="throwable_light_error">Something went wrong with the light you picked</string>
-    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
-    <string name="throwable_generic_error">Something went wrong</string>
     <string name="service_dialog_button_stop">Ja, Sluta</string>
     <string name="service_dialog_button_start">Ja, Starta</string>
-    <string name="service_dialog_button_back">Go tilbaka</string>
+    <string name="service_dialog_button_back">Gå tillbaka</string>
     <string name="service_dialog_title">"Stäng av / på bakgrundstjänsten "</string>
     <string name="service_dialog_job_status">"Aktuell status: %1$s "</string>
-    <string name="service_dialog_description">"Detta kommer att starta / sluta uppdatera färgen på ditt valda ljus baserat på priset "</string>
+    <string name="service_dialog_description">"Detta kommer att starta / sluta uppdatera färgen på din valda lampa baserat på priset "</string>
+
     <string name="wifi_dialog_button">Öppna Inställningar</string>
     <string name="wifi_dialog_description">Vi skulle behöva detta för att söka efter din Hue Bridge, du måste vara på samma nätverk som din bro</string>
-    <string name="wifi_dialog_title">"Det ser ut att din Wi-Fi är avstängd "</string>
+    <string name="wifi_dialog_title">"Det ser ut som att ditt Wi-Fi är avstängt "</string>
+
+
+
 
 </resources>

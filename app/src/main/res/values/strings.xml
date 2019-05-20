@@ -12,6 +12,16 @@
 
     <!--86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1-->
 
+    <!--ACCESSIBILITY-->
+    <string name="title">Title</string>
+    <string name="logo">App Logo</string>
+    <string name="title_description">Description</string>
+    <string name="main_price">Price</string>
+    <string name="main_price_toggle">Price Toggle</string>
+    <string name="configure_lights_title">Configure lights title</string>
+    <string name="configure_lights_description">Configure lights description</string>
+
+
     <!--MAIN ACTIVITY-->
     <string name="price_unit">Öre/kWh</string>
     <string name="price_toggle_lable">Toggle to see price with VAT</string>
@@ -21,9 +31,11 @@
     <!--HELP ACTIVITY-->
     <string name="help_bugs">Did you notice any bugs? Or have features you would like to see implemented?</string>
     <string name="help_bugs_cta">REPORT BUGS</string>
-    <string name="help_coffee">Wanna help out?</string>
+    <string name="help_coffee">Want to help out?</string>
     <string name="help_coffee_cta">BUY ME COFFEE</string>
-
+    <string name="help_share_cta">SHARE THIS APP</string>
+    <string name="help_share_message">Check this app out that enables you to see your energy price with ease: https://play.google.com/store/apps/details?id=com.pricetolight</string>
+    <string name="help_share_title">Share with:</string>
 
     <!--LOGIN ACTIVITY-->
     <string name="login">Login</string>
@@ -63,7 +75,7 @@
     <!--CONNECT HUE FRAGMENT-->
     <string name="connect_hue_title">Connect Philips Hue Bridge</string>
     <string name="connect_hue_description">Now would be a good time to click on the main button on your hue bridge</string>
-    <string name="connect_hue_searching">Searching for your bridge...</string>
+    <string name="connect_hue_searching">Searching for your bridge…</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
     <string name="connect_result_button">Done</string>
@@ -80,6 +92,8 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
 
+    <string name="config_title">Pick the light with which you would like to see color change, based on the price</string>
+
     <string name="price_normal">Normal</string>
     <string name="price_cheap">Cheap</string>
     <string name="price_expensive">Expensive</string>
@@ -87,7 +101,7 @@
     <string name="price_very_expensive">Very expensive</string>
 
     <!--LICENCE ACTIVITY-->
-    <string name="tibber_dev_button">WANNA DEVELOP FOR TIBBER?</string>
+    <string name="tibber_dev_button">WANT TO DEVELOP FOR TIBBER?</string>
 
     <string name="licence_title">Open source licences</string>
     <string name="licence_description">A shout-out to the men and women who make awesome tools for the world to use</string>
@@ -105,9 +119,6 @@
     <string name="throwable_bridge_auth_required">You need to re-pair your bridge to the app </string>
     <string name="throwable_bridge_connection_lost">We lost connection to your bridge :(</string>
 
-    <string name="throwable_light_error">Something went wrong with the light you picked</string>
-    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
-    <string name="throwable_generic_error">Something went wrong</string>
 
 
 </resources>

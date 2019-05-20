@@ -47,6 +47,7 @@ public class Licence {
         new Licence("com.android.support:support-annotations","Android support"),
         new Licence("com.android.support:customtabs","Android support"),
         new Licence("com.android.support:support-v4","Android support"),
+        new Licence("com.crashlytics.sdk.android:crashlytics:2.10.0@aar","Fabric / Crashlytics"),
         new Licence("https://www.flaticon.com/ , Creative Commons 3.0","Icons")
 
         );

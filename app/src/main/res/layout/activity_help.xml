@@ -15,7 +15,6 @@
         android:layout_height="match_parent"
         android:background="@color/blue700"
         tools:context=".app.main.HelpActivity">
-        <!--android:background="@color/blue800a40"-->
 
         <com.pricetolight.app.widget.CloudsView
             android:layout_width="match_parent"
@@ -35,9 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:paddingBottom="@dimen/d32"
+            android:orientation="vertical"
             android:paddingTop="@dimen/d32"
-            android:orientation="vertical">
+            android:paddingBottom="@dimen/d32">
 
             <TextView
                 android:id="@+id/noActiveSubscriptionTitle"
@@ -61,48 +60,72 @@
                 android:layout_marginBottom="@dimen/d22"
                 android:text="@string/help_bugs_cta"
                 android:textIsSelectable="false"
-                tools:text="@string/login_button" />
+                tools:text="@string/help_bugs_cta" />
 
             <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
                 android:layout_marginStart="@dimen/d48"
                 android:layout_marginEnd="@dimen/d48"
-                android:background="@color/white"
                 android:alpha="0.2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+                android:background="@color/white" />
 
             <ImageView
-                android:layout_marginTop="@dimen/d12"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_marginTop="@dimen/d22"
                 android:src="@drawable/ic_logo" />
-
 
             <TextView
                 style="@style/Text.Bright.16spMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/d56"
                 android:layout_marginStart="@dimen/d12"
+                android:layout_marginTop="@dimen/d22"
                 android:layout_marginEnd="@dimen/d12"
                 android:text="@string/help_coffee"
                 android:textAlignment="center" />
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/coffee_cta"
-                style="@style/AppTheme.ButtonCoffee"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="@dimen/d12"
+                android:layout_marginTop="@dimen/d16"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_coffee"
-                android:drawablePadding="@dimen/d2"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/d22"
-                android:layout_marginBottom="@dimen/d8"
-                android:text="@string/help_coffee_cta"
-                android:textIsSelectable="false"
-                tools:text="@string/login_button" />
+                android:weightSum="2">
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/coffee_cta"
+                    style="@style/AppTheme.ButtonCoffee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_coffee"
+                    android:drawablePadding="@dimen/d2"
+                    android:text="@string/help_coffee_cta"
+                    android:layout_marginStart="@dimen/d8"
+                    android:layout_marginEnd="@dimen/d8"
+                    android:textIsSelectable="false"
+                    tools:text="@string/help_coffee_cta" />
+
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/share_cta"
+                    style="@style/AppTheme.ButtonBright"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/d8"
+                    android:layout_marginEnd="@dimen/d8"
+                    android:text="@string/help_share_cta"
+                    android:textIsSelectable="false"
+                    tools:text="@string/help_share_cta" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

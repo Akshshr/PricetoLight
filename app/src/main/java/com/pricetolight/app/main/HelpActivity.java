@@ -32,6 +32,17 @@ public class HelpActivity extends BaseActivity {
             browserIntent.setData(Uri.parse(getResources().getString(R.string.bugs_link)));
             startActivity(browserIntent);
         });
+        binding.shareCta.setOnClickListener(v -> {
+//            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+//            shareIntent.setType("text/plain");
+//            startActivity(Intent.createChooser(shareIntent, "ests"));
+
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.help_share_message));
+            sendIntent.setType("text/plain");
+            startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.help_share_title)));
+        });
 
     }
 

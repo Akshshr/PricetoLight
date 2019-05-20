@@ -16,7 +16,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:fullBackupContent="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="a70bb815536a0299f0b0d1dcf4a77ab52b478866"
+            />
         <service
             android:name=".app.UpdateLightJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -27,7 +32,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".app.login.LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -44,7 +50,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.login.WebViewActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".app.login.MagicLinkActivity"
             android:screenOrientation="portrait">
@@ -54,7 +62,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.main.HelpActivity"></activity>
+        <activity android:name=".app.main.HelpActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
     </application>
 
 </manifest>

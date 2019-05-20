@@ -3,6 +3,7 @@ package com.pricetolight.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
 import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
 import com.philips.lighting.hue.sdk.PHHueSDK;
@@ -23,6 +24,8 @@ import org.joda.time.DateTimeZone;
 
 import java.util.List;
 
+import io.fabric.sdk.android.Fabric;
+
 
 public class PriceToLightsApplication extends Application {
     public AppPreferences appPreferences;
@@ -42,6 +45,7 @@ public class PriceToLightsApplication extends Application {
         this.userManager = new UserManager(appPreferences);
         this.api = new Api(BuildConfig.API_HOST, userManager);
         setupActivityLifeCycleBookKeeper(userManager);
+        Fabric.with(this, new Crashlytics());
     }
 
     public void setupPHSDK() {

@@ -29,7 +29,7 @@
         android:layout_marginStart="@dimen/d12"
         android:layout_marginTop="@dimen/d16"
         android:layout_marginBottom="@dimen/d6"
-        android:text="Devices"
+        android:text="@string/header1"
         />
 
     <RelativeLayout
@@ -87,7 +87,7 @@
             android:layout_marginStart="@dimen/d12"
             android:layout_marginTop="@dimen/d16"
             android:layout_marginBottom="@dimen/d6"
-            android:text="About"
+            android:text="@string/header2"
             />
 
         <RelativeLayout

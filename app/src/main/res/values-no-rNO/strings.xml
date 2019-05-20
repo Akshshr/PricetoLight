@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_caption">Enkeleste måten å se elsprisen</string>
 
+    <string name="app_caption">Enkleste måten å se elektrisitetsprisen</string>
     <string name="hello_blank_fragment">blank</string>
+
+    <!--ACCESSIBILITY-->
+    <string name="title">Title</string>
+    <string name="logo">App Logo</string>
+    <string name="title_description">Description</string>
+    <string name="main_price">Price</string>
+    <string name="main_price_toggle">Price Toggle</string>
+    <string name="configure_lights_title">Configure lights title</string>
+    <string name="configure_lights_description">Configure lights description</string>
+
 
     <!--MAIN ACTIVITY-->
     <string name="price_unit">Øre/kWh</string>
-    <string name="price_toggle_lable">Byt för att se priset med moms</string>
-    <string name="inactive_home_title">Hoppsan!</string>
+    <string name="price_toggle_lable">Endre for å se prisen med MVA</string>
+    <string name="inactive_home_title">Uff!</string>
     <string name="inactive_home_description">Ser ut som dette hjemmet ikke har en aktiv abonnement</string>
 
+
     <!--HELP ACTIVITY-->
-    <string name="help_bugs">Did you notice any bugs? Or have features you would like to see implemented?</string>
-    <string name="help_bugs_cta">Report bugs</string>
-    <string name="help_coffee">Wanna help out?</string>
+    <string name="help_share_cta">DEL DENNE APPEN</string>
+    <string name="help_share_message">Sjekk denne appen som gjør at du kan se energiprisen din enkelt: https://play.google.com/store/apps/details?id=com.pricetolight </string>
+    <string name="help_share_title">Dele med:</string>
+    <string name="help_bugs_cta">Rapporter feil</string>
+    <string name="help_bugs">Har du merket noen feil? Eller har du funksjoner du vil se implementert?</string>
+    <string name="help_coffee">Vil du hjelpe?</string>
     <string name="help_coffee_cta">Buy me coffee</string>
 
 
@@ -24,8 +38,6 @@
     <string name="login_password_hint">Passord</string>
     <string name="login_loading_text">Logg deg inn, hyggelig og enkelt!</string>
 
-    <string name="login_no_customer_text">Vet ikke hva Tibber er? Klikk her!</string>
-
     <!--BOTTOM SHEET-->
     <string name="header1">Enheter</string>
     <string name="connect_hue">Koble Philips Hue</string>
@@ -34,21 +46,19 @@
     <string name="logout">LOGG UT</string>
     <string name="version">Ver 1.0</string>
 
-
     <!--CONNECT HUE FRAGMENT-->
-    <string name="connect_result_button">Done</string>
-
+    <string name="connect_result_button">Klar</string>
     <string name="connect_hue_title">Koble Philips Hue Bridge</string>
-    <string name="connect_hue_description">Klikk på den ene store knappen på tanebroen</string>
+    <string name="connect_hue_description">Klikk på den store knappen på nyansebron</string>
     <string name="connect_hue_searching">Søker etter broen din.....</string>
 
     <!--CONNECT RESULT HUE FRAGMENT-->
-    <string name="connect_result_hue_title">Hurrayy !! Parret til Philips Hue vellykket</string>
+    <string name="connect_result_hue_title">Hurray! Koblingen til Philips Hue lyktes</string>
     <string name="connect_result_hue_description">Det var lett!</string>
     <string name="connect_result_hue_summary">Vi fant følgende antall lys:</string>
 
-
     <!--CONFIGURE LIGHT ACTIVITY-->
+    <string name="config_title">Velg lyset du vil se fargeendring på, basert på prisen</string>
     <string name="toast_color_not_supported">Ikke-fargede lamper støttes ikke</string>
     <string name="configure_title">Normal</string>
     <string name="configure_description">Normal</string>
@@ -62,13 +72,13 @@
     <string name="price_very_expensive">Veldig dyrt</string>
 
     <!--LICENCE ACTIVITY-->
-    <string name="licence_title">Open source-lisenser</string>
+    <string name="licence_title">Open source licenses</string>
     <string name="licence_description">En utrop til menn og kvinner som lager fantastiske verktøy for verden å bruke</string>
-    <string name="tibber_dev_button">Vil du utvikle for tibber?</string>
+    <string name="tibber_dev_button">Vil du utvikle for Tibber?</string>
+
 
     <!--SNACK BAR-->
     <string name="dismiss">Avskjedige</string>
-
     <string name="background_service_started">Bakgrunnstjenesten startet</string>
     <string name="background_service_stopped">Bakgrunnstjenesten stoppet</string>
 
@@ -76,21 +86,21 @@
     <string name="error_light_selection">Noe gikk galt</string>
 
     <string name="throwable_bridge_not_found">Vi kunne ikke finne Hue Bridge din</string>
-    <string name="throwable_bridge_auth_required">You need to re-pair your bridge to the app </string>
+    <string name="throwable_bridge_auth_required">Du må koble broen din til appen igjen.</string>
     <string name="throwable_bridge_connection_lost">Vi mistet forbindelsen til Hue bridge din :(</string>
+    <string name="login_no_customer_text">Vet du ikke hva Tibber er? Klikk her!</string>
 
-
-    <string name="throwable_light_error">Something went wrong with the light you picked</string>
-    <string name="throwable_update_error">Something went wrong when updating yoru light</string>
-    <string name="throwable_generic_error">Something went wrong</string>
     <string name="service_dialog_button_stop">Ja, Stoppe</string>
     <string name="service_dialog_button_start">Ja, Start</string>
     <string name="service_dialog_button_back">"Nei gå tilbake "</string>
     <string name="service_dialog_title">"Slå av / på bakgrunnstjenesten "</string>
     <string name="service_dialog_job_status">Nåværende status: %1$s</string>
     <string name="service_dialog_description">"Dette vil starte / slutte å oppdatere fargen på ditt valgte lys basert på prisen "</string>
+
     <string name="wifi_dialog_button">Åpne innstillinger</string>
     <string name="wifi_dialog_description">"Vi trenger dette for å søke etter Hue Bridge, du må være på samme nettverk som broen din "</string>
     <string name="wifi_dialog_title">"Ser ut som Wi-Fi er slått av "</string>
+
+
 
 </resources>
