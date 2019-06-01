@@ -69,7 +69,7 @@
     <string name="licences">Licences</string>
     <string name="more_about">How can you help?</string>
     <string name="logout">LOGOUT</string>
-    <string name="version">Ver 1.0</string>
+    <string name="version" translatable="false">Ver 1.2</string>
 
 
     <!--CONNECT HUE FRAGMENT-->
@@ -92,7 +92,7 @@
     <string name="on">ON</string>
     <string name="off">OFF</string>
 
-    <string name="config_title">Pick the light with which you would like to see color change, based on the price</string>
+    <string name="config_title">* Pick a light with which you would like to see color change *</string>
 
     <string name="price_normal">Normal</string>
     <string name="price_cheap">Cheap</string>

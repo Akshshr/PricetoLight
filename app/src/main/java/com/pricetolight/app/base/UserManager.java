@@ -1,6 +1,7 @@
 package com.pricetolight.app.base;
 
 import android.content.Context;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 
 import com.pricetolight.api.modal.Home;
@@ -14,9 +15,12 @@ import rx.Observable;
 public class UserManager implements Authenticator {
 
     private final AppPreferences appPreferences;
+    private final AppCache appCache;
 
-    public UserManager(final AppPreferences appPreferences) {
+
+    public UserManager(final AppPreferences appPreferences, AppCache appCache) {
         this.appPreferences = appPreferences;
+        this.appCache = appCache;
     }
 
     @Nullable
@@ -31,9 +35,14 @@ public class UserManager implements Authenticator {
 
     @Override
     public void logout() {
+
         appPreferences.setCustomerId(null);
         appPreferences.setActiveHomeId(null);
         appPreferences.setAuthenticationToken(null);
+        appPreferences.setLastConnectedIPAddressHue(null);
+        appPreferences.setUserNameHue(null);
+        appCache.clear();
+
     }
 
     public void clearCache(Context context) {

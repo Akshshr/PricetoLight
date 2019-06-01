@@ -31,8 +31,9 @@
 
         <TextView
             android:id="@+id/description"
-            style="@style/Text.14sp"
+            style="@style/Text.18spMedium"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_below="@+id/toolbar"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
@@ -14,168 +13,160 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
 
     <RelativeLayout
-        android:background="@drawable/bg_sheet"
-        android:layout_width="match_parent"
-        android:paddingBottom="@dimen/d24"
-        android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/header1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        style="@style/Text.14spBold"
-        android:textColor="@color/blue700"
-        android:layout_marginStart="@dimen/d12"
-        android:layout_marginTop="@dimen/d16"
-        android:layout_marginBottom="@dimen/d6"
-        android:text="@string/header1"
-        />
-
-    <RelativeLayout
-        android:id="@+id/addDeviceLayout"
-        android:layout_below="@+id/header1"
-        android:layout_width="match_parent"
-        android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_height="@dimen/rowSingleLine">
-
-        <ImageView
-            android:id="@+id/AddDevice"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/d12"
-            android:src="@drawable/ic_menu_add_device"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+        android:background="@drawable/bg_sheet"
+        android:paddingBottom="@dimen/d24">
 
         <TextView
-            android:layout_toRightOf="@+id/AddDevice"
-            android:layout_width="wrap_content"
-            style="@style/Text.14sp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/d12"
-            android:layout_marginEnd="@dimen/d22"
+            android:id="@+id/header1"
+            style="@style/Text.14spBold"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/d12"
+            android:layout_marginTop="@dimen/d16"
+            android:layout_marginBottom="@dimen/d6"
             android:gravity="start"
-            android:text="@string/connect_hue"
-            />
+            android:text="@string/header1"
+            android:textColor="@color/blue700" />
 
-        <ImageView
-            android:id="@+id/firstTimeUser"
-            android:visibility="gone"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/bulb_expensive"
-            android:layout_width="10dp"
-            android:layout_marginEnd="@dimen/d22"
-            android:layout_height="10dp" />
+        <RelativeLayout
+            android:id="@+id/addDeviceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rowSingleLine"
+            android:layout_below="@+id/header1"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/AddDevice"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:src="@drawable/ic_menu_add_device" />
+
+            <TextView
+                style="@style/Text.14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                android:layout_toRightOf="@+id/AddDevice"
+                android:gravity="start"
+                android:text="@string/connect_hue" />
+
+            <ImageView
+                android:id="@+id/firstTimeUser"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/d22"
+                android:src="@drawable/bulb_expensive"
+                android:visibility="gone" />
 
 
-    </RelativeLayout>
-
+        </RelativeLayout>
 
 
         <TextView
             android:id="@+id/header2"
-            android:layout_below="@+id/addDeviceLayout"
+            style="@style/Text.14spBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            style="@style/Text.14spBold"
-            android:textColor="@color/blue700"
+            android:layout_below="@+id/addDeviceLayout"
             android:layout_marginStart="@dimen/d12"
             android:layout_marginTop="@dimen/d16"
             android:layout_marginBottom="@dimen/d6"
+            android:gravity="start"
             android:text="@string/header2"
-            />
+            android:textColor="@color/blue700" />
 
         <RelativeLayout
             android:id="@+id/licencesLayout"
-            android:layout_below="@+id/header2"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/rowSingleLine"
+            android:layout_below="@+id/header2"
             android:background="?selectableItemBackground"
             android:clickable="true"
-            android:focusable="true"
-            android:layout_height="@dimen/rowSingleLine">
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/licencesImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/d12"
-                android:src="@drawable/ic_licenses"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:src="@drawable/ic_licenses" />
 
             <TextView
-                android:layout_toRightOf="@+id/licencesImage"
-                android:layout_width="match_parent"
                 style="@style/Text.14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/d12"
                 android:layout_marginEnd="@dimen/d22"
-                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/licencesImage"
                 android:gravity="start"
-                android:text="@string/licences"
-                />
+                android:text="@string/licences" />
         </RelativeLayout>
 
 
         <RelativeLayout
             android:id="@+id/helpMoreLayout"
-            android:layout_below="@+id/licencesLayout"
             android:layout_width="match_parent"
+            android:layout_height="@dimen/rowSingleLine"
+            android:layout_below="@+id/licencesLayout"
             android:background="?selectableItemBackground"
             android:clickable="true"
-            android:focusable="true"
-            android:layout_height="@dimen/rowSingleLine">
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/aboutAppImage"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/d12"
-                android:src="@drawable/ic_logo_dark"
-                android:layout_width="28dp"
-                android:layout_height="28dp" />
+                android:src="@drawable/ic_logo_dark" />
 
             <TextView
-                android:layout_toRightOf="@+id/aboutAppImage"
-                android:layout_width="match_parent"
                 style="@style/Text.14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/d12"
                 android:layout_marginEnd="@dimen/d22"
-                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/aboutAppImage"
                 android:gravity="start"
-                android:text="@string/more_about"
-                />
+                android:text="@string/more_about" />
         </RelativeLayout>
 
         <TextView
             android:id="@+id/appVersion"
-            android:text="@string/version"
-            android:layout_below="@+id/helpMoreLayout"
-            android:layout_width="match_parent"
             style="@style/Text.10spLightSecondary"
-            android:textAlignment="center"
-            android:layout_marginTop="@dimen/d12"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_below="@+id/helpMoreLayout"
+            android:layout_marginTop="@dimen/d12"
+            android:text="@string/version"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/logout"
-            android:text="@string/logout"
-            android:layout_below="@+id/appVersion"
-            android:layout_width="match_parent"
             style="@style/Text.14sp"
-            android:textColor="@color/red300"
-            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appVersion"
+            android:background="?selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/d12"
-            android:background="?selectableItemBackground"
-            android:layout_height="wrap_content"
-            />
+            android:text="@string/logout"
+            android:textAlignment="center"
+            android:textColor="@color/red300" />
     </RelativeLayout>
 
 </RelativeLayout>

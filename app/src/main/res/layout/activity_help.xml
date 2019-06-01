@@ -108,6 +108,8 @@
                     android:text="@string/help_coffee_cta"
                     android:layout_marginStart="@dimen/d8"
                     android:layout_marginEnd="@dimen/d8"
+                    android:layout_marginBottom="@dimen/d4"
+                    android:layout_marginTop="@dimen/d4"
                     android:textIsSelectable="false"
                     tools:text="@string/help_coffee_cta" />
 
@@ -120,6 +122,8 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:layout_marginStart="@dimen/d8"
+                    android:layout_marginBottom="@dimen/d4"
+                    android:layout_marginTop="@dimen/d4"
                     android:layout_marginEnd="@dimen/d8"
                     android:text="@string/help_share_cta"
                     android:textIsSelectable="false"

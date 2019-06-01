@@ -13,6 +13,7 @@ import com.philips.lighting.model.PHLightState;
 import com.pricetolight.BuildConfig;
 import com.pricetolight.api.Api;
 import com.pricetolight.api.modal.Home;
+import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.AppPreferences;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
@@ -23,6 +24,7 @@ public class UpdateLightJobService extends JobService {
     Api api;
     private AppPreferences appPreferences;
     private UserManager userManager;
+    AppCache appCache;
     PHLight phLight;
     public static final String TAG = UpdateLightJobService.class.getSimpleName();
     private boolean jobCancelled;
@@ -31,7 +33,7 @@ public class UpdateLightJobService extends JobService {
     public void onCreate() {
         super.onCreate();
         this.appPreferences = new AppPreferences(this);
-        this.userManager = new UserManager(appPreferences);
+        this.userManager = new UserManager(appPreferences, appCache);
         this.api = new Api(BuildConfig.API_HOST, userManager);
     }
 

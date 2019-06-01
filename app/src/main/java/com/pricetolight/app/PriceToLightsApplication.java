@@ -15,6 +15,7 @@ import com.philips.lighting.model.PHHueParsingError;
 import com.pricetolight.BuildConfig;
 import com.pricetolight.api.Api;
 import com.pricetolight.app.base.ActivityLifeCycleBookKeeper;
+import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.AppPreferences;
 import com.pricetolight.app.base.UserManager;
 
@@ -22,6 +23,7 @@ import net.danlew.android.joda.JodaTimeAndroid;
 
 import org.joda.time.DateTimeZone;
 
+import java.io.File;
 import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
@@ -30,6 +32,7 @@ import io.fabric.sdk.android.Fabric;
 public class PriceToLightsApplication extends Application {
     public AppPreferences appPreferences;
     private Api api;
+    AppCache appCache;
     private UserManager userManager;
     public PHHueSDK phHueSDK;
     private ActivityLifeCycleBookKeeper activityLifeCycleBookKeeper;
@@ -42,7 +45,8 @@ public class PriceToLightsApplication extends Application {
         super.onCreate();
         initThirdPartyLibraries();
         this.appPreferences = new AppPreferences(this);
-        this.userManager = new UserManager(appPreferences);
+        appCache = new AppCache(new File(getCacheDir(), "cache-v1"));
+        this.userManager = new UserManager(appPreferences,appCache);
         this.api = new Api(BuildConfig.API_HOST, userManager);
         setupActivityLifeCycleBookKeeper(userManager);
         Fabric.with(this, new Crashlytics());

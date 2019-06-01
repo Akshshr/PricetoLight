@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -47,17 +48,15 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
 
             if (!light.supportsColor()) {
                 binding.background.setAlpha(0.5f);
-                // Only here for debugging
-                // binding.getRoot().setOnClickListener(v -> lightClickSubject.onNext(light));
-
                 binding.getRoot().setOnClickListener(v -> Toast.makeText(context, context.getResources().getString(R.string.toast_color_not_supported), Toast.LENGTH_SHORT).show());
             } else {
                 binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
-                binding.getRoot().setOnClickListener(v -> lightClickSubject.onNext(light));
+                binding.getRoot().setOnClickListener(v -> {
+                    binding.checkmark.setVisibility(View.VISIBLE);
+                    lightClickSubject.onNext(light);
+                });
             }
-
         }
-
     }
 
     @NonNull

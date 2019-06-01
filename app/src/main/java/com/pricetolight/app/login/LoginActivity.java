@@ -76,19 +76,11 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         binding.groundView.animate().translationY(0).setDuration(500);
-        if(!interceptBack()) {
-            getIntent().addFlags((FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-            super.onBackPressed();
-        }
+        finishAndRemoveTask();
+        super.onBackPressed();
+
     }
 
-    private boolean interceptBack() {
-        if(binding.getState() == State.BEGIN) {
-            return false;
-        }
-        setState(State.BEGIN);
-        return true;
-    }
 
     private void loginWithEmail() {
         setState(State.LOADING);

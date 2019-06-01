@@ -18,6 +18,7 @@ import com.pricetolight.R;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.service.Authenticator;
 import com.pricetolight.app.MainActivity;
+import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
@@ -34,6 +35,8 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
 
     private ActivityWebViewBinding binding;
     UserManager userManager;
+    AppCache appCache;
+    String tokenRecieved;
 
     CookieManager cookieManager = CookieManager.getInstance();
 
@@ -41,7 +44,7 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_web_view);
-        userManager = new UserManager(getAppPreferences());
+        userManager = new UserManager(getAppPreferences() , appCache);
 
         cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
             @Override
@@ -79,8 +82,8 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
                     if (parts != null && parts[1] != null) {
                         String token = parts[1];
                         token = StringUtils.substringBetween(token, "", "&token_type");
+                        tokenRecieved = token;
                         updateToken(token);
-                        getUserManager().updateToken(token);
                         binding.setLoggedIn(true);
                         Observable.timer(2000, TimeUnit.MILLISECONDS)
                                 .observeOn(AndroidSchedulers.mainThread())
@@ -93,7 +96,10 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
             }
 
             private void loggingIn(Long aLong) {
-                startActivity(new Intent(WebViewActivity.this, MainActivity.class));
+                Intent mainIntent = new Intent(WebViewActivity.this, MainActivity.class);
+                mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mainIntent);
+                WebViewActivity.this.finish();
             }
 
         });

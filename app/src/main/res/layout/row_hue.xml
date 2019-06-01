@@ -43,6 +43,18 @@
             android:id="@+id/row_above_layout">
 
             <ImageView
+                android:visibility="gone"
+                android:shadowColor="@color/colorPrimaryDark"
+                android:shadowRadius="2"
+                android:shadowDy="1"
+                android:shadowDx="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkmark"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_checkmark" />
+
+            <ImageView
                 android:id="@+id/light_icon"
                 android:layout_width="45dp"
                 android:layout_height="45dp"

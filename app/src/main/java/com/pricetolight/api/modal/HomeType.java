@@ -20,6 +20,8 @@ public enum HomeType {
     FLOORHOUSE3,
     @SerializedName("COTTAGE")
     COTTAGE,
+    @SerializedName("nohouse")
+    NOHOUSE,
     @SerializedName("CASTLE")
     CASTLE;
 
@@ -40,6 +42,8 @@ public enum HomeType {
                 return "Castle";
             case COTTAGE:
                 return "Cottage";
+            case NOHOUSE:
+                return "nohouse";
             default:
                 return "";
         }

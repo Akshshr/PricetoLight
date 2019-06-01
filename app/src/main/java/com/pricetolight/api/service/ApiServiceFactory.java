@@ -27,10 +27,7 @@ public class ApiServiceFactory {
     private final Retrofit retrofit;
     private final Authenticator authenticator;
 
-    public ApiServiceFactory(
-            final String apiHost,
-            final Authenticator authenticator
-            ) {
+    public ApiServiceFactory(final String apiHost, final Authenticator authenticator) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();

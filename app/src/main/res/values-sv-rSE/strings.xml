@@ -48,7 +48,6 @@
     <string name="header2">Om</string>
     <string name="licences">Licenser</string>
     <string name="logout">LOGGA UT</string>
-    <string name="version">Ver 1.0</string>
 
     <!--CONNECT HUE FRAGMENT-->
 
@@ -66,7 +65,7 @@
 
     <!--CONFIGURE LIGHT ACTIVITY-->
 
-    <string name="config_title">Välj det ljus som du vill se färgförändring, baserat på priset</string>
+    <string name="config_title">* Välj det ljus som du vill se färgförändring, baserat på priset *</string>
     <string name="toast_color_not_supported">Ofärgade lampor stöds inte </string>
     <string name="configure_title">Vanligt</string>
     <string name="configure_description">Vanligt</string>

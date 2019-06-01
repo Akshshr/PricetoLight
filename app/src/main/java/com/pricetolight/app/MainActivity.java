@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
@@ -33,9 +35,10 @@ import com.philips.lighting.model.PHLight;
 import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
 import com.pricetolight.api.modal.CurrentPrice;
-import com.pricetolight.api.modal.CurrentSubscription;
 import com.pricetolight.api.modal.Home;
+import com.pricetolight.api.modal.HomeType;
 import com.pricetolight.api.modal.Homes;
+import com.pricetolight.api.service.Authenticator;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.login.LoginActivity;
@@ -51,6 +54,7 @@ import com.pricetolight.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import rx.android.schedulers.AndroidSchedulers;
 
@@ -66,16 +70,15 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     private ActivityMainBinding binding;
     BottomSheetBehavior bottomSheetBehavior;
     private Homes homes;
-    private CurrentSubscription currentSubscription;
     private Home home;
     private TurnOffServiceDialog turnOffServiceDialog;
     private TurnOnWifiDialog turnOnWifiDialog;
     PHHueSDK phHueSDK;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ((PriceToLightsApplication) getApplication()).setupPHSDK();
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
@@ -121,6 +124,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             getUserManager().logout();
             getUserManager().clearCache(this);
             startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
@@ -134,18 +138,18 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             Toast.makeText(MainActivity.this, "this" + menuItem.toString(), Toast.LENGTH_SHORT).show();
             return false;
         });
-
         binding.turnOff.setOnClickListener(v -> {
             turnOffServiceDialog = TurnOffServiceDialog.newInstance();
             turnOffServiceDialog.show(getSupportFragmentManager(), TurnOffServiceDialog.TAG);
         });
-        fetchData();
         binding.fab.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConfigureHueActivity.class), CONFIGURE_LIGHT));
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        fetchData();
+
         binding.bar.setHideOnScroll(true);
 
         binding.setNoActiveSubscription(false);
@@ -167,17 +171,17 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         } else {
             binding.setHasHuePaired(false);
         }
-
     }
 
     private void fetchData() {
+        //Add other calls to fetch from different endpoints
         fetchMe();
     }
 
     private void fetchMe() {
-
         if (getUserManager().getToken() == null) {
             getUserManager().logout();
+            PreferenceManager.getDefaultSharedPreferences(this).edit().clear().apply();
             this.finish();
         }
 
@@ -188,17 +192,18 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     }
 
     private void onMe(Homes homes) {
-
         this.homes = homes;
 
         getUserManager().updateCustomer(homes.getHomes().get(0));
+
+        //Set an active home by default
         getAppPreferences().setActiveHomeId(homes.getHomes().get(0).getId());
+
         if (!this.homes.getHomes().isEmpty()) {
             for (int i = 0; i < homes.getHomes().size(); i++) {
                 homeNickNames.add(homes.getHomes().get(i).getAppNickname());
             }
         }
-
         //Fetch price only after we have a valid homeID
         fetchPrice();
 
@@ -206,15 +211,22 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner, homeNickNames);
         binding.dropDownList.setAdapter(categoryAdapter);
         binding.dropDownList.setBackgroundColor(ContextCompat.getColor(this, R.color.white50));
-        setAvatar(0);
+        if(homes.getHomes().get(0).getType()!=null) {
+            setAvatar(homes.getHomes().get(0).getType());
+        }else{
+            setAvatar(HomeType.NOHOUSE);
+        }
         binding.dropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getAppPreferences().setActiveHomeId(homes.getHomes().get(position).getId());
                 onChangeHome(position);
-                setAvatar(position);
+                if(homes.getHomes().get(position).getType()!=null) {
+                    setAvatar(homes.getHomes().get(position).getType());
+                }else{
+                    setAvatar(HomeType.NOHOUSE);
+                }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -224,13 +236,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     @Override
     public void onBackPressed() {
-        getIntent().setFlags(FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        finishAndRemoveTask();
+//        getIntent().setFlags(FLAG_ACTIVITY_NEW_TASK & Intent.FLAG_ACTIVITY_CLEAR_TASK);
         super.onBackPressed();
-
     }
 
-    private void setAvatar(int position) {
-        switch (homes.getHomes().get(position).getType()) {
+    private void setAvatar(HomeType type) {
+        switch (type) {
             case CASTLE:
                 binding.avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_castle, null));
                 break;
@@ -256,7 +268,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
                 binding.avatar.setImageDrawable(getResources().getDrawable(R.drawable.ic_default, null));
         }
     }
-
 
     @Nullable
     public WifiManager getWifiManager() {
@@ -315,29 +326,21 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         }
         if (requestCode == CONFIGURE_LIGHT && resultCode == RESULT_OK && data != null && data.getExtras() != null) {
-
             Gson gson = new GsonBuilder().create();
-            ;
-
             PHLight phLight = gson.fromJson(data.getStringExtra("myjson"), PHLight.class);
             if (phLight != null) {
                 PHLight light = new PHLight(phLight);
                 setLightColor(light);
-            } else {
-                showSnackBar(new Throwable(getResources().getString(R.string.error_light_selection)));
             }
         }
     }
 
-
     private void setLightColor(PHLight light) {
-
         PHHueSDK phHueSDK = PHHueSDK.getInstance();
 
         getAppPreferences().setLightData(new Gson().toJson(light));
 
         int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(this);
-
         float xy[] = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), light.getModelNumber());
         PHLightState lightState = new PHLightState();
 
@@ -426,7 +429,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     @Override
     public void onConnectionResumed(PHBridge phBridge) {
-
         Log.d(TAG, "onConnectionResumed: ");
     }
 

@@ -27,6 +27,13 @@
         android:layout_height="match_parent"
         tools:context=".app.MainActivity">
 
+        <com.pricetolight.app.widget.CloudsView
+            android:id="@+id/cloudView"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/d56"
+            android:layout_marginBottom="@dimen/d144"
+            android:layout_height="match_parent"/>
+
         <com.pricetolight.app.widget.GroundView
             android:id="@+id/groundView"
             android:layout_gravity="bottom"
