@@ -8,6 +8,9 @@ You can easily login and see how cheap your energy is without having to know the
 
 Simple!
 
+![Price-To-Light](https://github.com/Akshshr/PricetoLight/blob/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png)
+
+
 # What do you need? 
 A Tibber account and Philips Hue bulbs that supports all colors.
 
