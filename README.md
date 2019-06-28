@@ -15,4 +15,7 @@ Simple!
 A Tibber account and Philips Hue bulbs that supports all colors.
 
 
+# Can you really use this project without going to prison? 
+Yes, I only take 4 BTC as payment OR you adding my reference.
+
 
