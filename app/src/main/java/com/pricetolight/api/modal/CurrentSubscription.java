@@ -1,11 +1,13 @@
 package com.pricetolight.api.modal;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class CurrentSubscription implements Serializable {
 
     private PriceInfo priceInfo;
-
 
     public PriceInfo getPriceInfo() {
         return priceInfo;

@@ -20,4 +20,7 @@ public interface PriceApiEndpoint {
     @POST("gql")
     Observable<Homes> getMe(@Header("Authorization") String token, @Body QueryRequest query);
 
+    @POST("gql")
+    Observable<Home> getPriceHistory(@Header("Authorization") String token, @Body QueryRequest query);
+
 }

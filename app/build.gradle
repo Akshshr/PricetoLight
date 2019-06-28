@@ -1,6 +1,8 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://jitpack.io' }
+
     }
     dependencies {
         classpath 'io.fabric.tools:gradle:1.28.0'
@@ -16,14 +18,17 @@ android {
         applicationId "com.pricetolight"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.3"
+        versionCode 5
+        versionName "1.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         renderscriptTargetApi 21
         renderscriptSupportModeEnabled true
         setProperty("archivesBaseName", "PriceToLight-app-$versionName")
         buildConfigField "String", "API_HOST", "\"https://api.tibber.com/%s/\""
 
+    }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
     }
     buildTypes {
         release {

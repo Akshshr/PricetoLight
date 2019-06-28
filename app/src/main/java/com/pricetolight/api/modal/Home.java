@@ -13,10 +13,10 @@ public class Home implements Serializable {
     private String id;
     private HomeAddress address;
 
+
     public HomeType getType() {
         return type;
     }
-
 
     private CurrentSubscription currentSubscription;
 

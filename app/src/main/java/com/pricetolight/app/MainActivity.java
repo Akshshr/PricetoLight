@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
-import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.View;
@@ -38,7 +37,6 @@ import com.pricetolight.api.modal.CurrentPrice;
 import com.pricetolight.api.modal.Home;
 import com.pricetolight.api.modal.HomeType;
 import com.pricetolight.api.modal.Homes;
-import com.pricetolight.api.service.Authenticator;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.login.LoginActivity;
@@ -54,11 +52,9 @@ import com.pricetolight.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import rx.android.schedulers.AndroidSchedulers;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class MainActivity extends BaseActivity implements TurnOffServiceDialog.OnTurnOffServiceListener, PHSDKListener {
 
@@ -129,7 +125,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
 
-        if (getAppPreferences()!=null && getAppPreferences().getNotFirstTime().get()) {
+        if (getAppPreferences() != null && getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);
             getAppPreferences().setNotFirstTime(false);
         }
@@ -156,7 +152,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         phHueSDK = PHHueSDK.getInstance();
         try {
             phHueSDK.getNotificationManager().registerSDKListener(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Crashlytics.logException(new Throwable(e.getMessage()));
         }
@@ -176,6 +172,21 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     private void fetchData() {
         //Add other calls to fetch from different endpoints
         fetchMe();
+        fetchPriceHistory();
+    }
+
+    private void fetchPriceHistory() {
+        getApi().getPriceApiService()
+                .getPriceHistory(getAppPreferences().getActiveHomeId().get())
+                .takeUntil(getLifecycleEvents(ActivityEvent.DESTROY))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::onPriceHistory, this::handleError);
+    }
+
+    private int graphColor1;
+
+    private void onPriceHistory(Home home) {
+        //Price history for the day
     }
 
     private void fetchMe() {
@@ -211,9 +222,9 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(this, R.layout.row_category_spinner, homeNickNames);
         binding.dropDownList.setAdapter(categoryAdapter);
         binding.dropDownList.setBackgroundColor(ContextCompat.getColor(this, R.color.white50));
-        if(homes.getHomes().get(0).getType()!=null) {
+        if (homes.getHomes().get(0).getType() != null) {
             setAvatar(homes.getHomes().get(0).getType());
-        }else{
+        } else {
             setAvatar(HomeType.NOHOUSE);
         }
         binding.dropDownList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -221,12 +232,13 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getAppPreferences().setActiveHomeId(homes.getHomes().get(position).getId());
                 onChangeHome(position);
-                if(homes.getHomes().get(position).getType()!=null) {
+                if (homes.getHomes().get(position).getType() != null) {
                     setAvatar(homes.getHomes().get(position).getType());
-                }else{
+                } else {
                     setAvatar(HomeType.NOHOUSE);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
