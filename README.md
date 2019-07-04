@@ -17,7 +17,7 @@ A Tibber account and Philips Hue bulbs that supports all colors.
 
 # Can you really use this project without going to prison? 
 Yes, I only take 4 BTC as payment ``` . OR . ``` you can simply add my reference.
-
+Not even kidding BTC: 36wpB4WvfJBS9R6vBk183YeTiBDU37W4ZS
 
 # How does the app look like even??
 Well glad you asked! Check out the screenshots here: https://play.google.com/store/apps/details?id=com.pricetolight 
