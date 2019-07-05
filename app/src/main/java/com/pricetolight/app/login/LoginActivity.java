@@ -32,6 +32,9 @@ public class LoginActivity extends BaseActivity {
     public static final int LOGIN_REQUEST = 1001;
     UserManager userManager;
 
+    //To who ever reading this! Good job!! You actually either dug into the core or sneaking around the commits!
+    //Here is a pat on the back!
+    
     public enum State {
         BEGIN, EMAIL, LOADING
     }
