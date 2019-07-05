@@ -52,7 +52,6 @@ public class LoginActivity extends BaseActivity {
         }
 
         TransitionManager.beginDelayedTransition(binding.content);
-        TransitionManager.beginDelayedTransition(binding.loginView);
         binding.setState(state);
         if(state==State.EMAIL){
             binding.titleAndCaption.animate().translationY(-120).setDuration(400);

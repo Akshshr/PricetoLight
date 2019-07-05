@@ -91,8 +91,10 @@
                             android:contentDescription="@string/title_description"
                             android:layout_marginTop="@dimen/d12"
                             android:layout_marginEnd="@dimen/d12"
+                            android:id="@+id/caption"
                             android:text="@string/app_caption"
                             android:textAlignment="center" />
+
                     </RelativeLayout>
 
                     <com.pricetolight.app.widget.CloudsView
@@ -127,52 +129,13 @@
                         android:textIsSelectable="false"
                         android:visibility="@{state == State.BEGIN ? View.VISIBLE : View.GONE}"
                         tools:text="@string/login_button" />
+
+
+
                 </FrameLayout>
 
-                <LinearLayout
-                    android:id="@+id/loginView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:padding="@dimen/d16"
-                    android:background="@color/blue700"
-                    android:orientation="vertical"
-                    android:visibility="@{state == State.EMAIL ? View.VISIBLE : View.GONE}">
 
-                    <EditText
-                        android:id="@+id/text_email"
-                        style="@style/AppWidget.EditText.Solid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="customer@tibber.com"
-                        android:hint="@string/login_email_hint"
-                        android:inputType="textEmailAddress"
-                        android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/text_password"
-                        style="@style/AppWidget.EditText.Solid"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/d6"
-                        android:hint="@string/login_password_hint"
-                        android:inputType="textPassword"
-                        android:textStyle="bold" />
-
-                    <android.support.v7.widget.AppCompatButton
-                        android:id="@+id/login"
-                        style="@style/AppTheme.ButtonBright"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/d8"
-                        android:layout_marginBottom="@dimen/d8"
-                        android:onClick="@{() -> delegate.onLogin()}"
-                        android:text="@string/login"
-                        android:textIsSelectable="false"
-                        tools:text="@string/login_button" />
-
-                </LinearLayout>
 
                 <TextView
                     style="@style/Text.Bright.14spMedium"
