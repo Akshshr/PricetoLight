@@ -45,6 +45,8 @@
     <string name="more_about">How can you help?</string>
     <string name="header1">Enheter</string>
     <string name="connect_hue">Anslut Philips Hue</string>
+    <string name="connect_lifx">Anslut Lifx</string>
+
     <string name="header2">Om</string>
     <string name="licences">Licenser</string>
     <string name="logout">LOGGA UT</string>

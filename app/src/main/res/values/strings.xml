@@ -7,6 +7,8 @@
     <string name="access_token" translatable="false">86067adbddf3c0653a20ca79b9cefbd72aba7e90d4feadb61e5131b7a0633ef1</string>
     <string name="tibberdev_url" translatable="false">https://developer.tibber.com</string>
     <string name="tibber_login_url" translatable="false">https://thewall.tibber.com/connect/authorize?response_type=token&amp;redirect_uri=http://localhost:3000&amp;client_id=31bffd92c744ddb8734227831f613c61192730e41b6da0726df8cdcfc8ecd80f&amp;scope=tibber_graph&amp;nonce=12</string>
+    <string name="lifx_login_url" translatable="false">https://cloud.lifx.com/oauth/authorize</string>
+
     <string name="bmc_link" translatable="false">https://www.buymeacoffee.com/MUmc9kq</string>
     <string name="bugs_link" translatable="false">https://github.com/Akshshr/PricetoLight/issues</string>
 
@@ -65,6 +67,9 @@
     <!--BOTTOM SHEET-->
     <string name="header1">Devices</string>
     <string name="connect_hue">Connect Philips Hue</string>
+
+    <string name="connect_lifx">Connect Lifx</string>
+
     <string name="header2">About</string>
     <string name="licences">Licences</string>
     <string name="more_about">How can you help?</string>

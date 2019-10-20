@@ -70,6 +70,38 @@
 
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/lifxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rowSingleLine"
+            android:layout_below="@+id/addDeviceLayout"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/lifxImg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:src="@drawable/ic_lifx" />
+
+            <TextView
+                style="@style/Text.14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/d12"
+                android:layout_marginEnd="@dimen/d22"
+                android:layout_toRightOf="@+id/lifxImg"
+                android:gravity="start"
+                android:text="@string/connect_lifx" />
+
+
+
+
+        </RelativeLayout>
 
 
         <TextView
@@ -77,7 +109,7 @@
             style="@style/Text.14spBold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addDeviceLayout"
+            android:layout_below="@+id/lifxLayout"
             android:layout_marginStart="@dimen/d12"
             android:layout_marginTop="@dimen/d16"
             android:layout_marginBottom="@dimen/d6"

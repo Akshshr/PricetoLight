@@ -40,6 +40,7 @@ import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.login.LoginActivity;
+import com.pricetolight.app.login.WebViewActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.main.HelpActivity;
 import com.pricetolight.app.main.LicencesActivity;
@@ -62,6 +63,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
 
     List<String> homeNickNames = new ArrayList<String>();
     public static final int CONFIGURE_LIGHT = 2001;
+    public static final int CONNECT_LIFX = 3001;
 
     private ActivityMainBinding binding;
     BottomSheetBehavior bottomSheetBehavior;
@@ -124,6 +126,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
+        binding.bottomSheet.findViewById(R.id.lifxLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, WebViewActivity.class).putExtra(IntentKeys.URL,getResources().getString(R.string.lifx_login_url)), CONNECT_LIFX));
 
         if (getAppPreferences() != null && getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);

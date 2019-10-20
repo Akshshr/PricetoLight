@@ -39,6 +39,8 @@
     <!--BOTTOM SHEET-->
     <string name="header1">Enheter</string>
     <string name="connect_hue">Koble Philips Hue</string>
+    <string name="connect_lifx">Koble Lifx</string>
+
     <string name="header2">Handle om</string>
     <string name="more_about">Hvordan kan du hjelpe?</string>
     <string name="licences">Lisenser</string>
@@ -47,6 +49,7 @@
     <!--CONNECT HUE FRAGMENT-->
     <string name="connect_result_button">Klar</string>
     <string name="connect_hue_title">Koble Philips Hue Bridge</string>
+
     <string name="connect_hue_description">Klikk på den store knappen på nyansebron</string>
     <string name="connect_hue_searching">Søker etter broen din.....</string>
 
