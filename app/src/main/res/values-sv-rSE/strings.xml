@@ -40,6 +40,7 @@
     <string name="login_password_hint">Lösenord</string>
     <string name="login_loading_text">Loggar in, lätt som en plätt!</string>
     <string name="login_no_customer_text">Vet du inte vad Tibber är? Klicka här!</string>
+    <string name="web_view_title">Tibber Login</string>
 
     <!--BOTTOM SHEET-->
     <string name="more_about">How can you help?</string>

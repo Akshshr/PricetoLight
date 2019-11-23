@@ -19,8 +19,27 @@
     android:layout_height="match_parent"
     tools:context=".app.login.WebViewActivity">
 
+    <LinearLayout
+        android:id="@+id/topHeader"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/blue500"
+        android:layout_height="@dimen/d72">
+
+        <TextView
+            android:id="@+id/headerText"
+            android:text="@string/web_view_title"
+            style="@style/Text.Bright.16spMedium"
+            android:gravity="center"
+            android:paddingTop="@dimen/d12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
     <WebView
-        android:paddingTop="@dimen/d32"
+        android:layout_below="@+id/topHeader"
         android:id="@+id/webView"
         android:visibility="@{loggedIn ? View.GONE : View.VISIBLE}"
         android:layout_width="match_parent"

@@ -9,6 +9,10 @@
     <string name="tibber_login_url" translatable="false">https://thewall.tibber.com/connect/authorize?response_type=token&amp;redirect_uri=http://localhost:3000&amp;client_id=31bffd92c744ddb8734227831f613c61192730e41b6da0726df8cdcfc8ecd80f&amp;scope=tibber_graph&amp;nonce=12</string>
     <string name="lifx_login_url" translatable="false">https://cloud.lifx.com/oauth/authorize</string>
 
+
+    <string name="lifx_token" translatable="false">cd9cbeb2b7080d08298e82df3090b3715453bbff79cc80175f1f4e042deddb31</string>
+
+
     <string name="bmc_link" translatable="false">https://www.buymeacoffee.com/MUmc9kq</string>
     <string name="bugs_link" translatable="false">https://github.com/Akshshr/PricetoLight/issues</string>
 
@@ -46,6 +50,7 @@
     <string name="login_password_hint">Password</string>
 
     <string name="login_loading_text">Logging you in, nice and easy!</string>
+    <string name="web_view_title">Tibber Login</string>
 
     <string name="login_no_customer_text">Don\'t know what Tibber is? Click here!</string>
     <string name="login_tibber_url" translatable="false">https://www.tibber.com</string>

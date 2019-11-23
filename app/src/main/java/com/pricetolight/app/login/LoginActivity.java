@@ -86,7 +86,10 @@ public class LoginActivity extends BaseActivity {
 
     private void loginWithEmail() {
         setState(State.LOADING);
-        startActivityForResult(new Intent(this, WebViewActivity.class).putExtra(IntentKeys.URL,getResources().getString(R.string.tibber_login_url)),LOGIN_REQUEST);
+        startActivityForResult(new Intent(
+                this, WebViewActivity.class)
+                .putExtra(IntentKeys.SHOW_WEBVIEW_HEADER, true)
+                .putExtra(IntentKeys.URL,getResources().getString(R.string.tibber_login_url)),LOGIN_REQUEST);
     }
 
     public class Delegate {

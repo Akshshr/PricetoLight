@@ -16,8 +16,6 @@ import com.pricetolight.api.modal.Home;
 import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.AppPreferences;
 import com.pricetolight.app.base.UserManager;
-import com.pricetolight.app.util.IntentKeys;
-
 
 public class UpdateLightJobService extends JobService {
 
@@ -74,7 +72,7 @@ public class UpdateLightJobService extends JobService {
 
                     int priceColor = home.getCurrentSubscription().getPriceInfo().getCurrent().getLevel().getLevelColor(UpdateLightJobService.this);
 
-                    float xy[] = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), phLight.getModelNumber());
+                    float[] xy = PHUtilities.calculateXYFromRGB(Color.red(priceColor), Color.green(priceColor), Color.blue(priceColor), phLight.getModelNumber());
                     PHLightState lightState = new PHLightState();
                     lightState.setX(xy[0]);
                     lightState.setY(xy[1]);

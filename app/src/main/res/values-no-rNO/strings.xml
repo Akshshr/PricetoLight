@@ -35,6 +35,7 @@
     <string name="login_email_hint">E-post som i Tibber</string>
     <string name="login_password_hint">Passord</string>
     <string name="login_loading_text">Logg deg inn, hyggelig og enkelt!</string>
+    <string name="web_view_title">Tibber inn logg</string>
 
     <!--BOTTOM SHEET-->
     <string name="header1">Enheter</string>

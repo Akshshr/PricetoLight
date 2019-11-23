@@ -126,7 +126,10 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
         });
         binding.bottomSheet.findViewById(R.id.licencesLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, LicencesActivity.class), 1));
         binding.bottomSheet.findViewById(R.id.helpMoreLayout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, HelpActivity.class)));
-        binding.bottomSheet.findViewById(R.id.lifxLayout).setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, WebViewActivity.class).putExtra(IntentKeys.URL,getResources().getString(R.string.lifx_login_url)), CONNECT_LIFX));
+        binding.bottomSheet.findViewById(R.id.lifxLayout).setOnClickListener(v ->
+                startActivityForResult(new Intent(MainActivity.this, WebViewActivity.class)
+                        .putExtra(IntentKeys.SHOW_WEBVIEW_HEADER, false)
+                        .putExtra(IntentKeys.URL,getResources().getString(R.string.lifx_login_url)), CONNECT_LIFX));
 
         if (getAppPreferences() != null && getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);

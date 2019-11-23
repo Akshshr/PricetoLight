@@ -28,7 +28,9 @@ public class ConfigureHueActivity extends BaseActivity {
     public static final String TAG = ConfigureHueActivity.class.getSimpleName();
     private ActivityConfigureHueBinding binding;
     private ConfigureLightsAdapter adapter;
+
     public static final int LIGHTS_RESULT = 1001;
+
     private PHLight choosenPHLight;
 
     @Override
@@ -61,7 +63,6 @@ public class ConfigureHueActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
         Gson gson = new Gson();
         String myJson = gson.toJson(choosenPHLight);
 
@@ -69,12 +70,6 @@ public class ConfigureHueActivity extends BaseActivity {
         lightIntent.putExtra("myjson", myJson);
         setResult(RESULT_OK, lightIntent);
 
-//        Gson gson = new Gson();
-//        String myJSONLight = gson.toJson(choosenPHLight);
-//        Intent lightIntent = new Intent();
-//        lightIntent.putExtra(IntentKeys.LIGHT_CHOSEN, myJSONLight);
-//        setResult(RESULT_OK, lightIntent);
-//        finish();
         super.onBackPressed();
     }
 
@@ -85,16 +80,7 @@ public class ConfigureHueActivity extends BaseActivity {
         binding.done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View View) {
-
                 onBackPressed();
-//                float xy[] = PHUtilities.calculateXYFromRGB(Color.red(250), Color.green(0), Color.blue(0), choosenPHLight.getModelNumber());
-//                PHLightState lightState = new PHLightState();
-//                lightState.setX(xy[0]);
-//                lightState.setY(xy[1]);
-//
-//                PHHueSDK phHueSDK =PHHueSDK.getInstance();
-//                phHueSDK.getSelectedBridge().updateLightState(choosenPHLight, lightState);
-//                scheduleJob();
             }
         });
     }

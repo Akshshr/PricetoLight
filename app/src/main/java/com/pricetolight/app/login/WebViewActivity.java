@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -22,6 +23,7 @@ import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
+import com.pricetolight.app.util.UI;
 import com.pricetolight.databinding.ActivityWebViewBinding;
 
 import org.apache.commons.lang3.StringUtils;
@@ -37,6 +39,10 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
     UserManager userManager;
     AppCache appCache;
     String tokenRecieved;
+    boolean showHeader;
+
+    public static final String TIBBER = "tibber";
+    public static final String LIFX = "lifx";
 
     CookieManager cookieManager = CookieManager.getInstance();
 
@@ -46,11 +52,14 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
         binding = DataBindingUtil.setContentView(this, R.layout.activity_web_view);
         userManager = new UserManager(getAppPreferences() , appCache);
 
-        cookieManager.removeAllCookies(new ValueCallback<Boolean>() {
-            @Override
-            public void onReceiveValue(Boolean value) {
+        if(getIntent().getExtras()!=null) {
+            showHeader = getIntent().getExtras().getBoolean(IntentKeys.SHOW_WEBVIEW_HEADER, false);
+        }
+        if(!showHeader){
+            binding.topHeader.setVisibility(View.GONE);
+        }
+        cookieManager.removeAllCookies(value -> {
 
-            }
         });
 
         final String startUrl = getIntent().getExtras().getString(IntentKeys.URL);
@@ -60,7 +69,6 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-
                 Log.d("WebView", "your current url when webpage loading.." + url);
             }
 
@@ -78,19 +86,25 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 String[] parts = url.split("access_token=");
-                try {
-                    if (parts != null && parts[1] != null) {
-                        String token = parts[1];
-                        token = StringUtils.substringBetween(token, "", "&token_type");
-                        tokenRecieved = token;
-                        updateToken(token);
-                        binding.setLoggedIn(true);
-                        Observable.timer(2000, TimeUnit.MILLISECONDS)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(this::loggingIn);
+
+                if(url.contains(TIBBER)) {
+                    try {
+                        if (parts != null && parts[1] != null) {
+                            String token = parts[1];
+                            token = StringUtils.substringBetween(token, "", "&token_type");
+                            tokenRecieved = token;
+                            updateToken(token);
+                            binding.setLoggedIn(true);
+                            Observable.timer(2000, TimeUnit.MILLISECONDS)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(this::loggingIn);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                }catch (Exception e){
-                    e.printStackTrace();
+                }
+                if(url.contains(LIFX)) {
+//                    Do magic here
                 }
                 return super.shouldOverrideUrlLoading(view, url);
             }
@@ -103,17 +117,8 @@ public class WebViewActivity extends BaseActivity implements Authenticator{
             }
 
         });
-
         binding.webView.loadUrl(startUrl);
-
     }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
 
     @Override
     public void onBackPressed() {
