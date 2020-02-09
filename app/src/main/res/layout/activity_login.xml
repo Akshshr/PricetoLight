@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         tools:context=".app.login.LoginActivity">
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
@@ -116,7 +116,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="180dp" />
 
-                    <android.support.v7.widget.AppCompatButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/save"
                         style="@style/AppTheme.ButtonBright"
                         android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
                     tools:text="@string/login_no_customer_text" />
 
             </RelativeLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 

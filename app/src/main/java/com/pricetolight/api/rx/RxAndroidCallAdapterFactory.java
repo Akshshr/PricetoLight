@@ -1,16 +1,12 @@
 package com.pricetolight.api.rx;
 
-import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.pricetolight.BuildConfig;
 import com.pricetolight.api.retrofit.RetrofitException;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.CallAdapter;

@@ -2,45 +2,28 @@ package com.pricetolight.app.main.fragment;
 
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.graphics.ColorFilter;
-import android.net.wifi.WifiManager;
+
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import android.widget.Toast;
 
-import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
-import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
-import com.philips.lighting.hue.sdk.PHHueSDK;
-import com.philips.lighting.hue.sdk.PHMessageType;
 import com.philips.lighting.hue.sdk.PHSDKListener;
 import com.philips.lighting.model.PHBridge;
-import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHGroup;
-import com.philips.lighting.model.PHHueError;
 import com.philips.lighting.model.PHHueParsingError;
 import com.philips.lighting.model.PHLight;
 import com.pricetolight.R;
-import com.pricetolight.app.MainActivity;
-import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.BaseFragment;
-import com.pricetolight.app.hue.ConfigureHueActivity;
 import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.databinding.FragmentHueConnectBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class HueConnectFragment extends BaseFragment implements PHSDKListener{

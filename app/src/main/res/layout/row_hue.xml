@@ -80,7 +80,7 @@
                 android:layout_toRightOf="@id/light_icon"
                 tools:text="ON"/>
 
-            <android.support.design.chip.Chip
+            <com.google.android.material.chip.Chip
                 style="@style/ChipCustomStyle"
                 android:id="@+id/chip"
                 android:layout_centerVertical="true"

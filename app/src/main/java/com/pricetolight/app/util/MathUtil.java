@@ -3,10 +3,10 @@ package com.pricetolight.app.util;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PointF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 public class MathUtil {
 

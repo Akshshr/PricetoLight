@@ -53,7 +53,7 @@ public class PriceToLightsApplication extends Application {
     }
 
     public void setupPHSDK() {
-        if (phHueSDK == null) {
+        if(phHueSDK == null) {
             phHueSDK = PHHueSDK.create();
             // Register the PHSDKListener to receive callbacks from the bridge.
             phHueSDK.getNotificationManager().registerSDKListener(listener);

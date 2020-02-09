@@ -1,20 +1,16 @@
 package com.pricetolight.app.main.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.pricetolight.R;
 import com.pricetolight.api.modal.Licence;
 import com.pricetolight.databinding.RowLicenceBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LicencesAdapter extends RecyclerView.Adapter<LicencesAdapter.ViewHolder> {

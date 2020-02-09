@@ -1,6 +1,6 @@
 package com.pricetolight.app.util;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.SparseArray;
 
 import java.text.NumberFormat;

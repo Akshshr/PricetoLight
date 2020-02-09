@@ -3,7 +3,7 @@ package com.pricetolight.app.base;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.f2prateek.rx.preferences.Preference;
 import com.f2prateek.rx.preferences.RxSharedPreferences;
@@ -17,8 +17,7 @@ public class AppPreferences {
 
 
     public AppPreferences(final Context context) {
-        final SharedPreferences sharedPreferences
-                = PreferenceManager.getDefaultSharedPreferences(context);
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         rxSharedPreferences = RxSharedPreferences.create(sharedPreferences);
     }
 

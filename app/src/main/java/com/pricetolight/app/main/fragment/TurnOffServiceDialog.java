@@ -1,13 +1,12 @@
 package com.pricetolight.app.main.fragment;
 
-import android.app.Dialog;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.Context;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
+
+import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.databinding.FragmentTurnOffServiceDialogBinding;
 
 import java.util.Objects;
-
-import static android.content.Context.JOB_SCHEDULER_SERVICE;
 
 public class TurnOffServiceDialog extends DialogFragment {
 

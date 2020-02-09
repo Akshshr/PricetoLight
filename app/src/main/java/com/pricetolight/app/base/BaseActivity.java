@@ -3,31 +3,21 @@ package com.pricetolight.app.base;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.Context;
-import android.support.annotation.Keep;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Keep;
+import androidx.annotation.Nullable;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.philips.lighting.hue.sdk.PHAccessPoint;
-import com.philips.lighting.hue.sdk.PHBridgeSearchManager;
-import com.philips.lighting.hue.sdk.PHHueSDK;
-import com.philips.lighting.hue.sdk.PHMessageType;
-import com.philips.lighting.hue.sdk.PHSDKListener;
-import com.philips.lighting.model.PHBridge;
-import com.philips.lighting.model.PHHueError;
-import com.philips.lighting.model.PHHueParsingError;
 import com.pricetolight.R;
 import com.pricetolight.api.Api;
 import com.pricetolight.app.PriceToLightsApplication;
-import com.pricetolight.app.main.ConnectHueActivity;
 import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.UI;
 
-import java.util.List;
 import java.util.Objects;
 
 import rx.Observable;
@@ -61,8 +51,6 @@ public class BaseActivity extends AppCompatActivity {
     public UserManager getUserManager() {
         return ((PriceToLightsApplication) getApplication()).getUserManager();
     }
-
-
 
     @Override
     protected void onStart() {
@@ -98,7 +86,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public static boolean isJobServiceOn(Context context) {
-        JobScheduler scheduler = (JobScheduler) context.getSystemService( Context.JOB_SCHEDULER_SERVICE ) ;
+        JobScheduler scheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE );
         boolean hasBeenScheduled = false ;
 
         for ( JobInfo jobInfo : Objects.requireNonNull(scheduler).getAllPendingJobs() ) {

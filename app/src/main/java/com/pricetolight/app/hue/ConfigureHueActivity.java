@@ -1,25 +1,20 @@
 package com.pricetolight.app.hue;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.graphics.Color;
+import androidx.databinding.DataBindingUtil;
+
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v7.widget.LinearLayoutManager;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.philips.lighting.hue.sdk.PHHueSDK;
-import com.philips.lighting.hue.sdk.utilities.PHUtilities;
 import com.philips.lighting.model.PHLight;
-import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
-import com.pricetolight.api.modal.AppHueLight;
 import com.pricetolight.app.base.BaseActivity;
-import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.databinding.ActivityConfigureHueBinding;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +35,7 @@ public class ConfigureHueActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_configure_hue);
         binding.toolbar.setTitle("Configure hue light");
 
-        PHHueSDK phHueSDK=PHHueSDK.getInstance();
+        PHHueSDK phHueSDK = PHHueSDK.getInstance();
 
         List<PHLight> lights= new ArrayList<>();
         if (phHueSDK.getAllBridges().size()>0)

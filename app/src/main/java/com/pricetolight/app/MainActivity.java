@@ -5,14 +5,16 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import androidx.core.content.ContextCompat;
 import android.os.Bundle;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -22,6 +24,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
@@ -131,7 +135,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
                         .putExtra(IntentKeys.SHOW_WEBVIEW_HEADER, false)
                         .putExtra(IntentKeys.URL,getResources().getString(R.string.lifx_login_url)), CONNECT_LIFX));
 
-        if (getAppPreferences() != null && getAppPreferences().getNotFirstTime().get()) {
+        if (getAppPreferences() != null && getAppPreferences().getNotFirstTime()!=null && getAppPreferences().getNotFirstTime().get()) {
             binding.bottomSheet.findViewById(R.id.firstTimeUser).setVisibility(View.VISIBLE);
             getAppPreferences().setNotFirstTime(false);
         }
@@ -145,6 +149,41 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
             turnOffServiceDialog.show(getSupportFragmentManager(), TurnOffServiceDialog.TAG);
         });
         binding.fab.setOnClickListener(v -> startActivityForResult(new Intent(MainActivity.this, ConfigureHueActivity.class), CONFIGURE_LIGHT));
+
+//        runGuide();
+    }
+
+    private void runGuide() {
+        new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forView(findViewById(R.id.bar), "Bar here"),
+                        TapTarget.forView(findViewById(R.id.fab), "Pick light here", "Light")
+                                .dimColor(android.R.color.holo_blue_dark)
+                                .outerCircleColor(R.color.gray400)
+                                .targetCircleColor(R.color.blue700)
+                                .textColor(android.R.color.white))
+                .listener(new TapTargetSequence.Listener() {
+                    // This listener will tell us when interesting(tm) events happen in regards
+                    // to the sequence
+                    @Override
+                    public void onSequenceFinish() {
+                        // Yay
+                        Log.d(TAG, "onSequenceFinish: ");
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                        Log.d(TAG, "onSequenceFinish: ");
+
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                        // Boo
+                        Log.d(TAG, "onSequenceFinish: ");
+
+                    }
+                });
     }
 
     @Override
@@ -255,7 +294,6 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
     @Override
     public void onBackPressed() {
         finishAndRemoveTask();
-//        getIntent().setFlags(FLAG_ACTIVITY_NEW_TASK & Intent.FLAG_ACTIVITY_CLEAR_TASK);
         super.onBackPressed();
     }
 
@@ -350,6 +388,7 @@ public class MainActivity extends BaseActivity implements TurnOffServiceDialog.O
                 PHLight light = new PHLight(phLight);
                 setLightColor(light);
             }
+            runGuide();
         }
     }
 

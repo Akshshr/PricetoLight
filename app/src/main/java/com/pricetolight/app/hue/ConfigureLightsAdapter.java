@@ -1,16 +1,15 @@
 package com.pricetolight.app.hue;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.philips.lighting.model.PHLight;
-import com.philips.lighting.model.PHLightState;
 import com.pricetolight.R;
 import com.pricetolight.databinding.RowHueBinding;
 
@@ -53,6 +52,7 @@ public class ConfigureLightsAdapter extends RecyclerView.Adapter<ConfigureLights
                 binding.background.setImageDrawable(context.getDrawable(R.drawable.bg_hue_row_color));
                 binding.getRoot().setOnClickListener(v -> {
                     binding.checkmark.setVisibility(View.VISIBLE);
+                    binding.background.setAlpha(0.4f);
                     lightClickSubject.onNext(light);
                 });
             }

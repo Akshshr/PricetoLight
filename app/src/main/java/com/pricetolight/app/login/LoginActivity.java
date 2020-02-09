@@ -1,28 +1,21 @@
 package com.pricetolight.app.login;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.transition.TransitionManager;
-import android.util.Log;
-import android.view.View;
 
 import com.pricetolight.R;
-import com.pricetolight.api.modal.Homes;
 import com.pricetolight.app.MainActivity;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
 import com.pricetolight.app.util.Util;
 import com.pricetolight.databinding.ActivityLoginBinding;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class LoginActivity extends BaseActivity {
 

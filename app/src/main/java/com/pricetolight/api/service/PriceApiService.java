@@ -32,7 +32,7 @@ public class PriceApiService {
 
     public Observable<Home> getPriceHistory(String homeId) {
         String query = "{ viewer { home (id:\"%1$s\") { currentSubscription{ priceInfo{ today{ total energy tax startsAt } } } } } }";
-        query = String.format(query,homeId);
+        query = String.format(query, homeId);
         return priceApiEndpoint.getPriceHistory(authenticator.getToken(), new QueryRequest(query));
     }
 

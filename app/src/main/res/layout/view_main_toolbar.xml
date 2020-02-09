@@ -32,7 +32,7 @@
         android:layout_height="match_parent"
         tools:ignore="RelativeOverlap">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/view_toolbar"
             style="@style/Text.16spBold"
             android:layout_width="match_parent"

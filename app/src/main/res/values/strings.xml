@@ -10,7 +10,7 @@
     <string name="lifx_login_url" translatable="false">https://cloud.lifx.com/oauth/authorize</string>
 
 
-    <string name="lifx_token" translatable="false">cd9cbeb2b7080d08298e82df3090b3715453bbff79cc80175f1f4e042deddb31</string>
+    <!--<string name="lifx_token" translatable="false">cd9cbeb2b7080d08298e82df3090b3715453bbff79cc80175f1f4e042deddb31</string>-->
 
 
     <string name="bmc_link" translatable="false">https://www.buymeacoffee.com/MUmc9kq</string>

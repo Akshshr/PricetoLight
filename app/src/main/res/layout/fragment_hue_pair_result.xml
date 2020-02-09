@@ -73,7 +73,7 @@
 
         </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/d22"
@@ -81,7 +81,7 @@
             android:paddingBottom="@dimen/d40"
             android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:layout_marginBottom="@dimen/d16"

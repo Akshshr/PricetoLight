@@ -1,13 +1,11 @@
 package com.pricetolight.app.main;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.pricetolight.R;
 import com.pricetolight.api.modal.Licence;
@@ -15,7 +13,6 @@ import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.main.adapter.LicencesAdapter;
 import com.pricetolight.databinding.ActivityLicencesBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LicencesActivity extends BaseActivity {

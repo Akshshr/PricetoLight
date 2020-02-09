@@ -1,11 +1,10 @@
 package com.pricetolight.app.main;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.pricetolight.R;
 import com.pricetolight.app.base.BaseActivity;

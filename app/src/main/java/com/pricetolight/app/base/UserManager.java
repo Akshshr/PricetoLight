@@ -1,14 +1,11 @@
 package com.pricetolight.app.base;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 import com.pricetolight.api.modal.Home;
-import com.pricetolight.api.modal.HomeAddress;
 import com.pricetolight.api.service.Authenticator;
-
-import java.io.IOException;
 
 import rx.Observable;
 

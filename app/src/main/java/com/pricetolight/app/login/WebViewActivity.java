@@ -1,16 +1,15 @@
 package com.pricetolight.app.login;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
-import android.net.UrlQuerySanitizer;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -23,7 +22,6 @@ import com.pricetolight.app.base.AppCache;
 import com.pricetolight.app.base.BaseActivity;
 import com.pricetolight.app.base.UserManager;
 import com.pricetolight.app.util.IntentKeys;
-import com.pricetolight.app.util.UI;
 import com.pricetolight.databinding.ActivityWebViewBinding;
 
 import org.apache.commons.lang3.StringUtils;
